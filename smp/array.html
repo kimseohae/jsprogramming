@@ -7,6 +7,452 @@
     </title>
 </head>
 <body>
+    <script>
     
+        /**
+            The Array constructor is the %Array% intrinsic object and the initial value of the Array property of the global object. 
+            When called as a constructor it creates and initializes a new Array exotic object.
+            When Array is called as a function rather than as a constructor, it also creates and initializes a new Array object. 
+            Thus the function call Array(…) is equivalent to the object creation expression new Array(…) with the same arguments.
+
+            Array 생성자는 %Array% 내장 객체 및 전역 객체의 Array 속성의 초기 값입니다.
+            생성자로 호출되면 새로운 Array 객체가 만들어지고 초기화됩니다.
+            Array가 생성자가 아닌 함수로 호출되면, 새로운 Array 객체를 만들고 초기화한다.
+            따라서 함수 호출 Array (...)는 동일한 인수를 사용하는 객체 작성 표현식 new Array (...)와 동일니다.
+
+            The length property of the Array constructor function
+
+            1. Array() : return ArrayCreate(0, proto)
+               ( 배열을 생성하여 반환한다. length는 0츠로 초기화 한다. )
+            2. Array(len) : return Set(array, "length", intLen, true)
+               ( 배열을 생성하여 length를 파라미터로 넘어온 length로 초기화 한 뒤 반환한다 )
+            3. Array(... 1 more items) : CreateDataProperty(array, Pk, itemK) and return Set(array, "length", length of items, true)
+               ( 배열을 생성하여 파라미터로 넘어온 item들을 index를 PK삼아 등록 한 뒤 length에 item들의 마지막 length를 등록 하여 반환한다 )
+
+            Array ( [ constructor ] )
+            +-- property
+                +--from : The from function creates a new Array instance from an array-like or iterable object.
+                    +-- parameters : (arrayLike[, mapFn[, thisArg]])
+                    +-- arrayLike : 데이터를 뽑아낼 유사 배열 객체
+                    +-- mapFn : 수행할 맵 함수
+                    +-- thisArg : mapFn에서 this가 바인딜 될 값
+                +-- isArray : The Array.isArray function determines whether the passed value is an Array.
+                    +-- parameters : (obj)
+                    +-- obj : 판별 대상이 될 객체
+                +-- of : The Array.of function is creates a new Array instance with a variable number of arguments, regardless of number or type of the arguments.
+                    +-- parameters : (element0[, element1[, ...[, elementN]]])
+                    +-- elementN : 새로운 객체로 등록 할 파라미터들
+                +-- get Array
+                    +-- prototype.concat : The concat function is used to merge two or more arrays. This function does not change the existing arrays, but instead returns a new array.
+                        +-- parameters : ( ...arguments )
+                        +-- arguments : 합칠 대상이 될 배열들
+                    +-- prototype.copyWithin : The copyWithin function shallow copies part of an array to another location in the same array and returns it, without modifying its size.
+                        +-- parameters : ( target, start [ , end ] )
+                        +-- target : 복사 대상이 될 배열
+                        +-- start : 덮어쓰기 시작 인덱스
+                        +-- end : 덮어쓰기 종료 인덱스
+                    +-- prototype.entries : The entries function returns a new Array Iterator object that contains the key/value pairs for each index in the array.
+                    +-- prototype.every : The every function is tests whether all elements in the array pass the test implemented by the provided function.
+                        +-- parameters : ( callbackfn [ , thisArg ] )
+                        +-- callbackfn : 통과 대상 여부를 판별 하는 콜백 함수
+                            +-- parameters (currentValue [, index [, array ]])
+                            +-- currentValue : 현재 콜백 받은 대상의 값
+                            +-- index : 현재 콜백 받은 대상의 인덱스
+                            +-- array : 현재 콜백 받은 대방의 배열
+                        +-- thisArg : callback이 바인딩 될 this값
+                    +-- prototype.fill : The fill function is fills all the elements of an array from a start index to an end index with a static value.
+                        +-- parameters : ( value [ , start [ , end ] ] )
+                        +-- value : 채울 값
+                        +-- start : 값을 채울 시작 인덱스
+                        +-- end : 값을 채울 종료 인덱스
+                    +-- prototype.filter : The filter function is creates a new array with all elements that pass the test implemented by the provided function.
+                        +-- parameters : ( callbackfn [ , thisArg ] )
+                        +-- callbackfn : 필터링 대상 콜백 함수
+                            +-- parameters (currentValue [, index [, array ]])
+                            +-- currentValue : 현재 콜백 받은 대상의 값
+                            +-- index : 현재 콜백 받은 대상의 인덱스
+                            +-- array : 현재 콜백 받은 대방의 배열
+                        +-- thisArg : callback이 바인딩 될 this값
+                    +-- prototype.find : The find function returns the value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
+                        +-- parameters : ( predicate [ , thisArg ] )
+                        +-- predicate : 필터링 대상 콜백 함수
+                            +-- parameters (currentValue [, index [, array ]])
+                            +-- currentValue : 현재 콜백 받은 대상의 값
+                            +-- index : 현재 콜백 받은 대상의 인덱스
+                            +-- array : 현재 콜백 받은 대방의 배열
+                        +-- thisArg : callback이 바인딩 될 this값
+                    +-- prototype.findIndex : The findIndex function is returns the index of the first element in the array that satisfies the provided testing function. Otherwise -1 is returned.
+                        +-- parameters : ( predicate [ , thisArg ] )
+                        +-- predicate : 필터링 대상 콜백 함수
+                            +-- parameters (currentValue [, index [, array ]])
+                            +-- currentValue : 현재 콜백 받은 대상의 값
+                            +-- index : 현재 콜백 받은 대상의 인덱스
+                            +-- array : 현재 콜백 받은 대상의 배열
+                        +-- thisArg : callback이 바인딩 될 this값
+                    +-- prototype.forEach : The forEach function is executes a provided function once for each array element.
+                        +-- parameters : ( callbackfn [ , thisArg ] )
+                        +-- callbackfn : 필터링 대상 콜백 함수
+                            +-- parameters (currentValue [, index [, array ]])
+                            +-- currentValue : 현재 처리중인 값
+                            +-- index : 현재 저리중인 대상의 인덱스
+                            +-- array : 현재 처리중인 대상의 배열
+                        +-- thisArg : callback이 바인딩 될 this값
+                    +-- prototype.includess : The includess function is determines whether an array includess a certain element, returning true or false as appropriate.
+                        +-- parameters : ( searchElement [ , fromIndex ] )
+                        +-- searchElement : 찾을 요소 값
+                        +-- fromIndex : 요소를 찾을 시작 인덱스
+                    +-- prototype.indexOf : The indexOf function is returns the first index at which a given element can be found in the array, or -1 if it is not present.
+                        +-- parameters : ( searchElement [ , fromIndex ] )
+                        +-- searchElement : 해당 배열에서 인덱스를 찾을 요소
+                        +-- fromIndex : 요소를 찾을 시작 인덱스 
+                    +-- prototype.join : The join function is joins all elements of an array (or an array-like object) into a string and returns this string.
+                        +-- parameters : ( separator )
+                        +-- separator : 통합 시 다른 문자열과 구분할 구분자 default = ','
+                    +-- prototype.keys : The keys function is returns a new Array Iterator object that contains the keys for each index in the array.
+                    +-- prototype.lastIndexOf : The lastIndexOf function is returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
+                        +-- parameters : ( searchElement [ , fromIndex ] )
+                        +-- searchElement : 찾을 요소 값
+                        +-- fromIndex : 요소를 찾을 요소 수
+                    +-- prototype.map : The map function is creates a new array with the results of calling a provided function on every element in the calling array.
+                        +-- parameters : ( callbackfn [ , thisArg ] )
+                        +-- callbackfn : 필터링 대상 콜백 함수
+                            +-- parameters (currentValue [, index [, array ]])
+                            +-- currentValue : 현재 처리중인 값
+                            +-- index : 현재 저리중인 대상의 인덱스
+                            +-- array : 현재 처리중인 대상의 배열
+                        +-- thisArg : callback이 바인딩 될 this값
+                    +-- prototype.push : The push function is adds one or more elements to the end of an array and returns the new length of the array.
+                        +-- parameters : ( ...items )
+                        +-- items : 등록할 요소들 ','를 구분자로 인식
+                    +-- prototype.pop : The pop function is removes the last element from an array and returns that element. This method changes the length of the array.
+                    +-- prototype.reduce : The reduce function is applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
+                        +-- parameters : ( callbackfn [ , initialValue ] )
+                        +-- callbackfn : 필터링 대상 콜백 함수
+                            +-- parameters (accumulator, currentValue [, index [, array ]])
+                            +-- accumulator : 누적 계산값 콜백의 반환 값이며 최초 initValue이기도 하다.
+                            +-- currentValue : 현재 처리중인 값
+                            +-- index : 현재 저리중인 대상의 인덱스
+                            +-- array : 현재 처리중인 대상의 배열
+                        +-- initialValue : callback이 바인딩 될 this값
+                    +-- prototype.reduceRight : The reduceRight function is applies a function against an accumulator and each value of the array (from right-to-left) to reduce it to a single value.
+                        +-- parametere : ( callbackfn [ , initialValue ] )
+                        +-- callbackfn : 필터링 대상 콜백 함수
+                            +-- parameters (accumulator, currentValue [, index [, array ]])
+                            +-- accumulator : 누적 계산값 콜백의 반환 값이며 최초 initValue이기도 하다.
+                            +-- currentValue : 현재 처리중인 값
+                            +-- index : 현재 저리중인 대상의 인덱스
+                            +-- array : 현재 처리중인 대상의 배열
+                        +-- initialValue : callback이 바인딩 될 this값
+                    +-- prototype.reverse : The reverse function is reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
+                    +-- prototype.shift : The shift function is removes the first element from an array and returns that element. This method changes the length of the array
+                    +-- prototype.slice : The slice function is returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). The original array will not be modified.
+                        +-- parameters : ( start, end )
+                        +-- start : 복사 시작 인덱스
+                        +-- end : 복사 종료 인덱스
+                    +-- prototype.some : The some function is tests whether at least one element in the array passes the test implemented by the provided function.
+                        +-- parameters : ( callbackfn [ , thisArg ] )
+                        +-- callbackfn : 필터링 대상 콜백 함수
+                            +-- parameters (currentValue [, index [, array ]])
+                            +-- currentValue : 현재 처리중인 값
+                            +-- index : 현재 저리중인 대상의 인덱스
+                            +-- array : 현재 처리중인 대상의 배열
+                        +-- thisArg : callback이 바인딩 될 this값
+                    +-- prototype.sort : The sort function is sorts the elements of an array in place and returns the array. The sort is not necessarily stable. The default sort order is according to string Unicode code points.
+                        +-- parameters : ( comparefn )
+                            +-- comparefn : 정렬 조건을 지닌 함수
+                            +-- parameters : (thisValue, nextValue)
+                            +-- thisValue : 콜백 함수로하여 돌려 받은 현재 값
+                            +-- nextValue : 콜백 함수로하여 돌려 받은 다음 값
+                            +-- (*) 0을 기준으로 작을 경우 a를 b보다 앞으로 클경우 b를 a보다 앞으로 정렬 한다.
+                    +-- prototype.splice : The splice function is changes the contents of an array by removing existing elements and/or adding new elements.
+                        +-- parameters : ( start, deleteCount, ...items )
+                        +-- start : 작업을 시작할 인덱스
+                        +-- deleteCount : start로부터 삭제할 count 수
+                        +-- itemN : start로 부터 등록할 요소들
+                    +-- prototype.toLocaleString ( [ reserved1 [ , reserved2 ] ] ) ( pass )
+                    +-- prototype.unshift : The unshift function is adds one or more elements to the beginning of an array and returns the new length of the array.
+                        +-- parameters : ( ...items )
+                        +-- items : 시작점으로 등록 할 요소들
+                    +-- prototype.values : The values function is returns a new Array Iterator object that contains the values for each index in the array.
+        **/    
+
+        // from 
+        // The from function creates a new Array instance from an array-like or iterable object.
+        // from 함수는 순환 가능한 객체이거나 유사 배열로 을 복사하여 새로운 배열을 반환한다.
+        var from = Array.from([1,2,3,4,5,6,7,8,9,10]/* 원본 배열 객체 */, value=>value+1 /* map 함수 */);
+        console.log('[from] (1~10)+(10) :',from);
+        from = Array.from({length:50} /* 원본 유사 배열 객체 */ ,(v,i)=>i+1 /* map 함수 */ )
+        console.log('[from] length 50 :',from);
+
+        // isArray
+        // The Array.isArray function determines whether the passed value is an Array.
+        // isArray 함수는 해당 인자로 넘어온 값이 array인지를 판별하여 반환한다
+        var isArray1 = {length:0}
+        var isArray2 = [];
+        var isArray3 = undefined;
+        var isArray4 = null;
+        console.log('[isArray] isArray in {length : 0} :',        Array.isArray(isArray1));
+        console.log('[isArray] isArray in [] :',                  Array.isArray(isArray2));
+        console.log('[isArray] isArray in undefined :',           Array.isArray(isArray3));
+        console.log('[isArray] isArray in null :',                Array.isArray(isArray4));
+
+        // of
+        // The Array.of function is creates a new Array instance with a variable number of arguments, regardless of number or type of the arguments.
+        // of 함수는 arguments의 타입이나 생성될 숫자에 구해받지 않고 새로운 배열을 만드는데 사용 한다.
+        var normalArray = Array(10);
+        console.log('[of] normalArray :',normalArray);
+        var ofArray = Array.of(10);
+        console.log('[of] ofArray :',ofArray);
+        
+
+        // Array의 prototype 함수는 대상이 배열이라면 자신을 기준으로 호출 하여도 무방 하지만
+        // 공부를 위해 Array.prototype을 기반하여 호출할 예정이다.
+
+        // concat
+        // The concat function is used to merge two or more arrays. This function does not change the existing arrays, but instead returns a new array.
+        // concat 함수는 하나이상의 배열을 합칠 때 사용한다. 이 함수는 기존 배열을 변경하지 않고 세로운 배열은 반환한다.
+        var concat1 = [1,2,3,4];
+        var concat2 = [5,6,7,8];
+        var concat3 = Array.prototype.concat(concat1,concat2);
+        console.log('[concat] concat Arr add Arr :',concat3);
+        // 유사 배열을 조합하면 [1,2,3,4,{5:5...}]이런식으로 조합 된다.
+        var concat4 = [1,2,3,4];
+        var concat5 = {5:5,6:6,7:7,8:8,length:4};
+        var concat6 = Array.prototype.concat(concat4,concat5);
+        console.log('[concat] concat Arr add LikeArr :',concat6);
+
+        // copyWithin
+        // The copyWithin() function shallow copies part of an array to another location in the same array and returns it, without modifying its size.
+        // copyWithin 함수는 배열의 부분을 복사할 때 사용 되며 동일한 배열의 다른 위치에 덮어쓰여진 다음 반환한다.
+        // 또한 이 때 length는 수정 되지 않는다.
+        var copyWith = [1,2,3,4,5,6,7,8,9,10];
+        var copycopyWith = Object.assign(copyWith);
+        Array.prototype.copyWithin.call(copycopyWith, 1,2);
+        console.log('[copyWithin] copyWith :',copycopyWith)
+        Array.prototype.copyWithin.call(copyWith, 1, 2, 6);
+        console.log('[copyWithin] copyWith :',copyWith)
+
+        // entries
+        // The entries function returns a new Array Iterator object that contains the key/value pairs for each index in the array.
+        // entries 함수는 배열의 각각의 인덱스를 key/value로 포함하고 있는 새로운 이터레이터 배열을 반환한다.
+        // 0 = key, 1 = value
+        var entries = [10,9,8,7,6,5,4,3,2,1,'str',true];
+        var entries = Array.prototype.entries.apply(entries);
+        var entriesTemp = [];
+        for(v = entries.next() ; !v.done ; v = entries.next())
+            entriesTemp.push(v.value);
+
+        console.log('[entries] entries :',entriesTemp);
+
+        // every
+        // The every function is tests whether all elements in the array pass the test implemented by the provided function.
+        // every 함수는 배열의 모든 요소가 콜백 함수로 제공한 테스트 케이스틑 통과 하는지를 테스트 하여 결과 값을 반환한다.
+        var everyFalse = [1,2,3,4,5,6,8,9,10];
+        var evertTrue = Object.assign(everyFalse);
+        var everyFalse = Array.prototype.every.call(everyFalse, (element, index, arr) => element < 10 );
+        console.log('[every] elements < 10 :',everyFalse)
+        var evertTrue = Array.prototype.every.call(evertTrue, (element, index, arr )=> element < 11 );
+        console.log('[every] elements < 11 :',evertTrue)
+
+        // some 
+        // The some function is tests whether at least one element in the array passes the test implemented by the provided function.
+        // some 함수는 배열에서 하나이상의 요소가 제공된 테스트 케이스를 통과 하는지를 테스트 하여 결과 값을 반환한다.
+        var some = [1,2,3,4,5,6,7,8,9,10];
+        var some = Array.prototype.some.call(some, (element, index, arr) => element == 10 );
+        console.log('[some] elements == 10 :',some)
+
+
+        // fill
+        // The fill function is fills all the elements of an array from a start index to an end index with a static value.
+        // fill 함수는 해당배열에 시작 인덱스와 종료 인덱스 사이에 정적인 배욜 요소를 채울 때 사용한다.
+        var fillValue = 'seven';
+        var fill = ['seven','eleven','five','x'];
+        Array.prototype.fill.call(fill,'nine',0,fill.length-1);
+            console.log('[fill] nine fill between 0 and max-1 :',fill);
+
+        // filter
+        // The filter function is creates a new array with all elements that pass the test implemented by the provided function.
+        // filter 함수는 제공된 콜백 함수로 구현 된 테스트를 통과하는 모든 엘리먼트를 가지는 새로우 배열을 반환한다.
+        var filter = [{name:'jh_Lee'},{name:'sy_Sung'},{name:'mh_Kim'},{name:'sy_Lee'}];
+        filter = Array.prototype.filter.call(filter,(ele,idx) => ele.name.split('_')[1]=='Lee');
+        console.log('[filter] _Lee Eq :',filter);
+
+        // find
+        // The find function returns the value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
+        // find 함수는 해당 배열에 제공되는 테스트 함수에 요구 되는 조건을 만족하는 첫 번째 값을 반환한다. 
+        // 만일 해당 조건에 부합하는 값이 없을 떄는 undefined를 반환한다.
+        var find = [{name:'jh_Lee'},{name:'sy_Sung'},{name:'mh_Kim'},{name:'sy_Lee'}];
+        var findNull = Object.assign(find);
+        find = Array.prototype.find.call(find,(ele,idx) => ele.name.split('_')[1]=='Lee');
+        console.log('[find] it can this find :',find);
+        findNull = Array.prototype.find.call(findNull, (ele,idx)=>ele.name.split('_')[1]=='Min');
+        console.log('[find] it can\'t this find :',findNull);
+
+        // findIndex
+        // The findIndex function is returns the index of the first element in the array that satisfies the provided testing function. Otherwise -1 is returned.
+        // find 함수는 해당 배열에 제공되는 테스트 함수에 요구 되는 조건을 만족하는 첫 번째 요소에 대한 인덱스을 반환한다. 
+        // 만일 해당 조건에 부합하는 값이 없을 떄는 1을 반환한다.
+        var find = [{name:'jh_Lee'},{name:'sy_Sung'},{name:'mh_Kim'},{name:'sy_Lee'}];
+        var findNull = Object.assign(find);
+        find = Array.prototype.findIndex.call(find,(ele,idx) => ele.name.split('_')[1]=='Lee');
+        console.log('[findIndex] it can this find :',find);
+        findNull = Array.prototype.findIndex.call(findNull, (ele,idx)=>ele.name.split('_')[1]=='Min');
+        console.log('[findIndex] it can\'t this find :',findNull);
+
+        // forEach
+        // The forEach function is executes a provided function once for each array element.
+        // forEach 함수는 매 배열의 요소마다 한 번씩 제공된 함수를 실행한다.
+        var forEach = [{name:'jhLee',age:29,addr:'여의 대방로 55길 4'},{name:'mjLim',age:25,addr:'금천구 가락동 302-2번지'},{name:'shMin',age:27,addr:'대구광역시 중구 동인동'}];
+        var forEachArray = [];
+        Array.prototype.forEach.call(forEach, (value,index/*, array*/)=>forEachArray.push(value.name));
+        console.log('[forEach] forEach only push name :',forEachArray);
+
+        // includes
+        // The includess function is determines whether an array includess a certain element, returning true or false as appropriate.
+        // includes 함수는 배열에 특정값이 포함되어 있는지 여부를 판벌하여 true 도는 false로 반환한다.
+        var includes = ['a','b','c','d','e','fg','h'];
+        var includesEx = Object.assign(includes);
+        var includesResult = Array.prototype.includes.call(includesEx, 'f');
+        console.log('[includes] (f) Include is not supported if piece of elements are the same :',includesResult);
+        var includesResult = Array.prototype.includes.call(includes, 'fg');
+        console.log('[includes] (fg) Include is supported only if all elements are the same :',includesResult);
+
+        // indexOf
+        // The indexOf function is returns the first index at which a given element can be found in the array, or -1 if it is not present.
+        // indexOf 함수는 해당 배열에서 인자로 넘겨온 요소를 찾아 해당 요소의 인덱스를 리턴한다 만일 없다면 -1을 리턴한다.
+        var indexOf = [];
+
+        // 체이닝을 위한 함수 정의
+        indexOf.push = function(e){
+            this.__proto__.push.call(this,e);
+            return this;
+        }
+
+        var i1 = {game : 'just 1Mre'};
+        var i2 = {page : '21page'};
+        var i3 = {regKey : 'fjuwah=hjzc@%asda!a'};
+        indexOf.push(i1).push(i2).push(i3);
+        var indexOf = Array.prototype.indexOf.call(indexOf, i3);
+        console.log('[indexOf] (i3) indexOf :', indexOf);
+
+        // join
+        // The join function is joins all elements of an array (or an array-like object) into a string and returns this string.
+        // join 함수는 배열 속에 들어 있는 모든 원소를 통합해 하나의 문자열로 반환하여 리턴한다. (또는 length를 가진 유사 배열 객체)
+        var join = ['lee','jin','hyeok']
+        join = Array.prototype.join.call(join,' ');
+        console.log('[join] ( ) join :', join);
+
+        // keys
+        // The keys function is returns a new Array Iterator object that contains the keys for each index in the array.
+        // keys 함수는 배열의 각 인덱스에 관하여 키를 가지고 있는 새로운 순환 가능 배열(iterator array)를 반환한다. 
+        var keys = ['a','b','c','d','e'];
+        var keysKey = Array.prototype.keys.call(keys);
+        var keysArray = []
+        for(v = keysKey.next() ; !v.done ; v = keysKey.next())
+            keysArray.push(keys[v.value]);
+        console.log('[keys]',keysArray)
+
+        // lastIndexOf
+        // The lastIndexOf function is returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
+        // lastIndexOf 함수는 해당 배열로 부터 요소를 찾아 마지막 요소의 인덱스를 반환한다.
+        // 만일 찾을 수 없다면 -1을 반환하며 fromIndex를 사용하여 마지막 인덱스를 기반으로 찾을 수 있다.
+        var indexOf = [1,2,3,4,1,4]; //[(1,2,3,4),1,4] = 3
+        var indexOfF = Array.prototype.lastIndexOf.call(indexOf, 4);
+        var indexOfB = Array.prototype.lastIndexOf.call(indexOf, 4, 3);
+        console.log('[lastIndexOf] (1) LastIndexOf :', indexOfF);
+            console.log('[lastIndexOf (1) LastIndexOf :', indexOfB);
+
+        // map
+        // The map function is creates a new array with the results of calling a provided function on every element in the calling array.
+        // map 함수는 불려진 배열의 매 요소로 부터 제공된 함수를 실행하여 실행 결과값을 가진 새로운 배열 객체를 반환한다.
+        var map = [1,2,3,4,5,6];
+        map = Array.prototype.map.call(map,(e,i,m)=>e*2);
+        console.log('[map] (map * 2) map :',map)
+
+        // push, pop
+        // (push) The push function is adds one or more elements to the end of an array and returns the new length of the array.
+        // push 함수는 하나 또는 그 이상의 요소를 해당 배열의 마지막에 추가 하고 해당 배열의 새롭게 수정된 length프로퍼티를 리턴한다.
+        // ---------------------------------------------------------------------------------------------------------------------------------------
+        // (pop) The pop function is removes the last element from an array and returns that element. This method changes the length of the array.
+        // pop 함수는 해당 배열에서 마지막 요소를 리턴 하고 리턴 된 함수는 지워진다. 또한 이 함수는 해당 배열의 length를 변경한다.
+        var pop = [1,2,3,4,5,6];
+        var popArr = [];
+        while(v = Array.prototype.pop.call(pop)){
+            popArr.push(v);
+        }
+        console.log('[push] pop is :',pop,'\t [pop] popArr is :',popArr)
+
+        // reduce , reduceRight
+        // (reduce) The reduce function is applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
+        // reduce 함수는 왼쪽에서 오른쪽으로 이동하며 배열의 각 요소마다 누적 계산값과 함께 함수를 적용해 하나의 값을 반환한다.
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------
+        // (reduceRight) The reduceRight function is applies a function against an accumulator and each value of the array (from right-to-left) to reduce it to a single value.
+        // reduce 함수는 왼쪽에서 오른쪽으로 이동하며 배열의 각 요소마다 누적 계산값과 함께 함수를 적용해 하나의 값을 반환한다.
+        var reduce = [1,2,3,4,5,6,7,8,9,10];
+        var reduceRight = [1,2,3,4,5,6,7,8,9,10];
+        reduce = Array.prototype.reduce.call(reduce,(init, value, index)=>{ if(value>8)console.log('[reduce] reduce : ',value,'\t argg :',init);return value+init }, -1);
+        reduceRight = Array.prototype.reduceRight.call(reduceRight,(init, value, index)=>{ if(value>8)console.log('[reduceRight] reduceRight : ',value,'\t argg: :',init);return value+init }, -1);
+        console.log('[reduce] reduce 1 ~ 10 init -1 :',reduce);
+        console.log('[reduceRight] reduceRight 10 ~ 1 init -1 :',reduceRight);
+
+        // reverse
+        // The reverse function is reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
+        // reverse 함수는 배열에 공간을 반전 시킵다. 배열의 첫번째 요소를 마지막으로 그리고 배열의 마지막 요소를 첫번 째 요소로
+        var reverse = [1,2,3,4,5,6,7,8,9,10];
+        Array.prototype.reverse.call(reverse);
+        console.log('[reverse] reverse array :',reverse);
+
+        // shift, unshift
+        // The shift function is removes the first element from an array and returns that element. This method changes the length of the array
+        // shift 함수는 배열의 첫 번째 요소를 리턴함과 동시에 삭제한다. *이 함수는 배열의 length를 변경 시킨다.
+        // ---------------------------------------------------------------------------------------------------------------------------------
+        // The unshift function is adds one or more elements to the beginning of an array and returns the new length of the array.
+        // unshift 함수는 하나 또는 그 이상의 요소를 배열의 시작점에 추가하고 배열의 length를 반환한다.
+        var shift = [1,2,3,4,5];
+        var shiftValue = Array.prototype.shift.call(shift);
+        console.log('[shift] shift arr :',shift,'\t shiftValue :',shiftValue);
+        var UnshiftValue = Array.prototype.unshift.call(shift,1);
+        console.log('[shift] unShift arr :',shift,'\t unShiftValue :',shiftValue);
+
+        // slice
+        // The slice function is returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). The original array will not be modified.
+        // slice 함수는 배열의 begin부터 end까지(end는 제외)에 대한 shallow copy로 새로운 배열 객체를 만들어 반환합니다
+        var slice = ['H','e','l','l','o',' ','J','a','v','a','S','c','r','i','p','t','!','!','@'];
+        var sliceShallow = Array.prototype.slice.call(slice,0,slice.length-1);
+        var slicejoin = Array.prototype.join.call(sliceShallow,'');
+        console.log('[slice] slice :',sliceShallow);
+        console.log('[slice, join] slice and join :',slicejoin);
+
+        // sort
+        // The sort function is sorts the elements of an array in place and returns the array. 
+        // The sort is not necessarily stable. The default sort order is according to string Unicode code points.
+        // sort 함수는 배열의 요소를 적절한 위치에 정렬하고 배열을 반환합니다. 
+        // 종류가 반드시 안정적 일 필요는 없습니다. 기본 정렬 순서는 문자열 유니 코드 코드 포인트에 따릅니다.
+        var sortNum = [1,7,9,2,21,50,3,4,10];
+        var sortChar = ['가수','가라데','가시리','가구','나이프','나다용','혁대'];
+        sortNum = Array.prototype.sort.call(sortNum, (a,b)=>a-b);
+        sortChar = Array.prototype.sort.call(sortChar, (a,b)=>{return a<=b?-1:1});
+        console.log('[sort] sortNum :',sortNum);
+        console.log('[sort] sortChar : ',sortChar);
+
+        // splice
+        // The splice function is changes the contents of an array by removing existing elements and/or adding new elements.
+        // splice 함수는 해당 배열의 기존 요소를 삭제 하거나 새로운 요소를 추가하여 배열의 내용을 변경하고 삭제 된 값을 반환한다.
+        var splice = ['apple','banana','coke','dialog','final','gas','high','install','just','korea'];
+        //              0        1       2       3        4      5      6       7       8       9   
+        var spliceRemove = Array.prototype.splice.call(splice, 2, 1,'cherry');
+        console.log('[splice] coke => cherry :',splice);
+        console.log('[splice] removed coke :',spliceRemove);
+
+        // values *****
+        // The values function is returns a new Array Iterator object that contains the values for each index in the array.
+        // values 함수는 배열의 각 인덱스에 대한 value를 가지는 새로운 Array Iterator 객체를 반환합니다.
+        // 현재 지원하지 않아서 나중에 다시 정리 예정
+        var values = [1,2,3,4,5,6,7,8,9,10];
+        console.dir(values)
+        console.log('Array.prototype have splice method? :',Array.prototype.hasOwnProperty('splice'))
+        console.log('Array.prototype have values method? :',Array.prototype.hasOwnProperty('values'))
+
+    </script>
 </body>
 </html>
