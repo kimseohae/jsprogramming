@@ -1,0 +1,4 @@
+.vscode
+.DS_Store
+러닝자바스크립트/sources/node_modules/*
+test
