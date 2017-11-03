@@ -17,24 +17,30 @@
         따라서 함수 호출 Function(...)은 new Function(...) 표현식과 동일 합니다.
         
         Function 생성자를 통한 함수를 생성 방법은
-        Function( [ args... [ , args ] ], ret )
-         +-- properties
-             +-- length : this is a data property with a value of 1 ( 1의 값을 가진 속성 입니다. )
-             +-- prototype : the intrinsic Function prototype object. ( FunctionPrototype객체를 상속 받습니다. )
-             +-- name : The value of the name property is a String that is descriptive of the function
-                        ( name프로퍼티값은 함수의 설명을 가지는 문자열입니다. )
-        Function.prototype
-         +-- apply : The apply function is calls a function with a given this value, and arguments provided as an array
-         |   +-- parameters ( thisArg, argArray )
-         |   +-- thisArg : this바인딩에 사용 될 객체
-         |   +-- argArray : 함수에 사용될 배열인자
-         +-- call : The call function is calls a function with a given this value and arguments provided individually.
-         |   +-- parameters ( thisArg, arg1, arg2, argN )
-         |   +-- thisArg : this바인딩에 사용 될 객체
-         |   +-- argN : 함수에 사용될 가변 인자
-         +-- bind : The bind function is creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called
-         +-- constructor : intrinsic object %Function%.
-        
+        +-- Function( [ args... [ , args ] ], ret )
+        |    +-- properties
+        |        +-- length : this is a data property with a value of 1 ( 1의 값을 가진 속성 입니다. )
+        |        |
+        |        +-- prototype : the intrinsic Function prototype object. ( FunctionPrototype객체를 상속 받습니다. )
+        |        |
+        |        +-- name : The value of the name property is a String that is descriptive of the function
+        |                   ( name프로퍼티값은 함수의 설명을 가지는 문자열입니다. )
+        |
+        +-- Function.prototype
+             +-- apply : The apply function is calls a function with a given this value, and arguments provided as an array
+             |   +-- parameters ( thisArg, argArray )
+             |   +-- thisArg : this바인딩에 사용 될 객체
+             |   +-- argArray : 함수에 사용될 배열인자
+             |
+             +-- call : The call function is calls a function with a given this value and arguments provided individually.
+             |   +-- parameters ( thisArg, arg1, arg2, argN )
+             |   +-- thisArg : this바인딩에 사용 될 객체
+             |   +-- argN : 함수에 사용될 가변 인자
+             |
+             +-- bind : The bind function is creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called
+             |
+             +-- constructor : intrinsic object %Function%.
+            
         
         **/
         console.log(Function.length)

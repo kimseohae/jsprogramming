@@ -29,152 +29,192 @@
             3. Array(... 1 more items) : CreateDataProperty(array, Pk, itemK) and return Set(array, "length", length of items, true)
                ( 배열을 생성하여 파라미터로 넘어온 item들을 index를 PK삼아 등록 한 뒤 length에 item들의 마지막 length를 등록 하여 반환한다 )
 
-            Array ( [ constructor ] )
-            +-- property
-                +--from : The from function creates a new Array instance from an array-like or iterable object.
-                    +-- parameters : (arrayLike[, mapFn[, thisArg]])
-                    +-- arrayLike : 데이터를 뽑아낼 유사 배열 객체
-                    +-- mapFn : 수행할 맵 함수
-                    +-- thisArg : mapFn에서 this가 바인딜 될 값
-                +-- isArray : The Array.isArray function determines whether the passed value is an Array.
-                    +-- parameters : (obj)
-                    +-- obj : 판별 대상이 될 객체
-                +-- of : The Array.of function is creates a new Array instance with a variable number of arguments, regardless of number or type of the arguments.
-                    +-- parameters : (element0[, element1[, ...[, elementN]]])
-                    +-- elementN : 새로운 객체로 등록 할 파라미터들
-                +-- get Array
-                    +-- prototype.concat : The concat function is used to merge two or more arrays. This function does not change the existing arrays, but instead returns a new array.
-                        +-- parameters : ( ...arguments )
-                        +-- arguments : 합칠 대상이 될 배열들
-                    +-- prototype.copyWithin : The copyWithin function shallow copies part of an array to another location in the same array and returns it, without modifying its size.
-                        +-- parameters : ( target, start [ , end ] )
-                        +-- target : 복사 대상이 될 배열
-                        +-- start : 덮어쓰기 시작 인덱스
-                        +-- end : 덮어쓰기 종료 인덱스
-                    +-- prototype.entries : The entries function returns a new Array Iterator object that contains the key/value pairs for each index in the array.
-                    +-- prototype.every : The every function is tests whether all elements in the array pass the test implemented by the provided function.
-                        +-- parameters : ( callbackfn [ , thisArg ] )
-                        +-- callbackfn : 통과 대상 여부를 판별 하는 콜백 함수
-                            +-- parameters (currentValue [, index [, array ]])
-                            +-- currentValue : 현재 콜백 받은 대상의 값
-                            +-- index : 현재 콜백 받은 대상의 인덱스
-                            +-- array : 현재 콜백 받은 대방의 배열
-                        +-- thisArg : callback이 바인딩 될 this값
-                    +-- prototype.fill : The fill function is fills all the elements of an array from a start index to an end index with a static value.
-                        +-- parameters : ( value [ , start [ , end ] ] )
-                        +-- value : 채울 값
-                        +-- start : 값을 채울 시작 인덱스
-                        +-- end : 값을 채울 종료 인덱스
-                    +-- prototype.filter : The filter function is creates a new array with all elements that pass the test implemented by the provided function.
-                        +-- parameters : ( callbackfn [ , thisArg ] )
-                        +-- callbackfn : 필터링 대상 콜백 함수
-                            +-- parameters (currentValue [, index [, array ]])
-                            +-- currentValue : 현재 콜백 받은 대상의 값
-                            +-- index : 현재 콜백 받은 대상의 인덱스
-                            +-- array : 현재 콜백 받은 대방의 배열
-                        +-- thisArg : callback이 바인딩 될 this값
-                    +-- prototype.find : The find function returns the value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
-                        +-- parameters : ( predicate [ , thisArg ] )
-                        +-- predicate : 필터링 대상 콜백 함수
-                            +-- parameters (currentValue [, index [, array ]])
-                            +-- currentValue : 현재 콜백 받은 대상의 값
-                            +-- index : 현재 콜백 받은 대상의 인덱스
-                            +-- array : 현재 콜백 받은 대방의 배열
-                        +-- thisArg : callback이 바인딩 될 this값
-                    +-- prototype.findIndex : The findIndex function is returns the index of the first element in the array that satisfies the provided testing function. Otherwise -1 is returned.
-                        +-- parameters : ( predicate [ , thisArg ] )
-                        +-- predicate : 필터링 대상 콜백 함수
-                            +-- parameters (currentValue [, index [, array ]])
-                            +-- currentValue : 현재 콜백 받은 대상의 값
-                            +-- index : 현재 콜백 받은 대상의 인덱스
-                            +-- array : 현재 콜백 받은 대상의 배열
-                        +-- thisArg : callback이 바인딩 될 this값
-                    +-- prototype.forEach : The forEach function is executes a provided function once for each array element.
-                        +-- parameters : ( callbackfn [ , thisArg ] )
-                        +-- callbackfn : 필터링 대상 콜백 함수
-                            +-- parameters (currentValue [, index [, array ]])
-                            +-- currentValue : 현재 처리중인 값
-                            +-- index : 현재 저리중인 대상의 인덱스
-                            +-- array : 현재 처리중인 대상의 배열
-                        +-- thisArg : callback이 바인딩 될 this값
-                    +-- prototype.includess : The includess function is determines whether an array includess a certain element, returning true or false as appropriate.
-                        +-- parameters : ( searchElement [ , fromIndex ] )
-                        +-- searchElement : 찾을 요소 값
-                        +-- fromIndex : 요소를 찾을 시작 인덱스
-                    +-- prototype.indexOf : The indexOf function is returns the first index at which a given element can be found in the array, or -1 if it is not present.
-                        +-- parameters : ( searchElement [ , fromIndex ] )
-                        +-- searchElement : 해당 배열에서 인덱스를 찾을 요소
-                        +-- fromIndex : 요소를 찾을 시작 인덱스 
-                    +-- prototype.join : The join function is joins all elements of an array (or an array-like object) into a string and returns this string.
-                        +-- parameters : ( separator )
-                        +-- separator : 통합 시 다른 문자열과 구분할 구분자 default = ','
-                    +-- prototype.keys : The keys function is returns a new Array Iterator object that contains the keys for each index in the array.
-                    +-- prototype.lastIndexOf : The lastIndexOf function is returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
-                        +-- parameters : ( searchElement [ , fromIndex ] )
-                        +-- searchElement : 찾을 요소 값
-                        +-- fromIndex : 요소를 찾을 요소 수
-                    +-- prototype.map : The map function is creates a new array with the results of calling a provided function on every element in the calling array.
-                        +-- parameters : ( callbackfn [ , thisArg ] )
-                        +-- callbackfn : 필터링 대상 콜백 함수
-                            +-- parameters (currentValue [, index [, array ]])
-                            +-- currentValue : 현재 처리중인 값
-                            +-- index : 현재 저리중인 대상의 인덱스
-                            +-- array : 현재 처리중인 대상의 배열
-                        +-- thisArg : callback이 바인딩 될 this값
-                    +-- prototype.push : The push function is adds one or more elements to the end of an array and returns the new length of the array.
-                        +-- parameters : ( ...items )
-                        +-- items : 등록할 요소들 ','를 구분자로 인식
-                    +-- prototype.pop : The pop function is removes the last element from an array and returns that element. This method changes the length of the array.
-                    +-- prototype.reduce : The reduce function is applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
-                        +-- parameters : ( callbackfn [ , initialValue ] )
-                        +-- callbackfn : 필터링 대상 콜백 함수
-                            +-- parameters (accumulator, currentValue [, index [, array ]])
-                            +-- accumulator : 누적 계산값 콜백의 반환 값이며 최초 initValue이기도 하다.
-                            +-- currentValue : 현재 처리중인 값
-                            +-- index : 현재 저리중인 대상의 인덱스
-                            +-- array : 현재 처리중인 대상의 배열
-                        +-- initialValue : callback이 바인딩 될 this값
-                    +-- prototype.reduceRight : The reduceRight function is applies a function against an accumulator and each value of the array (from right-to-left) to reduce it to a single value.
-                        +-- parametere : ( callbackfn [ , initialValue ] )
-                        +-- callbackfn : 필터링 대상 콜백 함수
-                            +-- parameters (accumulator, currentValue [, index [, array ]])
-                            +-- accumulator : 누적 계산값 콜백의 반환 값이며 최초 initValue이기도 하다.
-                            +-- currentValue : 현재 처리중인 값
-                            +-- index : 현재 저리중인 대상의 인덱스
-                            +-- array : 현재 처리중인 대상의 배열
-                        +-- initialValue : callback이 바인딩 될 this값
-                    +-- prototype.reverse : The reverse function is reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
-                    +-- prototype.shift : The shift function is removes the first element from an array and returns that element. This method changes the length of the array
-                    +-- prototype.slice : The slice function is returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). The original array will not be modified.
-                        +-- parameters : ( start, end )
-                        +-- start : 복사 시작 인덱스
-                        +-- end : 복사 종료 인덱스
-                    +-- prototype.some : The some function is tests whether at least one element in the array passes the test implemented by the provided function.
-                        +-- parameters : ( callbackfn [ , thisArg ] )
-                        +-- callbackfn : 필터링 대상 콜백 함수
-                            +-- parameters (currentValue [, index [, array ]])
-                            +-- currentValue : 현재 처리중인 값
-                            +-- index : 현재 저리중인 대상의 인덱스
-                            +-- array : 현재 처리중인 대상의 배열
-                        +-- thisArg : callback이 바인딩 될 this값
-                    +-- prototype.sort : The sort function is sorts the elements of an array in place and returns the array. The sort is not necessarily stable. The default sort order is according to string Unicode code points.
-                        +-- parameters : ( comparefn )
-                            +-- comparefn : 정렬 조건을 지닌 함수
-                            +-- parameters : (thisValue, nextValue)
-                            +-- thisValue : 콜백 함수로하여 돌려 받은 현재 값
-                            +-- nextValue : 콜백 함수로하여 돌려 받은 다음 값
-                            +-- (*) 0을 기준으로 작을 경우 a를 b보다 앞으로 클경우 b를 a보다 앞으로 정렬 한다.
-                    +-- prototype.splice : The splice function is changes the contents of an array by removing existing elements and/or adding new elements.
-                        +-- parameters : ( start, deleteCount, ...items )
-                        +-- start : 작업을 시작할 인덱스
-                        +-- deleteCount : start로부터 삭제할 count 수
-                        +-- itemN : start로 부터 등록할 요소들
-                    +-- prototype.toLocaleString ( [ reserved1 [ , reserved2 ] ] ) ( pass )
-                    +-- prototype.unshift : The unshift function is adds one or more elements to the beginning of an array and returns the new length of the array.
-                        +-- parameters : ( ...items )
-                        +-- items : 시작점으로 등록 할 요소들
-                    +-- prototype.values : The values function is returns a new Array Iterator object that contains the values for each index in the array.
-        **/    
+            
+            +-- Array ( [ constructor ] )
+            |   +--from : The from function creates a new Array instance from an array-like or iterable object.
+            |   |   +-- parameters : (arrayLike[, mapFn[, thisArg]])
+            |   |   +-- arrayLike : 데이터를 뽑아낼 유사 배열 객체
+            |   |   +-- mapFn : 수행할 맵 함수
+            |   |   +-- thisArg : mapFn에서 this가 바인딜 될 값
+            |   |
+            |   +-- isArray : The Array.isArray function determines whether the passed value is an Array.
+            |   |   +-- parameters : (obj)
+            |   |   +-- obj : 판별 대상이 될 객체
+            |   |
+            |   +-- of : The Array.of function is creates a new Array instance with a variable number of arguments, regardless of number or type of the arguments.
+            |   |   +-- parameters : (element0[, element1[, ...[, elementN]]])
+            |   |   +-- elementN : 새로운 객체로 등록 할 파라미터들
+            |   |
+            |   +-- get Array
+            |
+            +-- Array ( [ prototype ] )
+                +-- prototype.concat : The concat function is used to merge two or more arrays. This function does not change the existing arrays, but instead returns a new array.
+                |   +-- parameters : ( ...arguments )
+                |   +-- arguments : 합칠 대상이 될 배열들
+                +-- prototype.copyWithin : The copyWithin function shallow copies part of an array to another location in the same array and returns it, without modifying its size.
+                |   +-- parameters : ( target, start [ , end ] )
+                |   +-- target : 복사 대상이 될 배열
+                |   +-- start : 덮어쓰기 시작 인덱스
+                |   +-- end : 덮어쓰기 종료 인덱스
+                |
+                +-- prototype.entries : The entries function returns a new Array Iterator object that contains the key/value pairs for each index in the array.
+                |
+                +-- prototype.every : The every function is tests whether all elements in the array pass the test implemented by the provided function.
+                |   +-- parameters : ( callbackfn [ , thisArg ] )
+                |   +-- callbackfn : 통과 대상 여부를 판별 하는 콜백 함수
+                |   |   +-- parameters (currentValue [, index [, array ]])
+                |   |   +-- currentValue : 현재 콜백 받은 대상의 값
+                |   |   +-- index : 현재 콜백 받은 대상의 인덱스
+                |   |   +-- array : 현재 콜백 받은 대방의 배열
+                |   +-- thisArg : callback이 바인딩 될 this값
+                |
+                +-- prototype.fill : The fill function is fills all the elements of an array from a start index to an end index with a static value.
+                |   +-- parameters : ( value [ , start [ , end ] ] )
+                |   +-- value : 채울 값
+                |   +-- start : 값을 채울 시작 인덱스
+                |   +-- end : 값을 채울 종료 인덱스
+                |
+                +-- prototype.filter : The filter function is creates a new array with all elements that pass the test implemented by the provided function.
+                |   +-- parameters : ( callbackfn [ , thisArg ] )
+                |   +-- callbackfn : 필터링 대상 콜백 함수
+                |   |   +-- parameters (currentValue [, index [, array ]])
+                |   |   +-- currentValue : 현재 콜백 받은 대상의 값
+                |   |   +-- index : 현재 콜백 받은 대상의 인덱스
+                |   |   +-- array : 현재 콜백 받은 대방의 배열
+                |   +-- thisArg : callback이 바인딩 될 this값
+                |
+                +-- prototype.find : The find function returns the value of the first element in the array 
+                |   |                that satisfies the provided testing function. Otherwise undefined is returned.
+                |   +-- parameters : ( predicate [ , thisArg ] )
+                |   +-- predicate : 필터링 대상 콜백 함수
+                |   |   +-- parameters (currentValue [, index [, array ]])
+                |   |   +-- currentValue : 현재 콜백 받은 대상의 값
+                |   |   +-- index : 현재 콜백 받은 대상의 인덱스
+                |   |   +-- array : 현재 콜백 받은 대방의 배열
+                |   +-- thisArg : callback이 바인딩 될 this값
+                |
+                +-- prototype.findIndex : The findIndex function is returns the index of the first element in the array 
+                |   |                     that satisfies the provided testing function. Otherwise -1 is returned.
+                |   +-- parameters : ( predicate [ , thisArg ] )
+                |   +-- predicate : 필터링 대상 콜백 함수
+                |   |   +-- parameters (currentValue [, index [, array ]])
+                |   |   +-- currentValue : 현재 콜백 받은 대상의 값
+                |   |   +-- index : 현재 콜백 받은 대상의 인덱스
+                |   |   +-- array : 현재 콜백 받은 대상의 배열
+                |   +-- thisArg : callback이 바인딩 될 this값
+                |
+                +-- prototype.forEach : The forEach function is executes a provided function once for each array element.
+                |   +-- parameters : ( callbackfn [ , thisArg ] )
+                |   +-- callbackfn : 필터링 대상 콜백 함수
+                |   |   +-- parameters (currentValue [, index [, array ]])
+                |   |   +-- currentValue : 현재 처리중인 값
+                |   |   +-- index : 현재 저리중인 대상의 인덱스
+                |   |   +-- array : 현재 처리중인 대상의 배열
+                |   +-- thisArg : callback이 바인딩 될 this값
+                |
+                +-- prototype.includess : The includess function is determines whether an array includess a certain element, returning true or false as appropriate.
+                |   +-- parameters : ( searchElement [ , fromIndex ] )
+                |   +-- searchElement : 찾을 요소 값
+                |   +-- fromIndex : 요소를 찾을 시작 인덱스
+                |
+                +-- prototype.indexOf : The indexOf function is returns the first index at which a given element can be found in the array, or -1 if it is not present.
+                |   +-- parameters : ( searchElement [ , fromIndex ] )
+                |   +-- searchElement : 해당 배열에서 인덱스를 찾을 요소
+                |   +-- fromIndex : 요소를 찾을 시작 인덱스 
+                |
+                +-- prototype.join : The join function is joins all elements of an array (or an array-like object) into a string and returns this string.
+                |   +-- parameters : ( separator )
+                |   +-- separator : 통합 시 다른 문자열과 구분할 구분자 default = ','
+                |
+                +-- prototype.keys : The keys function is returns a new Array Iterator object that contains the keys for each index in the array.
+                |
+                +-- prototype.lastIndexOf : The lastIndexOf function is returns the last index at which a given element can be found in the array, 
+                |   |                       or -1 if it is not present. The array is searched backwards, starting at fromIndex.
+                |   +-- parameters : ( searchElement [ , fromIndex ] )
+                |   +-- searchElement : 찾을 요소 값
+                |   +-- fromIndex : 요소를 찾을 요소 수
+                |
+                +-- prototype.map : The map function is creates a new array with the results of calling a provided function on every element in the calling array.
+                |   +-- parameters : ( callbackfn [ , thisArg ] )
+                |   +-- callbackfn : 필터링 대상 콜백 함수
+                |   |   +-- parameters (currentValue [, index [, array ]])
+                |   |   +-- currentValue : 현재 처리중인 값
+                |   |   +-- index : 현재 저리중인 대상의 인덱스
+                |   |   +-- array : 현재 처리중인 대상의 배열
+                |   +-- thisArg : callback이 바인딩 될 this값
+                |
+                +-- prototype.push : The push function is adds one or more elements to the end of an array and returns the new length of the array.
+                |   +-- parameters : ( ...items )
+                |   +-- items : 등록할 요소들 ','를 구분자로 인식
+                |
+                +-- prototype.pop : The pop function is removes the last element from an array and returns that element. This method changes the length of the array.
+                |
+                +-- prototype.reduce : The reduce function is applies a function against an accumulator and each element in the array 
+                |   |                  (from left to right) to reduce it to a single value.
+                |   +-- parameters : ( callbackfn [ , initialValue ] )
+                |   +-- callbackfn : 필터링 대상 콜백 함수
+                |   |   +-- parameters (accumulator, currentValue [, index [, array ]])
+                |   |   +-- accumulator : 누적 계산값 콜백의 반환 값이며 최초 initValue이기도 하다.
+                |   |   +-- currentValue : 현재 처리중인 값
+                |   |   +-- index : 현재 저리중인 대상의 인덱스
+                |   |   +-- array : 현재 처리중인 대상의 배열
+                |   +-- initialValue : callback이 바인딩 될 this값
+                |
+                +-- prototype.reduceRight : The reduceRight function is applies a function against an accumulator and each value of the array 
+                |   |                       (from right-to-left) to reduce it to a single value.
+                |   +-- parametere : ( callbackfn [ , initialValue ] )
+                |   +-- callbackfn : 필터링 대상 콜백 함수
+                |   |   +-- parameters (accumulator, currentValue [, index [, array ]])
+                |   |   +-- accumulator : 누적 계산값 콜백의 반환 값이며 최초 initValue이기도 하다.
+                |   |   +-- currentValue : 현재 처리중인 값
+                |   |   +-- index : 현재 저리중인 대상의 인덱스
+                |   |   +-- array : 현재 처리중인 대상의 배열
+                |   +-- initialValue : callback이 바인딩 될 this값
+                |   
+                +-- prototype.reverse : The reverse function is reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
+                |
+                +-- prototype.shift : The shift function is removes the first element from an array and returns that element. This method changes the length of the array
+                |
+                +-- prototype.slice : The slice function is returns a shallow copy of a portion of an array into a new array object selected from begin to end 
+                |   |                 (end not included). The original array will not be modified.
+                |   +-- parameters : ( start, end )
+                |   +-- start : 복사 시작 인덱스
+                |   +-- end : 복사 종료 인덱스
+                |   
+                +-- prototype.some : The some function is tests whether at least one element in the array passes the test implemented by the provided function.
+                |   +-- parameters : ( callbackfn [ , thisArg ] )
+                |   +-- callbackfn : 필터링 대상 콜백 함수
+                |   |   +-- parameters (currentValue [, index [, array ]])
+                |   |   +-- currentValue : 현재 처리중인 값
+                |   |   +-- index : 현재 저리중인 대상의 인덱스
+                |   |   +-- array : 현재 처리중인 대상의 배열
+                |   +-- thisArg : callback이 바인딩 될 this값
+                |   
+                +-- prototype.sort : The sort function is sorts the elements of an array in place and returns the array. 
+                |   |                The sort is not necessarily stable. The default sort order is according to string Unicode code points.
+                |   +-- parameters : ( comparefn )
+                |   +-- comparefn : 정렬 조건을 지닌 함수
+                |       +-- parameters : (thisValue, nextValue)
+                |       +-- thisValue : 콜백 함수로하여 돌려 받은 현재 값
+                |       +-- nextValue : 콜백 함수로하여 돌려 받은 다음 값
+                |       +-- (*) 0을 기준으로 작을 경우 a를 b보다 앞으로 클경우 b를 a보다 앞으로 정렬 한다.
+                |    
+                +-- prototype.splice : The splice function is changes the contents of an array by removing existing elements and/or adding new elements.
+                |   +-- parameters : ( start, deleteCount, ...items )
+                |   +-- start : 작업을 시작할 인덱스
+                |   +-- deleteCount : start로부터 삭제할 count 수
+                |   +-- itemN : start로 부터 등록할 요소들
+                |
+                +-- prototype.toLocaleString ( [ reserved1 [ , reserved2 ] ] ) ( pass )
+                |
+                +-- prototype.unshift : The unshift function is adds one or more elements to the beginning of an array and returns the new length of the array.
+                |   +-- parameters : ( ...items )
+                |   +-- items : 시작점으로 등록 할 요소들
+                |
+                +-- prototype.values : The values function is returns a new Array Iterator object that contains the values for each index in the array.
+             
+
+        **/   
 
         // from 
         // The from function creates a new Array instance from an array-like or iterable object.
@@ -302,7 +342,7 @@
         // forEach
         // The forEach function is executes a provided function once for each array element.
         // forEach 함수는 매 배열의 요소마다 한 번씩 제공된 함수를 실행한다.
-        var forEach = [{name:'jhLee',age:29,addr:'여의 대방로 55길 4'},{name:'mjLim',age:25,addr:'금천구 가락동 302-2번지'},{name:'shMin',age:27,addr:'대구광역시 중구 동인동'}];
+        var forEach = [{name:'jhLee',age:29,addr:'여의 대방로 55길 4'},{name:'mjLim',age:25,addr:'금천구 가락동 302-2번지'},{name:'shMin',age:27,addr:'봉천동 남부순환로 215길 1'}];
         var forEachArray = [];
         Array.prototype.forEach.call(forEach, (value,index/*, array*/)=>forEachArray.push(value.name));
         console.log('[forEach] forEach only push name :',forEachArray);

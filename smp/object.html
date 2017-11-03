@@ -14,90 +14,115 @@
         오브젝트 생성자는 %Object%내장 객체와 전역객체의 Object라는 속성을 초기값을 가지며
         생성자로 불려오면 새로운 객체를 생성합니다. 또한 Object가 생성자가 아닌 함수로 불려오면 타입의 변환이 일어 납니다.
         
-        Object ( [ value ] )
-         +-- assign : The assign function is used to copy the values of all of the enumerable own properties 
-         | +-- parameters ( target, ...sources )
-         |   +-- target : 복사 대상
-         |   +-- sources : Target에 sources를 복사 하여 Target 반환
-         +-- create : The create function creates a new object with a specified prototype
-         | +-- parameters ( O, Properties )
-         |   +-- O : 객체 생성 시에 prototype으로 지정 될 객체
-         |   +-- Properties : 객체 생성 후 this에 바인딩 될 프로퍼티
-         +-- defineProperties : The defineProperties function is used to add own properties and/or update the attributes of existing own properties of an object
-         |   +-- parameters ( O, Properties )
-         |   +-- O : Properties를 등록 할 target객체
-         |   +-- Properties : 등록 할 프로퍼티 객체
-         +-- defineProperty : defineProperties와 동일 단일 속성을 정의할 떄 사용     
-         |   +-- parameters ( O, P, Property )
-         |   +-- O : Properties를 등록 할 target객체
-         |   +-- Property : 등록 할 프로퍼티 객체
-         +-- entries : The entries function is returns an array of a given object's own enumerable property [key, value] pairs
-         |   +-- paramters ( O )
-         |   +-- O : 배열로 변환 할 target 객체
-         +-- freeze : The freeze function is freezes an object: that is, prevents new properties from being added to it; prevents existing properties from being removed and update
-         |   +-- parameters ( O )
-         |   +-- O : 수정을 방지할 target 객체
-         +-- getOwnPropertyDescriptor : The getOwnPropertyDescriptor function is returns a property descriptor for an own property
-         |   +-- parameters ( O, P )
-         |   +-- O : 프로퍼티를 추출 할 객체
-         |   +-- P : 추출 할 프로퍼티명
-         +-- getOwnPropertyDescriptors : getOwnPropertyDescriptor 와 동일 다만 모든 속성을 리턴한다.
-         |   +-- parameters ( O )
-         |   +-- O : 프로퍼티를 추출 할 객체
-         +-- getOwnPropertyNames : The getOwnPropertyNames function is returns an array of all properties name
-         |   +-- paramaters ( O )
-         |   +-- O : 프로퍼티명을 추출 할 객체
-         +-- getOwnPropertySymbols : The getOwnPropertySymbols function is returns an array of all symbol properties found directly upon a given object.
-         |   +-- parameters ( O )
-         |   +-- O : 심볼을 추출 할 객체
-         +-- setPrototypeOf : The setPrototypeOf function is sets the prototype of a specified object to another object or null.
-         |   +-- parameters ( O, proto )
-         |   +-- O : 프로토타입을 등록 할 객체
-         |   +-- proto : 객체에 등록 될 프로토타입
-         +-- getPrototypeOf : The getPrototypeOf function is returns the prototype of the specified object.
-         |   +-- parameters ( O )
-         |   +-- O : 프로토타입을 추출 할 객체
-         +-- is : The Is function is determines whether two values are the same value.
-         |   +-- parameters ( value1, value2 )
-         |   +-- value1 : 비교 대상 타겟 값
-         |   +-- value2 : 비교 피 대상 값
-         +-- keys : The keys function is returns an array of a given object's own enumerable properties, in the same order as that provided by a for...in loop
-         |   +-- ( O )
-         |   +-- O : 키 배열을 받을 객체
-         ( keys와 for in의 차이점은 keys는 해당 객체의 키를 받는 반면 for in은 prototype의 키도 같이 전달 받는다. )
-         +-- values : The values function is returns an array of a given object's own enumerable property values, in the same order as that provided by a for...in loop
-         +-- preventExtensions : The preventExtensions function is prevents new properties from ever being added to an object
-         |   +-- parameters : ( O )
-         |   +-- O : 프로퍼티 확장을 막을 객체
-         +-- seal : The seal function is Prevents modification of the properties of existing properties and prevents the addition of new properties.
-         |   +-- parameters ( O )
-         |   +-- O : 프로퍼티 확장을 막을 객체
-         +-- isExtensible : The isExtensible function is determines if an object is extensible
-         |   +-- parameters ( O )
-         |   +-- O : 확장 여부를 추출 할 객체
-         +-- isFrozen : The isFrozen determines function is determines if an object is extensible
-         |   +-- parameters ( O )
-         |   +-- O : 확장 여부를 추출 할 객체         
-         +-- isSealed : The isSealed determines function is determines if an object is extensible
-             +-- parameters ( O )
-             +-- O : 확장 여부를 추출 할 객체
+        +-- Object ( [ value ] )
+        |    +-- assign : The assign function is used to copy the values of all of the enumerable own properties 
+        |    | +-- parameters ( target, ...sources )
+        |    |   +-- target : 복사 대상
+        |    |   +-- sources : Target에 sources를 복사 하여 Target 반환
+        |    |
+        |    +-- create : The create function creates a new object with a specified prototype
+        |    | +-- parameters ( O, Properties )
+        |    |   +-- O : 객체 생성 시에 prototype으로 지정 될 객체
+        |    |   +-- Properties : 객체 생성 후 this에 바인딩 될 프로퍼티
+        |    |
+        |    +-- defineProperties : The defineProperties function is used to add own properties and/or update the attributes of existing own properties of an object
+        |    |   +-- parameters ( O, Properties )
+        |    |   +-- O : Properties를 등록 할 target객체
+        |    |   +-- Properties : 등록 할 프로퍼티 객체
+        |    |
+        |    +-- defineProperty : defineProperties와 동일 단일 속성을 정의할 떄 사용     
+        |    |   +-- parameters ( O, P, Property )
+        |    |   +-- O : Properties를 등록 할 target객체
+        |    |   +-- Property : 등록 할 프로퍼티 객체
+        |    |
+        |    +-- entries : The entries function is returns an array of a given object's own enumerable property [key, value] pairs
+        |    |   +-- paramters ( O )
+        |    |   +-- O : 배열로 변환 할 target 객체
+        |    |
+        |    +-- freeze : The freeze function is freezes an object: that is, prevents new properties from being added to it; prevents existing properties from being removed and update
+        |    |   +-- parameters ( O )
+        |    |   +-- O : 수정을 방지할 target 객체
+        |    |
+        |    +-- getOwnPropertyDescriptor : The getOwnPropertyDescriptor function is returns a property descriptor for an own property
+        |    |   +-- parameters ( O, P )
+        |    |   +-- O : 프로퍼티를 추출 할 객체
+        |    |   +-- P : 추출 할 프로퍼티명
+        |    |
+        |    +-- getOwnPropertyDescriptors : getOwnPropertyDescriptor 와 동일 다만 모든 속성을 리턴한다.
+        |    |   +-- parameters ( O )
+        |    |   +-- O : 프로퍼티를 추출 할 객체
+        |    |
+        |    +-- getOwnPropertyNames : The getOwnPropertyNames function is returns an array of all properties name
+        |    |   +-- paramaters ( O )
+        |    |   +-- O : 프로퍼티명을 추출 할 객체
+        |    |
+        |    +-- getOwnPropertySymbols : The getOwnPropertySymbols function is returns an array of all symbol properties found directly upon a given object.
+        |    |   +-- parameters ( O )
+        |    |   +-- O : 심볼을 추출 할 객체
+        |    |
+        |    +-- setPrototypeOf : The setPrototypeOf function is sets the prototype of a specified object to another object or null.
+        |    |   +-- parameters ( O, proto )
+        |    |   +-- O : 프로토타입을 등록 할 객체
+        |    |   +-- proto : 객체에 등록 될 프로토타입
+        |    |
+        |    +-- getPrototypeOf : The getPrototypeOf function is returns the prototype of the specified object.
+        |    |   +-- parameters ( O )
+        |    |   +-- O : 프로토타입을 추출 할 객체
+        |    |
+        |    +-- is : The Is function is determines whether two values are the same value.
+        |    |   +-- parameters ( value1, value2 )
+        |    |   +-- value1 : 비교 대상 타겟 값
+        |    |   +-- value2 : 비교 피 대상 값
+        |    |
+        |    +-- keys : The keys function is returns an array of a given object's own enumerable properties, in the same order as that provided by a for...in loop
+        |    |   +-- ( O )
+        |    |   +-- O : 키 배열을 받을 객체
+        |    |  ( keys와 for in의 차이점은 keys는 해당 객체의 키를 받는 반면 for in은 prototype의 키도 같이 전달 받는다. )
+        |    |
+        |    +-- values : The values function is returns an array of a given object's own enumerable property values, in the same order as that provided by a for...in loop
+        |    |
+        |    +-- preventExtensions : The preventExtensions function is prevents new properties from ever being added to an object
+        |    |   +-- parameters : ( O )
+        |    |   +-- O : 프로퍼티 확장을 막을 객체
+        |    |
+        |    +-- seal : The seal function is Prevents modification of the properties of existing properties and prevents the addition of new properties.
+        |    |   +-- parameters ( O )
+        |    |   +-- O : 프로퍼티 확장을 막을 객체
+        |    |
+        |    +-- isExtensible : The isExtensible function is determines if an object is extensible
+        |    |   +-- parameters ( O )
+        |    |   +-- O : 확장 여부를 추출 할 객체
+        |    |
+        |    +-- isFrozen : The isFrozen determines function is determines if an object is extensible
+        |    |   +-- parameters ( O )
+        |    |   +-- O : 확장 여부를 추출 할 객체    
+        |    |     
+        |    +-- isSealed : The isSealed determines function is determines if an object is extensible
+        |        +-- parameters ( O )
+        |        +-- O : 확장 여부를 추출 할 객체
+        |   
+        +-- Object.prototype
+             +-- hasOwnProperty : The hasOwnProperty function is returns a boolean indicating whether the object has the specified property as own (not inherited) property.
+             |   +-- parameters ( prop )
+             |   +-- prop : 검사 할 속성 명 또는 심볼
+             |
+             +-- isPrototypeOf : eq Object.isPrototypeOf
+             |
+             +-- propertyIsEnumerable : The propertyIsEnumerable function is returns a Boolean indicating whether the specified property is enumerable.
+             |   +-- parameters ( prop )
+             |   +-- prop : 검사 할 속성 명 또는 심볼
+             |
+             +-- toString : The toString function is returns a string representing the object.
+             |   +-- parameters ()
+             |
+             +-- toLocaleString : toString과 동일합니다. 다만 지역별로 파생된 객체로 재 정의할 수 있습니다.
+             |   +-- parameters ()
+             |
+             +-- valueOf : The valueOf function is returns the primitive value of the specified object.
+                 +-- parameters ()
+
         
-        Object.prototype
-         +-- hasOwnProperty : The hasOwnProperty function is returns a boolean indicating whether the object has the specified property as own (not inherited) property.
-         |   +-- parameters ( prop )
-         |   +-- prop : 검사 할 속성 명 또는 심볼
-         +-- isPrototypeOf : eq Object.isPrototypeOf
-         +-- propertyIsEnumerable : The propertyIsEnumerable function is returns a Boolean indicating whether the specified property is enumerable.
-         |   +-- parameters ( prop )
-         |   +-- prop : 검사 할 속성 명 또는 심볼
-         +-- toString : The toString function is returns a string representing the object.
-         |   +-- parameters ()
-         +-- toLocaleString : toString과 동일합니다. 다만 지역별로 파생된 객체로 재 정의할 수 있습니다.
-         |   +-- parameters ()
-         +-- valueOf : The valueOf function is returns the primitive value of the specified object.
-             +-- parameters ()
-             
-             
+
         지금까지 자바스크립트의 기본 객체에 관해서 알아 보았다.
         다음에는 기본 객체에 추가적으로 동작을 관여하는 bind, apply, call의 기능을 사용하여 실행 가능한 객체인 
         Function 함수객체에 관해서 알아 보겠다.
