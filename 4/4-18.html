@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-18
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            이걸 이해 하느라 죽는 줄 알았다.
+            이것 때문에 2시간 동안 클로저의 개념을 죽어라 찾아 봤다.
+            일단 함수는 실행 되고 끝나면 사라진다.
+            그렇다면 저 child를 어떻게 실행 시켜 볼까 하고 고민을 했다.
+            1. child를 전역변수로 정의하여 외부로 드러 나게 해서 생명 주기를 늘여 놓는다.
+            2. 리턴값을 지정 하여 child를 드러나게 한다.
+            일단 두개 다 해보자.
+        **/
+
+        // 전역 변수로 선언 하여 함수를 드러 낸다.
+        // 전역 변수를 오염 시킬 가능성이 높으니 NoNoNoNo
+        function p1(){
+            var a = 100;
+            var b = 200;
+
+            this._p1 = function(){
+                var b = 300;
+
+                console.log('_p1 :',b);
+                console.log('_p1 :',a);
+            }
+            _p1();
+        }
+        p1();
+        _p1();
+
+        // 리턴값으로 지정 하여 변수를 받아 실행
+        function p2(){
+            var a = 100;
+            var b = 200;
+
+            function _p2(){
+                var b = 300;
+
+                console.log('_p2 :',b);
+                console.log('_p2 :',a);
+            }
+            _p2();
+            return _p2;
+        }
+
+        var _p2 = p2();
+        _p2();
+
+        console.dir(_p1);
+        console.dir(_p2);
+
+
+        // parent() 함수 정의
+        function parent(){
+            var a = 100;
+            var b = 200;
+
+            // child() 내부 함수 정의
+            function child() {
+                var b = 300;
+
+                console.log(b);
+                console.log(a);
+            }
+            child();
+        }
+        parent();
+        child();
+    </script>
+</body>
+</html>

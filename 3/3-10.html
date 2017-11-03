@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-10
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            == 은 값에 의한 비교
+            === 은 값과 타입에 의한 비교 라고 정의 내린바 있다.
+            그럼 객체는 왜 == 로 비교를 하는 것일까?
+            그건 간단하다. 객체가 가지고 있는 주소 값이 틀리기 때문이다.
+            100과 100은 동일 하지만
+            객체가 가지고 있는 고유 주소 값(hex)는 0x.... 0x....와 모든 객체마다 다르기 때문이다.
+            변수는 그 객체의 주소 값을 저장 하고 있기 때문에 동등(==)연산자나 일치(===)연산자나
+            비교값은 동일하다. 따라서 어느걸 써도 상관은 없지만 이왕이면 === 일치를 쓰라고 공식문서에서 권유하는 바이다.
+            비교는 두 객체의 동일 성을 비교 하는 것이기 때문에 이때는 일치 연산자가 더 어울린다고 본다.
+        
+        **/
+        
+        var a = 100;
+        var b = 100;
+        
+        var objA = { value : 100 };
+        var objB = { value : 100 };
+        var objC = objB;
+        
+        console.log(a == b); // (출력값) true
+        console.log(objA == objB); // (출력값) false
+        console.log(objB == objC); // (출력값) true
+        
+        console.log('------------------------------------------------------------')
+        console.log('\t\t  a\t  |\tb\t|\t\tobjA\t\tobjB\t\tobjC')
+        console.log('------------------------------------------------------------')
+        console.log('a\t\t' ,a == a,'\t',a == b,'\t\t',a == objA,'\t\t',a == objB,'\t\t',a == objC)
+        console.log('b\t\t' ,b == a,'\t',b == b,'\t\t',b == objA,'\t\t',b == objB,'\t\t',b == objC)
+        console.log('ObjA\t',objA == a,'\t',objA == b,'\t\t',objA == objA,'\t\t',objA == objB,'\t\t',objA == objC)
+        console.log('ObjB\t',objB == a,'\t',objB == b,'\t\t',objB == objA,'\t\t',objB == objB,'\t\t',objB == objC)
+        console.log('ObjC\t',objC == a,'\t',objC == b,'\t\t',objC == objA,'\t\t',objC == objB,'\t\t',objC == objC)
+        console.log('-------------------------------------------------------------')
+        
+        
+    
+    </script>
+</body>
+</html>

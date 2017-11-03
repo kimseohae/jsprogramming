@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-25
+    </title>
+</head>
+<body>
+    <script>
+        
+        /**
+            이전에도 말한 바 있듯이 Array의 빌트인 함수는 get(O,'length')를 기본 타입으로 삼아 동작한다.
+            
+        **/
+        
+        var arr = ['bar'];
+        var obj = {
+            name : 'foo',
+            length : 1
+        };
+        
+        arr.push('baz');
+        console.log(arr); // (출력 값) ['bar','baz'];
+        obj.push('baz'); // (출력 값) error
+    
+    </script>
+</body>
+</html>

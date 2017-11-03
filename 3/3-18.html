@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-15
+    </title>
+</head>
+<body>
+    <script>
+        /**
+        
+        아래는 Array.prototype.push 함수의 foloowing step이다.
+        여기서 볼 점은 2번과 7번이다.
+        push메서드는 해당 O(지정된 객체)에 'length'를 기반으로
+        get과 set을 한다는 것이다.
+        
+        1. Let O be ? ToObject(this value).
+        2. Let len be ? ToLength(? Get(O, "length")).
+        3. Let items be a List whose elements are, in left to right order, the arguments that were passed to this function invocation.
+        4. Let argCount be the number of elements in items.
+        5. If len + argCount > 253-1, throw a TypeError exception.
+        6. Repeat, while items is not empty
+           Remove the first element from items and let E be the value of the element.
+           Perform ? Set(O, ! ToString(len), E, true).
+        Let len be len+1.
+        7. Perform ? Set(O, "length", len, true).
+        8. Return len.
+        
+        **/
+        
+        var oa = ['apple','banana','cherry'];
+        var oo = {0:'apple',1:'banana',2:'cherry'};
+        Object.setPrototypeOf(oo, Array.prototype);
+        oa.push('dollar');
+        oo.push('dollar');
+        console.log('Array :',oa);
+        console.log('Object :',oo);
+        
+        
+        // colorArray 배열
+        var colorArray = ['orange', 'yellow', 'green'];
+        console.log(colorArray[0]); // (출력 값) orange
+        console.log(colorArray[1]); // (출력 값) yellow
+        console.log(colorArray[2]); // (출력 값) green
+        
+        // colorArray 객체
+        var colorObj = {
+            "0" : 'orange',
+            "1" : 'yellow',
+            "2" : 'green' 
+        };
+        
+        // typeof 연산자 비교
+        console.log(typeof colorArray); // (출력 값) object (not array)
+        console.log(typeof colorObj) // (출력 값) object
+        
+        // length 프로퍼티
+        console.log(colorArray.length); // (출력 값) 3
+        console.log(colorObj.length); // (출력 값) undefined
+        
+        // 배열 표준 메서드
+        colorArray.push('red'); // ['orange', 'yellow', 'green', 'red']
+        colorObj.push('red');
+        // uncaught TypeError : Object #(Object) has no method 'push'
+        
+    
+    </script>
+</body>
+</html>

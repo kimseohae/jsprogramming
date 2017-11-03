@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-21
+    </title>
+</head>
+<body>
+    <script>
+        
+        /**
+        
+            배열의 열거는 for in문을 통한 key접근이나 for loop문을 통한 index접근이나 동일한 결과값을 가진다.
+            편할 대로 사용 하라. 다만 순차적 접근방법으로는 변수의 할당과 연산에 배제 되기 때문에 forLoop보다 forin문이 더 효율 적이다
+            
+        **/
+        
+        var list = [];
+        
+        for(var i = 0 ; i < 10000000 ; i++) list[i] = i;
+        
+        function run(f, m){
+            console.time(m)
+            f();
+            console.timeEnd(m);
+        }
+
+        run(((o)=>{ return ()=>{ for(v in o){} } } )(list), 'forIn');
+        run(((o)=>{ return ()=>{ for(var i = 0 ; i < o ; i++){} } })(list), 'forLoop');
+        
+        
+        
+        var arr = ['zero', 'one', 'two'];
+        
+        for (var prop in arr)
+            console.log(prop, arr[i]);
+            
+        for (var i = 0 ; i < arr.length; i++)
+            console.log(i, arr[i]);
+        
+    </script>
+</body>
+</html>

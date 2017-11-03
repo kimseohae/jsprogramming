@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Iterator ( 이터레이터 패턴 )
+    </title>
+</head>
+<body>
+    <script>
+        /**
+        
+            * 여타 객체 지향에서의 이터레이터 패턴
+                이터레이터 패턴(Iterator pattern)
+                    옵저버 패턴은 여러 클래스가 동일한 클레스를 의존하여 행동 변경이 있을 시에 의존한 클래스가 피 의존 클래스의
+                    행동을 컨트롤 하기 위하여 사용된다.
+            
+            * 자바스크립트에서의 이터레이터 패턴
+                자바스크립트에서는 기본 속성으로 enumarable이라는 속성값을 지원하며
+                for...in 문이나 Symbol 로 역시 지원한다. 이 역시 확인 하고 넘어 갈 내용이다.
+                
+        **/
+
+        // 일반 객체 지향에서의 이터레이터 패턴
+
+        var bookManager = function(){
+            var list = [];
+
+            return {
+                addBook : function(book){
+                    list.push(book);
+                },
+                iterator : function(){
+                    return new iterator(list);
+                }
+            }
+        }
+
+
+        function iterator (t){
+            var idx = 0;
+            return {
+                hasNext : ()=>{
+                    if(t.length > idx){
+                        return t[idx] ? true : false ;
+                    } else {
+                        return false;
+                    }
+                },
+                next : ()=>{
+                    if(t.length > idx){
+                        return t[idx++];
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        var bookm = new bookManager();
+ 
+        bookm.addBook({name:'n1',price:5200});
+        bookm.addBook({name:'n2',price:1200});
+        bookm.addBook({name:'n3',price:53200});
+        bookm.addBook({name:'n4',price:200});
+        bookm.addBook({name:'n5',price:1900});
+
+        var it = bookm.iterator();
+
+        while(book = it.next()){
+            console.log(book.name, book.price)
+        }
+
+
+        // 자바스크립트에서의 이터레이터 ( es6이상 지원 )
+
+        var jsIterator = ['n1','n2','n3','n4','n5','n6','n7','n8']
+        jsIterator[Symbol.iterator] = function* () {
+            for(var i = 0 ; i < this.length ; i++)
+                yield i;
+        };
+
+        var it = jsIterator[Symbol.iterator]();
+        var v = it.next();
+
+        while(!v.done){
+            console.log(v.value,jsIterator[v.value])
+            v = it.next();
+        }
+
+    </script>
+</body>
+</html>

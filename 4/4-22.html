@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-22
+    </title>
+</head>
+<body>
+    <script>
+        var o = {
+            'a' : {
+                type : 1
+            },
+            'b' : {
+                type : 2
+            },
+            'c' : {
+                type : 9
+            },
+            'd' : {
+                type : 1
+            }
+        }
+
+        var v = Object.keys(o).filter(k => o[k].type == 1)
+
+    </script>
+</body>
+</html>

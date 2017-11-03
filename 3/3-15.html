@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-15
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            length프로퍼티는 배열이나 유사 배열을 다룰 때 중요하다.
+            가령 함수의 apply메서드를 이용하여 객체 바인딩을 동적으로 해야 할 경우
+            CreateListFromArrayLike메서드를 사용 하게 되는데 이 메서드의는 기본적으로 Get(obj,"length")
+            를 사용 하여 해당 인자의 length를 검사하여 call함수를 실행 한다.
+        **/
+        
+        
+        function CreateListFromArrayLike(ArrayLike){
+            
+            var t = ArrayLike;
+            var r = [];
+            
+            if(!t.hasOwnProperty('length'))
+                throw new Error('length has not defined!');
+            
+            if(Object.getOwnPropertyDescriptor(t,'length').enumerable)
+                Object.defineProperty(t,'length',{enumerable:false});
+            
+            for(var i = 0 ; i < t.length ; i++)
+                r.push(t[i]);
+            
+            return r;
+            
+        }
+        
+        var Arraylike = {};
+        Arraylike['name'] = 'jhLee';
+        Arraylike['0'] = 0;
+        Arraylike['1'] = 1;
+        Arraylike['5'] = 5;
+        Arraylike['addr'] = '여의대방로 55길 4 304호';
+        Arraylike['length'] = 6;
+        var ArrayList = CreateListFromArrayLike(Arraylike);
+        console.log(ArrayList)
+        
+        
+        var arr = [ ];
+        console.log(arr.length);
+        arr[0] = 0; // arr.length = 1
+        arr[1] = 1; // arr.length = 2
+        arr[2] = 2; // arr.length = 3
+        arr[100] = 100;
+        console.log(arr.length); // (출력 값) 101
+        
+    </script>
+</body>
+</html>

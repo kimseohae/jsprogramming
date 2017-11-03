@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        ForInForOf
+    </title>
+</head>
+<body>
+    <script>
+        
+        /**
+        
+            for in과 for of의 다른점은
+            for in은 오브젝트의 attr를 순회 하고
+            for of는 오브젝트의 index를 순회 한다.
+            즉 in은 객체를 대상으로 사용되고 of는 배열객체를 대상으로 사용 된다.
+            
+        **/
+        var o = {name:'jhLee',age:30,addrs: '여의대방로 55길 4 304호'}
+        var a = [{name:'jhLee',age:30,addrs: '여의대방로 55길 4 304호'},{name:'hoJung',age:20,addrs:'천도원 아트빌라 3동 305호'}]
+        
+        // 객체를 대상으로 for in과 for of절 실행
+        for(i in o)
+            console.log(i);
+        
+        try{
+            for(i of o)
+                console.log(i);
+        }catch(e){
+            console.log('Error (for of) method message : '+e.message)
+        }
+        // 배열을 대상으로 for in과 for of절 실행
+        for(i in a)
+            console.log(i);
+        
+        for(i of a)
+            console.log(i);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-5</title>
+</head>
+<body>
+    <script>
+    /**
+    
+    null 타입의 변수 체크
+    null타입은 객체타입을 임의적으로 빈값을 할당할 때 사용된다.
+    null타입은 객체의 타입을 지니고 있으며
+    boolean으로 변경시 false를 나타낸다.
+    boolean을 숫자로 반환 시 0이다.
+    
+    undefined 타입의 변수 체크
+    undefined는 변수의 할당과 함께 값이 지정 된다.
+    묵시적으로 비어 있다는 것을 나타내며 null과는 다른 점이다.(null은 암시적 용법)
+    
+    **/
+                
+        
+        // It is false when changing Null value to boolean.
+        // Null 값을 boolean으로 변경 시에는 false입니다.
+        console.log(null ? 'Null is true' : 'Null is false')
+        
+        // It is One when changing Null value fo Number
+        // Null 값을 Number로 변경 시 1 입니다.
+        // becareful when null value divide 0
+        // null값을 0으로 나눌 때 주의 하세요
+        console.log('(parseInt(null)) is ', parseInt(null));
+        console.log('(1+null) is ', 1+null);
+        console.log('(2*null) is ', 2*null);
+        console.log('(1/null) is ', 1/null);
+        
+        
+        // Null is type of object
+        // Null은 오브젝트 타입입니다.
+        console.log("(typeof null === 'object) is ",typeof null === 'object')
+        
+        // The boolean conversion convention of undefind is the same as Null
+        // undefined값을 boolean값으로 치환할 때는 null값 치환과 동일 한 값을 얻을 수 있습니다. 
+        console.log(undefined ? 'Undefined is true' : 'Undefined is false')
+        
+        // The Number conversion value of Undefined is NaN.
+        // undefined 값을 Number값으로 치환 할 때는 NaN값을 얻을 수 있습니다.
+        console.log('(parseInt(undefined)) is ', parseInt(undefined) );
+        console.log('(1+undefined) is ', 1+undefined );
+        console.log('(2*undefined) is ', 2*undefined );
+        console.log('(1/undefined) is ', 1/undefined );
+        
+        // Null vs Undefined
+        console.log('(undefined == undefined) is ',undefined == undefined)
+        console.log('(undefined === undefined) is ',undefined === undefined)
+        console.log('(null == null) is ',null == null)
+        console.log('(null === null) is ', null === null)
+        console.log('(ndefined == null) is ', undefined == null)
+        console.log('(undefined === null) is ', undefined === null)
+        
+        
+        
+        // null 타입 변수 생성
+        var nullVar = null;
+        
+        console.log(typeof nullVar === null);
+        console.log(nullVar === null);
+        
+
+        
+
+        
+    
+    
+    </script>
+</body>
+</html>

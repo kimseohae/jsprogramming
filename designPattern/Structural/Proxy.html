@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Proxy
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            * 여타 객체 지향에서의 프록시 패턴
+                프록시 패턴(Proxy pattern)
+                    전통적으로 프록시는 네트워크 상에서 가로채기 라는 의미로 많이 사용이 됬었다.
+                    그러면 프록시 패턴은 가로채는 패턴인가? 맞는 말이다. 다만 패턴에서의 프록시 또는 프락시 패턴은
+                    객체와 실행의 사이에 인터페이스를 둠으로 써 확장성을 유지 하는데 있다.
+                    무슨 말인지는 소스를 보면 이해 할 것이다.
+            
+            * 자바스크립트에서의 프록시 패턴
+                자바스크립트에서는 자료의 흐름을 제어 하기 위해서 Proxy라는 함수와 객체를 하나씩 두고 있다.
+                다만 자바스크립트에서의 객체가 있으니 한번 만들어 보도록 하자.
+         **/
+        var targetObject = {name : 'jhLee',show : function(){return this.name;}}
+        var proxtFunction = function (t/* 등록 할 타겟 오브젝트 */,o/* 프록시 대상이 될 오브젝트 */){
+            function f(){};
+            for(v in t){
+                if(Object.prototype.hasOwnProperty.call(t,v)) {
+                    if(typeof t[v] == 'function') {
+                        f.prototype[v] = function(){
+                            if(o.hasOwnProperty(v)) {
+                                if(typeof o[v] == 'function') {
+                                    f.prototype[v] = o[v](t,v,proxtFunction);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return new f();  
+        };
+
+        var proxyObject = {
+            show:function(t,k,r){
+                console.log('target :',t);
+                console.log('proxy Method run :',t[k]());
+                console.log('receiver :',r.name);
+            }
+        }
+
+        var customProxy = proxtFunction(targetObject, proxyObject);
+        customProxy.show();
+
+        var BuiltInProxy = new Proxy(targetObject, proxyObject);
+        console.log(BuiltInProxy.show());
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sample</title>
+</head>
+<body>
+    <input type="text" onclick="u(this)"
+			onkeyup="u(this)"
+			onkeydown="u(this)"
+			onkeypress="u(this)"
+			onmouseup="u(this)"
+			onmousedown="u(this)">
+    <div id ='indexPosition'>index</div>
+    <script>
+
+        var oe = 0
+        
+        /**
+            Html의 인덱스를 찾고 해당 index를 innerHTML로 주입한다.
+            fe(o [해당 오브젝트])
+        **/
+        function u(o) {
+            var e = fe(o);
+            if (e == oe) return;
+            document.getElementById('indexPosition').innerHTML = e;
+            oe = e;
+        }
+
+        /**
+            o : 포인팅 인자
+            return : 포인팅 인자의 커서 index
+
+            파라미터로 넘어 값을 사용하여 
+            selection End (마지막 포인트)를 구하여 리턴
+        **/
+        function fe(o) {
+            if (o.createTextRange) {
+                var r = document.selection.createRange().duplicate()
+                r.moveStart('character', -o.value.length)
+                if (r.text == '') return len;
+                return r.text.length
+            } else return o.selectionEnd
+        }
+    </script>
+</body>
+</html>

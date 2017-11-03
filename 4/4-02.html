@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4-2</title>
+</head>
+<body>
+    <script>
+        /**
+        
+            먼저 자바스크립트에서의 실행 단위는 기본이 함수 단위이다.
+            즉 함수하나에서 시작해서 끝이 나게 되는 것이다.
+            이것을 보통 global context라고 불리는데
+            이 global context는 브라우저에서는 보통 window에서 실행 될 때 최초 하나의 흐름을 가진다.
+
+        **/
+        // add() 함수 표현식
+        var add = function(x, y){
+            return x + y;
+        };
+
+        var plus = add;
+        console.log(add(3,4));
+        console.log(plus(3,4));
+    
+    </script>
+</body>
+</html>

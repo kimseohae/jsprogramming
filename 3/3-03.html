@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-5</title>
+</head>
+<body>
+    <script>
+        /*
+        
+        문자열은 모든 프로그래밍 언어에서 에메한 위치에 있다.
+        자바에서는 해쉬 코드로 문자열을 관리 함으로 써 메모리 부하를 줄이고
+        퍼포먼스를 증가 시켰다.
+        자바스크립트에서는 객체를 사용하여 문자열을 기본 값으로 만들었다.
+        이전에도 말한바 있듯이 문자열이 자료형이 되기 위해서는 immutable 속성이 
+        되어야 된다는 한다.
+        
+        */
+        var str = 'test';
+        console.log(str[0], str[1], str[2], str[3]) // ( 출력 값 ) test
+        
+        // 문자열의 첫 글자를 대 문자로 변경 ?
+        str[0] = 'T';
+        console.log(str); // ( 출력 값 ) test
+        var x = new String();
+        x[0] = 'a'
+        x[1] = 'b';
+        x[2] = 'b';
+        x[4] = 'b';
+        x[5] = 'b';
+        
+        console.log(x)
+        console.log(x.toString())
+        x.commit();
+        console.log(x.toString())
+        console.log(x)
+        
+    </script>
+</body>
+</html>

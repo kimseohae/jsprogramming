@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-5
+    </title>
+</head>
+<body>
+    <script>
+        
+        /**
+            다이나믹 하게 함수를 생성 하는 방법이다.
+            문자열을 사용 하여 함수의 뼈대를 잡고 함수를 정의 하는 방법으로
+            eval과 비슷해 보이지만 엄연히 다르다
+            이유는 뒤쪽에서 다룰 것이며 Function의 body로는 마지막 인자를 같는 다는 것에 유의하자.
+        **/
+
+        var add = new Function('x','y','return x+b');
+        console.log(add(3,4));
+    </script>
+</body>
+</html>

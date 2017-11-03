@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Command ( 커맨드 패턴 )
+    </title>
+</head>
+<body>
+    <script>
+        /**
+         * 
+         커맨드 패턴은 프로그램적 입장에서 보면 매우 중요한 의미를 가진다
+         실행 가능한 하나의 객체 라는 의미도 가지고 있다
+         본래 커맨드 패턴의 정의는 하나의 실행을 객체로 묶교 캡슐화 하여 제공하는 대상이 되게
+         작성하는 방법을 말한다.
+
+            * 여타 객체 지향에서의 커맨드 패턴
+                커맨드 패턴(Command pattern)
+
+            * 자바스크립트에서의 커맨드 패턴
+                일반적인 객체로 작성하여 객체 지향에서와 비슷하게 사용 하는 방법이 있으며
+                함수적 용법으로 작성한 커맨드 패턴이 있다. 둘다 기능은 동일하니 동일하게 보아도 무방하다.
+
+         **/ 
+        
+         var Command = function(exec, undo, value){
+             this.exec = exec;
+             this.undo = undo;
+             this.value = value;
+         }
+         var add = (x,y)=>{return x+y};
+         var sub = (x,y)=>{return x-y};
+         var mul = (x,y)=>{return x*y};
+         var div = (x,y)=>{return x/y};
+         
+         
+         var addCommand = function(value){
+             return new Command(add,sub,value);
+         }
+         var subCommand = function(value){
+             return new Command(sub,add,value);
+         }
+         var mulCommand = function(value){
+             return new Command(mul,div,value);
+         }
+         var divCommand = function(value){
+             return new Command(div,mul,value);
+         }
+
+         var calculator = (function() {
+            var value = 0;
+            var command = [];
+
+            return {
+                execute : function(exec){
+                    value = exec.exec(value, exec.value);
+                    command.push(exec);
+                },
+                undo : function(){
+                    var exec = command.pop();
+                    value = exec.undo(value, exec.value);
+                },
+                getValue : function(){
+                    return value;
+                },
+                reset : function(){
+                    command = [];
+                    value = 0;
+                }
+            }
+         })();
+
+         // 0 + 10 = 10
+         calculator.execute(addCommand(10));
+         // 10 - 5 = 5
+         calculator.execute(subCommand(5));
+         // 5 * 3 = 15
+         calculator.execute(mulCommand(3));
+         // 15 / 5 = 3
+         calculator.execute(divCommand(5));
+         console.log(calculator.getValue());
+
+         // reset = 0
+         calculator.reset();
+         console.log(calculator.getValue());
+
+         // 0 + 10 = 10
+         calculator.execute(addCommand(10));
+         // 10 - 5 = 5
+         calculator.execute(subCommand(5));
+         // 5 * 3 = 15
+         calculator.execute(mulCommand(3));
+         // 15 / 5 = 3
+         calculator.execute(divCommand(5));
+         console.log(calculator.getValue());
+
+         // rollback 15 / 3
+         calculator.undo();
+         console.log(calculator.getValue());
+         // rollback 5 * 3
+         calculator.undo();
+         console.log(calculator.getValue());
+         // rollback 10 - 5
+         calculator.undo();
+         console.log(calculator.getValue());
+         // rollback 0 + 10
+         calculator.undo();
+         console.log(calculator.getValue());
+         
+    </script>
+</body>
+</html>

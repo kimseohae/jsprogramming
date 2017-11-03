@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-11
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            함수에 인자로 넘어 가는 값이 객체냐 아니면 값이냐에 따라서 행동이 달라진다.
+            객체라면 유일한 객체에 붙어서 수정이 가능하다.
+            값이라면 값이 복사 되어져 수정이 불가능하다.
+        **/
+        var a = 100;
+        var objA = { value : 100 };
+        
+        function changeArg(num, obj) {
+            num = 200;
+            obj.value = 200;
+            
+            console.log(num);
+            console.log(obj);
+        }
+        
+        changeArg(a, objA);
+        
+        console.log(a);
+        console.log(objA);
+    </script>
+</body>
+</html>

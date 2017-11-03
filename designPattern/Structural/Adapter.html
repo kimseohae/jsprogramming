@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Adapter
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            * 여타 객체 지향에서의 어댑터 패턴
+                어댑터 패턴(Adepter pattern)
+                    어댑터 패턴은 이종코드 간의 접항성을 가지지 못한 상태일 때 사용되며
+                    두 코드 간의 관계성을 맷어 주는 역활을 한다.
+                   
+            
+            * 자바스크립트에서의 어댑터 패턴
+                어댑터 패턴은 생각 외로 일상적인 코딩에서 많이 사용 한다.
+                가령 A로 들어 오기로 한 자료가 B라면? B로 들어오기로 한 함수가 C로 들어 왔다면?
+                이럴때는 어댑터 패턴을 사용해서 연결해 줄 수 있다.
+                다만 현재 들고 있는 예제는 일반적인 객체 지향에서의 구조화된 어댑터 패턴이 아님을 인지하라.
+                
+        **/
+        
+        // 수주로 받기로 정해진 커미션 계산 수식
+        var commitionLib = {
+            o : 100,
+            g : function(v){
+                return this.o*((v+2)/10+50);
+            },
+            s : function(o){
+                this.o = o;
+            }
+        }
+        
+        // 현재 작업 중인 홈텍스 계산 로직
+        var homeTex = {
+            run : function(commition,tex){
+                var comm = commition.get(tex);
+                commition.set(comm);
+                console.log(commition.o);
+            }
+        }
+        
+        // 동작할 수 없는 코드가 된다.
+        // homeTex.run(commition)
+        
+        // 이렇게 Adepter를 추가 하여 이종 객체 간의 접합하는 용도로 사용 된다.
+        // 객체 지향 과는 다르게 함수 단위로 짜여 져 있기 때문에 프로퍼티의 링크만 바꿔 줌으로 써 동작 가능하다.
+        commitionLib = new (function(c){ this.o = c.o; this.get = c.g; this.set = c.s;})(commitionLib)
+        homeTex.run(commitionLib, 12);
+    </script>
+</body>
+</html>

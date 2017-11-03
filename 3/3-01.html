@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-1</title>
+</head>
+<body>
+    <script>
+        
+        /*
+            
+        * A primitive value is a datum that is represented directly at the lowest level of the language implementation.
+        프리미티브 값은 언어를 구현하는 하위 레벨을 직접 표현하는 데이터이다.
+    
+    
+            자바스크립트는 기본적으로 아래 5개의 기본 타입을 준수 한다.
+            이 기본 타입들은 아래와 같다
+                1. Undefined
+                2. Null
+                3. Boolean
+                4. Number
+                5. String
+            
+            그리고 아래와 같이 하나의 확장 된 기본타입을 준수 한다
+                6. Symbol (ES6에 준수)
+            이 기본타입들을 자바스크립트에서는 Primitive values라 부르기도 하고 원시타입이라 불리기도 한다.
+            Symbol을 제외한 기본타입을 다루어 보겠다.(Symbol은 추후 es6를 보면서 다루겠다.)
+            그럼 먼저 Undefined를 한번 살펴 보자.
+            
+            
+            1. Undefined
+            
+            * The Undefined type has exactly one value, called undefined. Any variable that has not been assigned a value has the value undefined
+            Undefined 타입은 하나의 undefined라는 하나의 값을 가집니다. 
+            값이 할당 되지 않은 모든 변수는 undefined라는 값을 가집니다.
+            
+            Undefined를 살펴 보기 전에 먼저 ReferenceError(RE)[참조 오류] 에러와 Undefined(UD)의 차이 부터 알아 보자.
+            UD는 선언되어 초기화 대기 상태에 있는 반면 RE는 선언 조차 되지 못한 상태에 있다.
+            즉 변수를 사용 할때 선언 -> 초기화 -> 사용 단계를 거친다고 가정한다면
+            UD는 초기화를 하지 않은 값을 사용 하는 것 이고 RD는 선언을 하지 않은 값을 사용 하는 것이다.
+            자바스크립트에서는 선언은 되었지만 초기화 되지 않은 변수에 초기 값인 undefined를 할당 하고
+            할당 된 undefined 값을 사용하여 런타임 시에 언어의 안정성과 프로그래밍의 효율성을 높인다.
+            참고) undefined는 예약어가 아니다. 즉 
+                ex)RD는 Not defined에러라고 불린다.
+            
+            2. Null
+            
+            * The Null type has exactly one value, called null.
+            Null type은 null이라는 하나의 값을 가진다.
+            
+            * primitive value that represents the intentional absence of any object value
+            모든 객체값에 의도하여 빈값을 나타낸 primitive
+            
+            Null은 모든 프로그래밍에서 빈 값을 나타내는 기본적인 값의 하나이다. 
+            그렇다면 위에서 살펴본 초기값을 나타내는 Undefined와의 차이를 알아 보자.
+            
+            두 개의 타입 모두 빈 값(값의 공백)을 나타내는 타입이라는 것은 동일하다. 그렇다면 다른 점은 무엇인가?
+            공식 문서 상에 의도적이란 말이 등장함을 알 수 있다.
+            1. undefined는 모든 변수가 기본적으로 가지는 빈 값이며
+            2. null은 오브젝트를 나타내는 변수에 의도적으로 주입한 빈값이라고 정의 내릴 수 있겠다.
+            
+            그러면 먼저. null과 undefined의 평가를 작성해 보자.
+            공식 문서 ECMAScript 2018에는 이런 글이 작성되 있는 것을 확인 할 수 있다.
+            7.2.14Abstract Equality Comparison
+                2. If x is null and y is undefined, return true.
+                3. If x is undefined and y is null, return true.
+            null과 undefined의 값의 == 연산은 동일 하다고 정의한다.
+            내부적으로는 어떻게 동작 하는지는 모르겠지만 그건 나중에 확인 하고 지금은 null과 undefined의 == 연산은 
+            둘다 동일한 빈값을 나타내기 때문에 둘의 ==(동등) 값 비교는 true를 반환한다는 것을 숙지 하자.
+            그러면 둘의 확인을 하기 위해서는 == 이 아닌 타입의 여부 역시 확인 하는 ===(일치) 연산을 한다는 것을 잊지 말자.
+            * 동등(==)연산과 ==(일치)연산
+            == 연산은 모든 타입을 변경하여 값만을 추출하여 값의 동일성을 비교 하며
+            === 연산은 타입을 포함한 두 값의 일치성을 비교 한다.
+            ex) 문자(10) ==  숫자(10) [true]
+                문자(10) === 숫자(10) [false]
+            
+            그러면 둘의 차이가 있다면 언제는 undefined를 사용하고 언제는 null을 사용 할까?
+            둘의 큰 차이는 Object에 있다.
+            undefined는 모든 변수가 가지는 빈값이고 null은 객체에게 의도적으로 나타낸 빈값이라 정의내린바 있다.
+            
+            공식 문서 ECMAScript 2018, 12.5.5The typeof Operator에는 typeOf에 관하여 이렇게 작성되어 있다.
+            Table 35: typeof Operator Results
+            
+            Type of value         | Result
+            -----------------------------------
+            Undefined             | undefined
+            Null                  | object
+            
+            Null값의 묵시적 타입은 object로 나타낸다고 정의한다.
+            Object의 빈값이 null이라고 이렇게 까지 애걸 복걸 하는데 들어 줘야지 않겠는가?
+            * 타입을 알 수 없는 모든 변수에는 undefined값을
+              Object를 타입으로 받는 변수에는 null값을 할당 하도록 하자.
+            
+            
+            3. Boolean
+            
+            * There are only two Boolean values, true and false. 
+            불린 타입은 오직 참, 거짓 두 값만을 가진다.
+            
+            불린 값은 참과 거짓을 판별할 때 사용 된다.
+            이 불린 값은 보통 0, 1을 사용 하여 판별 하며 javascript에서는 값의 여부로 불린 값을 판별 하기도 한다.
+            
+            이제 부터 등장 하게 되는 것은 Built-in Object또는 박싱객체 라는 프로그래밍 개념이 등장하게 된다.
+            박싱은 뒤편에서 알아 볼 것이고 일단은 불린 값에 관하여 알아 보자.
+            
+            * toBoolean
+            일단 true와 false를 모르는 사람은 없을 것이고.
+            공식문서상의 Boolean의 치환 대상을 보겠다. (*치환 = 값의 대칭 변경 Number to String [1:'1'])
+            일단 알아 볼 치환 대상은 Primitive value인
+            Undefined, Null, String, Number, Boolean, Symbol와 복합 타입인 Object에 관하여 알아보자.
+            
+            Table 9: ToBoolean Conversions
+            
+            Arguments           Result
+            ---------------------------------------------------------
+            Undefined           false
+            Null                false
+            Boolean             Arguments
+            Number              0 or Nan is false, else true
+            String              empth or length 0 is false, else true
+            Symbol              true
+            Object              true
+            
+            간단히 정리 해 보자.
+            일단 빈 값(null, undefined)는 false로 나타남을 알 수 있다.
+            수의 치환은 0을 기준으로 더 높거나 낮으면 true를 나타내고 0이면 false를 나타낸다.
+            문자열은 값이 있을 경우 true 없을 경우 false를 나타내며
+            Symbol과 Object는 모두 true를 나타낸다.
+            그러면 이렇게 정리 할 수 있다.
+            
+            TRUE                    FALSE
+            ------------------------------------------
+            ( Object, Symbol )      ( Undefined, Null )     
+            !( 0, NaN )             ( 0, NaN )
+            !''                     ''
+            true                    false
+            
+            
+            * 박싱과 언박싱
+            
+            Number로 넘어 가기전 박싱에 대해서 알아보자.
+            박싱객체 또는 Built-in Object중 하나인 Boolean, Number, String은
+            모두 primitive객체를 꾸며 주는 객체이다.
+            이 객체들은 모두 primitive객체를 확장하여 사용 할 수 있게 하는 데에 초점을 맞춘다.
+            먼저 Boolean부터 살펴보자 Boolean은 boolean타입의 박싱 객체이다.
+            이 객체가 하는 일은 위에서 말했듯이 boolean을 묵시적으로 꾸며 준다.
+            이해 하기가 좀 어려울 수도 있다. 그래서 간단한 예를 들어 보겠다.
+            primitive값은 단순히 하위 레벨의 값만을 가지고 있는 소위 자료형이다.
+            그렇다면 이 하위 레벨의 값을 가공 하기 위해서는 어떻게 해야 될까?
+            제일 쉬워 보이는 방법은 temp변수를 선언하여 swapping하는 것이다.
+            그렇게 하면 기존 값도 안전하고 기존 값을 가지고 가공한 값도 도출할 수 있으니
+            1. var str = false;
+            2. var temp = str;
+            3. str = !str;
+            4. console.log(str);
+            5. str = temp;
+            6. temp = undefined;
+            7. console.log(str);
+            
+            이렇게 되었을 경우에 많인 귀찮음이 있다.
+            일단 가장큰 문제점은 변수가 낭비이며 코딩이 많아 진다.
+            또 다른 문제는 str2가 생겼을 경우 저 6줄을 다시 처야 된다는 것이 문제다.
+            str999까지 가면 999*6을 하여 엄청난 문제점을 발생하게 된다.
+            그렇다고 primitive 값의 가공을 하지 않는다면 매력적인 코딩 방법을 하나 잊어 버리는 것과 같다.
+            
+            그러면 어떻게 하면 좋을까?
+            지금까지 말한 것 과 같이 묵시적으로 Boxing객체를 하나 두면 가능하다.
+            Boxing객체는 primitive 값에 묵시적으로 proxy같은 객체를 하나 둠으로써 primitive값의 가공을 자유롭게 한다.
+            '하느님 그 곳에 계시옵소서 말씀은 제가 전하겠습니다.'와 같다.
+            그러면 한번 박싱을 해 보자.
+            1. Boolean.prototype.ReverseValue = function(){return !this.valueOf();}
+            2. var str = false;
+            3. console.log(str.ReverseValue());
+            4. console.log(str);
+            
+            
+            4. Number
+            * set of all possible Number values including the special “Not-a-Number” (NaN) value, positive infinity, and negative infinity
+            Number는 Not-a-Number(NaN)와 양의 무한수, 음의 무한수와 같은 특수한 값을 포함한 모든 수의 집합이다.
+            
+            자바스크립트에서의 Number는 자바와 같은 규격화된 언어와는 다르게 64bit이며 2^53로 표현 할 수 있는 수를 모두 포함하여
+            형을 지정 하지 않아도 표현이 가능하다.
+            
+            * NaN(Not-a-Number)
+            NaN은 Number의 특수 타입 중에서도 특수한 타입이다.
+            왜냐면 NaN은 Infinity와는 다르게 자신의 값과도 동일 하지 않기 때문이다.
+            Number.POSITIVE_INFINITY === Number.POSITIVE_INFINITY
+            은 참이 나오지만
+            NaN === NaN
+            을 하면 거짓이 나온다.
+            NaN은 isNaN 메서드로 확인 하거나 
+            NaN <= Number.MAX_VALUE || NaN >= Number.MIN_VALUE
+            NaN.toString() === 'NaN'
+            
+            * toNumber
+            역시 숫자에 관해서는 위에 정리하였고
+            공식 문서 상의 치환에 관하여 다루겠다.
+            
+            Table 10: ToNumber Conversions
+            
+            Arguments           Result
+            ----------------------------------------
+            Undefined           return NaN
+            Null                0
+            Boolean             true is 1, false is 0
+            Number              Arguments
+            String              conversion Number 
+                                String '10' to Number 10
+            Symbol              throw TypeError(exception)
+            Object              toPrimitive(args, hint)
+            
+            Undefined는 NaN으로 치환되며 Null은 0으로 치환된다는 것만 기억 하고 넘어 가자
+            Symbol은 Es6에서 다룰 것이며 간단하 toPrimitive를 사용 하여
+            객체의 기본값을 지정 할 수 있다.
+            그 외 Bool값은 참이면 1 거짓이면 0은 Number to Boolean의 역순이니 어렵진 않겠다.
+            마지막으로 String to Number의 경우는 Express의 종류가 많으니
+            https://tc39.github.io/ecma262/#sec-tonumber 공식 문서를 참조 하여 경우의 수를 확인 하길 바란다.
+            
+            5. String
+            * A String value is a member of the String type. Each integer value in the sequence usually represents a single 16-bit unit of UTF-16 text
+            문자열 값은 각각의 문자타입의 집합이며. 순차적인 각각의 정수값은 일반적으로 UTF-16 문자집합의 단일 16bit 단위로 표현된다.
+            
+            마지막으로 String(문자열)이다. 여러 언어를 거처오면 느꼇지만 문자열은 이러지도 못하고 저러지도 못하는 놈이다.
+            왜냐면 문자를 표현하는 단위는 Charactor단위이다.
+            즉 저장 하는 자리수를 마음대로 저장 할 수 없으니 Hello를 표현하기 위해서는 'H','e','l','l','o'
+            라고 하는 문자집합을 만들어 배열의 시작점을 기준으로 배열의 끝을 읽는 방식으로 문자열을 표기한다.
+            분명 이렇게 되면 배열이나 객체라 지정하여야 된다 하지만 여러 언어에서는 이 문자열을 기본 타입이라고 정의한다.
+            왜 그렇게 된 것일까? 어찌 보면 String은 객체가 맞다 하지만 객체가 가지는 기능 중에서 mutable을 제거 하게 되면
+            이 객체는 불변성(immutable)을 지닌 하나의 값으로 있을 수 있다.
+            무슨말이냐면 우리 모두의 어머니는 각각 다르다. 하지만 우리 모두의 조상인 이브는 동일 하지 않는가?
+            우리가 조상의 역사를 변경할 수 없고 듣기만 가능하다면 하나의 기본 자료형으로 인정 받지 않을까?
+            그래서 우리는 string을 객체이지만 기본자료형 취급을 한다.
+            문자열 객체가 일반 객체와 다른점은 한번 정의된 값을 수정이 불가능 하다는 것을 이해하라.
+            
+        */
+        
+        function log(msg){
+            var printMsg;
+            if(arguments.length > 1)
+                for(var i = 0 ; i < arguments.length ; i++)
+                    printMsg = i ? 
+                        printMsg + arguments[i] : arguments[i] ;
+            else 
+                printMsg = msg;
+            console.log(printMsg)
+        }
+        
+        log('------- 1. undefined --------');
+        // 선언(Declare)
+        var name;
+        var undefinedValue;
+        
+        // 초기화(Set)
+        name = 'lee';
+        
+        // 사용(Use)
+        try{
+            
+            log('초기화 변수 : ',name);
+            log('undefined 변수 : ',undefinedValue);
+            log('not Defined 변수 : ',notdefinedValue);
+            
+        }catch(e){
+            if(e instanceof ReferenceError){
+                log('Reference Error');
+            }
+        }
+        
+        // undefined 평가
+        // 1. undefined prop 를 사용한 명시적 평가
+        // 2. typeof 을 이용한 간접 평가
+        // 3. 함수를 이용한 즉시 실행 함수 평가
+        // +-- void() 표현식을 사용한 표현식 함수 평가
+        log('명시적 평가 : ',undefinedValue === undefined);
+        log('typeof 평가 : ',typeof undefinedValue === 'undefined');
+        log('즉시 실행함수 평가 : ',undefinedValue === (function(name){
+            if(name === 'jhLee')
+                return null;
+            else 
+                return undefined;
+        })(name));
+        log('void표현식 평가 : ',undefinedValue === void(0));
+        
+        
+        log('--------- 2. Null -----------');
+        
+        // 선언 (Declare)
+        var undefinedValue;
+        var nullValue;
+
+        // 초기화(Set)
+        // undefinedValue는 어떤 값이 사용 될지 모르기 때문에 초기화 하지 않음 = undefined
+        // nullValue는 암시적으로 Object타입을 사용 할 것을 명시 초기값을 null로 초기화 = null
+        undefinedValue;
+        nullValue = null;
+        
+        // 사용(Use)
+        log('Undefined Eq Undefined: ' ,undefinedValue == undefined);
+        log('Null Eq Null: ' ,nullValue == null);
+        
+        
+        // null과 undefined 평가
+        // 1. 동등(==)연산자 평가
+        // 2. 일치(===)연산자 평가
+        // 3. typeof를 이용한 평가
+        log('Null Eq Undefined: ',nullValue == undefinedValue);
+        log('Null EqAll Undefined : ', nullValue === undefinedValue);
+        log('typeof Null Eq typeof Undefined : ',typeof nullValue == typeof undefinedValue);
+
+        
+        
+        log('------- 3. Boolean ---------');
+        
+        // 선언 (Declare)
+        var boolTrueValue;
+        var boolFalseValue;
+        
+        // 초기화(Set)
+        boolTrueValue = true;
+        boolFalseValue = false;
+        
+        // 사용(Use)
+        log('true Eq true : ', boolTrueValue == true);
+        log('false Eq false : ', boolFalseValue == false);
+        log('true Eq false : ', boolTrueValue == boolFalseValue);
+        
+        // 불린 타입의 값 치환 및 평가
+        // 1. Undefined
+        // 2. Null
+        // 3. Boolean
+        // 4. Number
+        // 5. String
+        // 6. Symbol
+        // 7. Object
+        
+        function toBoolean(t){
+            return t ? true : false;
+        }
+        
+        log('Undefined to Boolean : ', toBoolean(undefined));
+        log('Null to Boolean : ', toBoolean(null));
+        log('(True) Boolean to Boolean : ',toBoolean(true));
+        log('(+) Number to Boolean : ', toBoolean(1));
+        log('(-) Number to Boolean : ', toBoolean(-1));
+        log('(0) Number to Boolean : ', toBoolean(0));
+        log('(NaN) Number to Boolean : ', toBoolean(NaN));
+        log('("") empth String to Boolean : ', toBoolean(''));
+        log('(" ") Not empth String to Boolean : ', toBoolean(' '));
+        log('Symbol to Boolean : ', toBoolean(Symbol));
+        log('Object to Boolean : ', toBoolean({}));
+        
+        
+        // primitive의 boxing
+        Boolean.prototype.reverseValue = function(){
+            return !this.valueOf();
+        }
+        var boxedFalseValue = false;
+        log('(false) ReverseValue : ', boxedFalseValue.reverseValue());
+        log('(false) MetaValue : ', boxedFalseValue);
+        
+        
+        log('-------- 4. Number --------');
+        // 선언(declare)
+        var positiveInfinityValue;
+        var negativeInfinityValue;
+        var nanValue;
+        var maxValue;
+        var minValue;
+        
+        // 초기화(Set)
+        positiveInfinityValue = Number.POSITIVE_INFINITY;
+        negativeInfinityValue = Number.NEGATIVE_INFINITY;
+        nanValue = NaN;
+        maxValue = Number.MAX_VALUE;    
+        minValue = Number.MIN_VALUE;    
+        
+        // 사용(Use)
+        log('PositiveInfinity : ', positiveInfinityValue);
+        log('NegativeInfinity : ', negativeInfinityValue);
+        log('NanValue : ', nanValue);
+        log('MaxValue : ', maxValue);
+        log('MinValue : ', minValue);
+        log('INFINITY is INFINITY : ', Number.POSITIVE_INFINITY === Number.POSITIVE_INFINITY);
+        log('NaN is NaN : ',NaN === NaN);
+        log('NaN between Min And Max : ',NaN <= Number.MAX_VALUE || NaN >= Number.MIN_VALUE)
+        log('NaN toString "NaN" : ', NaN.toString()==='NaN')
+        log('isNaN : ',Number.isNaN(NaN));
+        
+        // 넘버 타입의 값 치환 및 평가
+        // 1. Undefined
+        // 2. Null
+        // 3. Boolean
+        // 4. Number
+        // 5. String
+        // 6. Object
+        // 7. Symbol
+        var obj = {primitiveValue : 10};
+        
+        obj[Symbol.toPrimitive] = function(hint){
+            if(hint === 'number')
+                return this.primitiveValue;
+            else
+                return this.primitiveValue.toString();
+        }
+ 
+        log('Undefined to Number : ',new Number(undefined));
+        log('Null to Number : ',new Number(null));
+        log('(True, False)Boolean to Number : ',new Number(true),', ',new Number(false));
+        log('(50, -50)Number to Number : ',new Number(50),', ', new Number(-50));
+        log('String to Number from toPrimitive : ',new Number(obj));
+        
+        
+        try{
+            
+            log('Symbol to Number : ',new Number(new Symbol()));
+            
+        }catch(e){
+            if(e instanceof TypeError){
+                log('Symbol to Number : TypeError');
+            }
+        }                            
+       
+        // 기본적으로 모든 치환은 valueOf메서드를 사용 하여 치환을 한다.
+        // 그렇다면 객체의 valueOf는 누구일까?
+        // 아마 기본 오브젝트라면 Object.prototype의 정의 되어 있을 것이다.
+        // 그래서 Number로 치환 시 자신의 값인 object를 반환하는 것이다.
+        // 그러면 저 valueOf 메서드를 오버라이딩하여 재 정의 한다면 연산자로 연산도 가능 하지 않을까?
+        // 즉 Symbol.toPrimitive없이도 Number하나로는 가능 하지 않을까?
+        log('ValueOf : ',Object.prototype['valueOf']);
+        
+        var objectToNumber = {};
+        log('Obj : ',objectToNumber);
+        log('ObjAdd10 : ',objectToNumber+10);
+        
+        objectToNumber.number = 10;
+        objectToNumber.valueOf = function(){
+            return this.number;
+        }
+        
+        log('valueOfObj : ',objectToNumber);
+        log('valueOfObjAdd10 : ',objectToNumber+10);
+        
+ 
+        log('-------- 5. String --------');
+
+        String.prototype.getT = function(){
+            this.valueof = function(){return 10;}
+            this.valueof.value = 20;
+        }
+        var obj = {number :5};
+        var xt = obj + 6;
+        console.log('xt : ',xt);
+
+        // 숫자 타입
+        var intNum = 10;
+        var floatNum = 0.1;
+
+        // 문자열
+        var singleQuoteStr = 'single quote string';
+        var doubleQuoteStr = "double quote string";
+
+        // 불린 타입
+        var boolVar = true;
+
+        // undefined 타입
+        var emptyVar;
+
+        // null 타입
+        var nullVar = null;
+        console.log(
+            typeof intNum, 
+            typeof floatNum,   
+            typeof singleQuoteStr, 
+            typeof doubleQuoteStr, 
+            typeof boolVar, 
+            typeof emptyVar, 
+            typeof nullVar 
+        );
+        function copy(o,t){
+            for(v in o) t[v] = o[v];
+        }
+        var o = [
+             undefined
+            ,null
+            ,true
+            ,false
+            ,-1
+            ,0
+            ,1
+            ,Number.NEGATIVE_INFINITY
+            ,Number.POSITIVE_INFINITY
+            ,NaN
+            ,''
+            ,'str'
+            ,[]
+            ,{}
+            ,[0]
+            ,{value:0}
+        ];
+        var t = [];
+        var val= [
+            'und'
+            ,'null'
+            ,'true'
+            ,'false'
+            ,'-1'
+            ,'0'
+            ,'1'
+            ,'(+)Inf'
+            ,'(-)Inf'
+            ,'NaN'
+            ,'""'
+            ,'str'
+            ,'[]'
+            ,'{}'
+            ,'[0]'
+            ,'{value:0}'
+        ];
+        copy(o,t);
+        var str = '';
+        str += '<table border="1px solide;">';
+        for(var v = -1 ; v < o.length ; v++){
+            str += '<tr>';
+            
+            for(var n = -1 ; n < t.length ; n++){
+                
+                str += '<td style=\"width: 50px; height: 50px; text-align: center; ';
+
+                if(v != -1 && n != -1){
+                    str += o[v] == t[n] == false ? '\">' 
+                        : 'background-color: chartreuse\">';
+                } else {
+                    var title = val[n>-1?n:v]
+                    str += '\">'+ (title===undefined?'':title);
+                }
+                str += '</td>';
+                }
+            str += '</tr>';
+            }
+        str += '</table>';
+        document.write(str)
+    </script>
+</body>
+</html>

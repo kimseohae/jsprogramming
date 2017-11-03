@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-17
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            jQuery의 즉시 실행 함수 보다는 바로 뒤쪽에 즉시 실행 패턴에서의 underscore의 즉시 실행 함수에 더 마음이 간다
+            왜냐고 하면 underscore의 즉시 실행 함수는 call함수를 통하여 this를 암묵적으로 바인딩 하였다.
+            즉 저 this는 브라우저 환경에서는 window를 node환경에서는 global을 가리키기 될 터이니 말이다.
+        **/
+        (function( window, undefined ){
+
+        })(window);
+    </script>
+</body>
+</html>

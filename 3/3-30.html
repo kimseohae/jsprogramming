@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-30
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            3장초입에서 toBoolean을 다룬적이 있으니 3-1을 참조 하기 바란다.
+        **/
+        
+        console.log(!!0);           // (출력 값) false
+        console.log(!!1);           // (출력 값) true
+        console.log(!!'String');    // (출력 값) true
+        console.log(!!'');          // (출력 값) false
+        console.log(!!true);        // (출력 값) true
+        console.log(!!false);       // (출력 값) false
+        console.log(!!null);        // (출력 값) false
+        console.log(!!undefined);   // (출력 값) false
+        console.log(!!{});          // (출력 값) true
+        console.log(!![1,2,3]);     // (출력 값) true
+    </script>
+</body>
+</html>

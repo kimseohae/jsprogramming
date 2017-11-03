@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-1
+    </title>
+</head>
+<body>
+    <script>
+        /**
+           member of the Object type that may be invoked as a sub routine
+            서브루틴에서 실행 가능한 오브젝트 타입의 맴버
+            
+            일단 공식 문서 상에서 함수는 실행가능한 오브젝트라고 정의 내리는 바 있다.
+            그러면 여기서 궁금한 사항은
+            1. 어떻게 함수가 동작이 되는 것일까?
+            2. 함수 객체와 일반 객체의 차이점은 무엇이길래 함수 객체만 동작은 하는가?
+            이다.
+
+            일단 Function의 실행 순서를 살펴보자
+            The last argument specifies the body (executable code) of a function; 
+            any preceding arguments specify formal parameters.
+            마지막으로 오는 arg는 함수의 실행 가능 코드가 돕니다.
+            그리고 그 앞으로는 parameter들이 지정 됩니다.
+
+            When the Function function is called with some arguments p1, p2, … , pn, body 
+            (where n might be 0, that is, there are no “p” arguments, 
+            and where body might also not be provided), the following steps are taken:
+            Function이 인자들을 가지고 함수로 불리어졌을 때는 아래 순서를 따릅니다.
+
+            1. Let C be the active function object.
+              코드를 실행가능한 함수 오브젝트로 만듭니다.
+            2. Let args be the argumentsList that was passed to this function by [[Call]] or [[Construct]].
+              [[Call]] 또는 [[Construct]] 함수에 의하여 넘어간 args는 argumentsList가 되어 전달 됩니다.
+            3. Return ? CreateDynamicFunction(C, NewTarget, "normal", args). 
+             createDynamicFunction메서드를 사용하여 해당 함수를 생성합니다.
+
+             ** Lexical Environment 추후 정리 예정 **
+            Environment Records {
+                declarative Environment Records
+                {
+                    FunctionDeclarations,
+                    VariableDeclarations,
+                    Catch clauses
+                }
+                object Environment Records
+                {
+                    Global Environment Records,
+                    function Environment
+                }
+            }
+
+        **/
+
+        // add() 함수 선언문
+        function add(x, y){
+            return x + y;
+        }
+        
+        console.log(add(3, 4)); // (출력 값) 7
+    
+    </script>
+</body>
+</html>

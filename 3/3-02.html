@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-2</title>
+</head>
+<body>
+    <script>
+        /*
+        Math는 자바스크립트에서 지원하는 빌트인 객체이며
+        이 객체는 수학적 작업을 수행 할 수 있도록 도와준다.
+        
+        Property        Value
+        ---------------------------------------------
+        E               2.718281828459045 (오일러의 상수와 자연 대수의 루트)
+        LN2             0.6931471805599453 (자연 대수 2)
+        LN10            2.302585092994046 (자연 대수 10)
+        LOG2E           1.4426950408889634 (E의 밑 2 대수)
+        LOG10E          0.4342944819032518 (Base 10 대수 E)
+        PI              3.141592653589793 (월주율)
+        SQRT1_2         0.7071067811865476 (1/2의 제곱근)
+        SQRT2           1.4142135623730951 (2의 제곱근)
+        
+        
+        
+        Method          Function
+        ------------------------------------------------------
+        abs             해당 값의 절대값을 리턴한다 (Positive Only)
+                        NaN is NaN, -0 is +0
+                        NativeInfinity is PositiveInfinity
+                        (절대값)
+        ceil            해당 값 보다 크거나 작은 올림 수 를 리턴한다. 
+                        0.41 is 0, 1.2 is 1 1.9 is 1
+        floor           해당 값 보다 작은 버림 수를 리턴한다.
+        trunc           해당 값 보다 크거나 작은 버림 수 를 리턴한다. 
+        pow             해당 갑의 승수를 계산하여 리턴한다.
+        random          0과 1사이의 임의이 실수를 리턴한다.
+        round           해당 값 보다 크거나 작은 반올림 수 를 리턴한다.
+        sqrt            해당 값의 제곱근을 반환한다.
+        
+        
+        그 외에 추가적인 함수는 https://tc39.github.io/ecma262/#sec-math.trunc를 참조
+        
+        */
+        
+        function log(msg){
+            var printMsg;
+            if(arguments.length > 1)
+                for(var i = 0 ; i < arguments.length ; i++)
+                    printMsg = i ? 
+                        printMsg + arguments[i] : arguments[i] ;
+            else 
+                printMsg = msg;
+            console.log(printMsg)
+        }
+        
+        var $M = $ = Math;
+        log('------------ Property ------------')
+        log('E : ', $.E);
+        log('LN2 : ', $.LN2);
+        log('LN10 : ', $.LN10);
+        log('LOG2E : ', $.LOG2E);
+        log('LOG10E : ', $.LOG10E);
+        log('PI : ', $.PI);
+        log('SQRT1_2 : ', $.SQRT1_2);
+        log('SQRT2 : ', $.SQRT2);
+        log('------------ Method ------------')
+        log('(-1.5) abs : ', Math.abs(-1.5));
+        log('(1.5) abs : ', Math.abs(1.5));
+        log('(1.55) ceil : ', Math.ceil(1.55));
+        log('(-1.55) ceil : ', Math.ceil(-1.55));
+        log('(-1.55) floor : ', Math.floor(-1.55));
+        log('(1.55) floor : ', Math.floor(1.55));
+        log('(-1.55) trunc : ', Math.trunc(-1.55));
+        log('(1.55) trunc : ', Math.trunc(1.55));
+        log('(-1.55) ceil : ', Math.ceil(-1.55));
+        log('(-1.55) ceil : ', Math.ceil(-1.55));
+        log('(7^2) pow : ', Math.pow(7,2));
+        log('(-7^2) pow : ', Math.pow(-7,2));
+        log('random : ', Math.random());
+        log('(10 ~ 20)Limitied random : ', Math.floor(limitedRandomNumber(10,20)));
+
+        
+        function limitedRandomNumber(min, max) {
+            return (Math.random() * (max - min)) + min;
+        }
+        
+        log('------------ SubJect ------------')
+        var num = 5/2;
+        console.log(num); // (출력 값) 2.5
+        console.log(Math.floor(num)); // (출력 값) 2
+        
+        
+        
+    </script>
+</body>
+</html>

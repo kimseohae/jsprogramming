@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-26
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            유사 배열이란 v,k이 아닌 i,v모양으로 작성된 객체를 말하며 
+            또한 length를 가진 객체를 통틀어 유사 배열이라 한다.
+            배열과 비슷하게 시퀀셜하게 인덱싱된 번호로 객체를 finding할 수 있다.
+            
+        **/
+        var arr = [ 'bar' ];
+        var obj = { name :'foo', length : 1 }
+        
+        arr.push('baz');
+        console.log(arr); // (출력 값) ['bar', 'baz']
+        
+        Array.prototype.push.apply(obj,['baz']);
+        console.log(obj);
+        
+    </script>
+</body>
+</html>

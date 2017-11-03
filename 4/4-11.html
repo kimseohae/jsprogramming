@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-12
+    </title>
+</head>
+<body>
+    <script>
+        var foo = function() {
+            return function(){
+                console.log('this function is the return value.');
+            }
+        }
+        var bar = foo();
+        bar();
+    </script>
+</body>
+</html>

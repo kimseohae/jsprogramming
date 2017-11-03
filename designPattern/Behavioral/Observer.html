@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Observer ( 옵저버 패턴 )
+    </title>
+</head>
+<body>
+    <script>
+        /**
+        
+            * 여타 객체 지향에서의 전략 패턴
+                옵저버 패턴(Observer pattern)
+                    옵저버 패턴은 여러 클래스가 동일한 클레스를 의존하여 행동 변경이 있을 시에 의존한 클래스가 피 의존 클래스의
+                    행동을 컨트롤 하기 위하여 사용된다.
+            
+            * 자바스크립트에서의 옵저버 패턴
+                일반 옵저버 패턴과 동일 하다. 예제를 보면서 이해 하자.
+                
+        **/
+        
+        var oc = (function(msg){
+            
+            var observers = [];
+            var msg = msg;
+            
+            return {
+                // o = 옵저버 모임에 등록 하여 수정 대상이 될 객체
+                addObserver : function(o) {
+                    try{
+                        observers.push(o);
+                       }catch(e){
+                           console.error(e.message);
+                           return false;
+                       }
+                    return true;
+                },
+                // o = 옵저버 모임에 등록 하여 수정 대상이 될 객체
+                removeObserver : function(o) {
+                    observers.splice(observers.indexOf(o), 1);
+                },
+                // m = 수정이 일어난 메세지
+                update : function(m) {
+                    msg = m;
+                    this.notify();
+                },
+                // 옵저버 모임에 등록 된 옵저버 들에게 상황을 알림
+                notify : function(){
+                    for(o of observers) {
+                        o.update(msg);
+                    }
+                }
+            }
+        })();
+        
+        var o = function(name, msg){
+            
+            this.name = name;
+            this.msg = msg;
+
+        }
+        o.prototype = {
+                show : function(){
+                    console.log(this.name+" :",this.msg);    
+                },
+                update : function(m){
+                    this.msg = m;
+                }
+            }
+        
+        // name : 확인을 위한 옵저버의 고유명
+        // msg : 확인을 위한 옵저버 초기 메세지 
+        var o1 = new o('s1',"hello"  );
+        var o2 = new o('s2',"java"   );
+        var o3 = new o('s3',"script" );
+        var o4 = new o('s4',"example");
+        var o5 = new o('s5',"success");
+        
+        oc.addObserver(o1);
+        oc.addObserver(o2);
+        oc.addObserver(o3);
+        oc.addObserver(o4);
+        oc.addObserver(o5);
+        o1.show();
+        o2.show();
+        o3.show();
+        o4.show();
+        o5.show();
+        
+        // Used at the center of the observer when a update occurs.
+        oc.update('updated');
+        o1.show();
+        o2.show();
+        o3.show();
+        o4.show();
+        o5.show();
+        
+        // Used at the center of the observer when a update occurs.
+        // Pass o1 and o4 object
+        oc.removeObserver(o1);
+        oc.removeObserver(o4);
+        oc.update('empty');
+        o1.show();
+        o2.show();
+        o3.show();
+        o4.show();
+        o5.show();
+        
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-9</title>
+</head>
+<body>
+    <script>
+        /**
+            call by R, call by V의 차이는 알거라 믿는다.
+            같에 의한 출력인가? 참조값에 의한 출력인가?
+            간단하게 이해하라
+            파라미터로 넘길 때 object라면 참조 primitive라면 값이다.
+        **/
+        
+        var objA = {
+            val : 40
+        };
+        var objB = objA;
+        
+        console.log(objA.val); // (출력값) 40
+        console.log(objB.val); // (출력값) 40
+        
+        objB.val = 50;
+        
+        console.log(objA.val); // (출력값) 50
+        console.log(objB.val); // (출력값) 50     
+        
+    </script>
+</body>
+</html>

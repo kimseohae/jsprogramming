@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        State ( 상태 패턴 )
+    </title>
+</head>
+<body>
+    <script>
+        /**
+        
+            * 여타 객체 지향에서의 상태 패턴
+                상태 패턴(State pattern)
+                    상태 패턴은 객체의 내부 상태가 변경됨에 따라서 자신의 행동을 유동적으로 변경할 떄 사용되며
+                    상태의 변경에 따라서 다이나믹하게 메서드를 호출하여 사용된다.
+                    전략 패턴과 다른 점은 전략 패턴은 객체가 동작하는 행동을 외부에서 접근 하여 변경하는 반면
+                    상태는 객체 내부에서 변경한다는 점이다.
+            
+            * 자바스크립트에서의 상태 패턴
+                자바스크립트에서 상태 패턴은 일반 객체 지향과는 맞지 않는 부분이다.
+                여타 객체 지향언어는 객체가 필요한 모든 관심을 들고 있는 반면 자바스크립트는 일반적으로
+                함수라는 기능 단위의 흐름을 가지기 때문이다. 
+                하지만 자바스크립트도 객체라는 개념이 존재하는 바 자바스크립트 객체로 상태 패턴을 활용 할 수는 있다.
+                
+        **/
+        
+        
+        var charger = (function(){
+            
+            var charger = {charge:function(){console.log('Don\'t initialize')}};
+            var offCharger = {charge:function(){console.log('Don\'t Charge')}}
+            var onCharger = {charge:function(){console.log('Charging')}}
+            
+            return {
+                on : function(){
+                    charger = onCharger;
+                },
+                off : function(){
+                    charger = offCharger;
+                },
+                charge : function(){
+                    charger.charge();
+                }
+                
+            }
+        })()
+        
+        // don't init charger
+        charger.charge();
+        
+        // charger on
+        charger.on();
+        charger.charge();
+        
+        // charger off
+        charger.off();
+        charger.charge();
+        
+        
+    
+    </script>
+</body>
+</html>

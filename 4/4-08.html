@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-8
+    </title>
+</head>
+<body>
+    <script>
+        /**
+         * 함수도 역시 객체와 동일하게 다루어 질 수 있다.
+         * 함수의 특수성은 실행이 가능한 코드라는데 있다.
+         * executable code
+         **/
+
+        // 함수 선언 방식으로 add() 함수 정의
+        function add(x, y) {
+            return x + y;
+        }
+
+        // add() 함수 객체에 result, status프로퍼티 추가
+        add.result = add(3, 2);
+        add.status = 'OK';
+
+        console.log(add.result); // (출력 값) 5
+        console.log(add.status); // (출력 값) OK
+
+    </script>
+</body>
+</html>

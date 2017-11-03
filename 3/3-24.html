@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-24
+    </title>
+</head>
+<body>
+    <script>
+        
+        /**
+            배열에 관해서는 따로 비중을 두어 알아볼 예정이니 현재는
+            배열의 생성자를 통한 접근은 인자가 변함에 따라서 리턴하는 방법이 다르단 것만 알고 넘어 가자.
+        **/
+        
+        var foo = new Array(3);
+        console.log(foo);           // (출력 값) [undefined, undefined, undefined]
+        console.log(foo.length);    // (출력 값) 3
+        
+        var bar = new Array(1,2,3);
+        console.log(bar);           // (출력 값) [1, 2, 3];
+        console.log(bar.length)     // (출력 값) 3
+        
+        
+    </script>
+</body>
+</html>

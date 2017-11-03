@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        object
+    </title>
+</head>
+<body>
+    <script>
+        /**
+        
+        The Object constructor is the %Object% intrinsic object and the initial value of the Object property of the global object. When called as a constructor it creates a new ordinary object. When Object is called as a function rather than as a constructor, it performs a type conversion.
+        오브젝트 생성자는 %Object%내장 객체와 전역객체의 Object라는 속성을 초기값을 가지며
+        생성자로 불려오면 새로운 객체를 생성합니다. 또한 Object가 생성자가 아닌 함수로 불려오면 타입의 변환이 일어 납니다.
+        
+        Object ( [ value ] )
+         +-- assign : The assign function is used to copy the values of all of the enumerable own properties 
+         | +-- parameters ( target, ...sources )
+         |   +-- target : 복사 대상
+         |   +-- sources : Target에 sources를 복사 하여 Target 반환
+         +-- create : The create function creates a new object with a specified prototype
+         | +-- parameters ( O, Properties )
+         |   +-- O : 객체 생성 시에 prototype으로 지정 될 객체
+         |   +-- Properties : 객체 생성 후 this에 바인딩 될 프로퍼티
+         +-- defineProperties : The defineProperties function is used to add own properties and/or update the attributes of existing own properties of an object
+         |   +-- parameters ( O, Properties )
+         |   +-- O : Properties를 등록 할 target객체
+         |   +-- Properties : 등록 할 프로퍼티 객체
+         +-- defineProperty : defineProperties와 동일 단일 속성을 정의할 떄 사용     
+         |   +-- parameters ( O, P, Property )
+         |   +-- O : Properties를 등록 할 target객체
+         |   +-- Property : 등록 할 프로퍼티 객체
+         +-- entries : The entries function is returns an array of a given object's own enumerable property [key, value] pairs
+         |   +-- paramters ( O )
+         |   +-- O : 배열로 변환 할 target 객체
+         +-- freeze : The freeze function is freezes an object: that is, prevents new properties from being added to it; prevents existing properties from being removed and update
+         |   +-- parameters ( O )
+         |   +-- O : 수정을 방지할 target 객체
+         +-- getOwnPropertyDescriptor : The getOwnPropertyDescriptor function is returns a property descriptor for an own property
+         |   +-- parameters ( O, P )
+         |   +-- O : 프로퍼티를 추출 할 객체
+         |   +-- P : 추출 할 프로퍼티명
+         +-- getOwnPropertyDescriptors : getOwnPropertyDescriptor 와 동일 다만 모든 속성을 리턴한다.
+         |   +-- parameters ( O )
+         |   +-- O : 프로퍼티를 추출 할 객체
+         +-- getOwnPropertyNames : The getOwnPropertyNames function is returns an array of all properties name
+         |   +-- paramaters ( O )
+         |   +-- O : 프로퍼티명을 추출 할 객체
+         +-- getOwnPropertySymbols : The getOwnPropertySymbols function is returns an array of all symbol properties found directly upon a given object.
+         |   +-- parameters ( O )
+         |   +-- O : 심볼을 추출 할 객체
+         +-- setPrototypeOf : The setPrototypeOf function is sets the prototype of a specified object to another object or null.
+         |   +-- parameters ( O, proto )
+         |   +-- O : 프로토타입을 등록 할 객체
+         |   +-- proto : 객체에 등록 될 프로토타입
+         +-- getPrototypeOf : The getPrototypeOf function is returns the prototype of the specified object.
+         |   +-- parameters ( O )
+         |   +-- O : 프로토타입을 추출 할 객체
+         +-- is : The Is function is determines whether two values are the same value.
+         |   +-- parameters ( value1, value2 )
+         |   +-- value1 : 비교 대상 타겟 값
+         |   +-- value2 : 비교 피 대상 값
+         +-- keys : The keys function is returns an array of a given object's own enumerable properties, in the same order as that provided by a for...in loop
+         |   +-- ( O )
+         |   +-- O : 키 배열을 받을 객체
+         ( keys와 for in의 차이점은 keys는 해당 객체의 키를 받는 반면 for in은 prototype의 키도 같이 전달 받는다. )
+         +-- values : The values function is returns an array of a given object's own enumerable property values, in the same order as that provided by a for...in loop
+         +-- preventExtensions : The preventExtensions function is prevents new properties from ever being added to an object
+         |   +-- parameters : ( O )
+         |   +-- O : 프로퍼티 확장을 막을 객체
+         +-- seal : The seal function is Prevents modification of the properties of existing properties and prevents the addition of new properties.
+         |   +-- parameters ( O )
+         |   +-- O : 프로퍼티 확장을 막을 객체
+         +-- isExtensible : The isExtensible function is determines if an object is extensible
+         |   +-- parameters ( O )
+         |   +-- O : 확장 여부를 추출 할 객체
+         +-- isFrozen : The isFrozen determines function is determines if an object is extensible
+         |   +-- parameters ( O )
+         |   +-- O : 확장 여부를 추출 할 객체         
+         +-- isSealed : The isSealed determines function is determines if an object is extensible
+             +-- parameters ( O )
+             +-- O : 확장 여부를 추출 할 객체
+        
+        Object.prototype
+         +-- hasOwnProperty : The hasOwnProperty function is returns a boolean indicating whether the object has the specified property as own (not inherited) property.
+         |   +-- parameters ( prop )
+         |   +-- prop : 검사 할 속성 명 또는 심볼
+         +-- isPrototypeOf : eq Object.isPrototypeOf
+         +-- propertyIsEnumerable : The propertyIsEnumerable function is returns a Boolean indicating whether the specified property is enumerable.
+         |   +-- parameters ( prop )
+         |   +-- prop : 검사 할 속성 명 또는 심볼
+         +-- toString : The toString function is returns a string representing the object.
+         |   +-- parameters ()
+         +-- toLocaleString : toString과 동일합니다. 다만 지역별로 파생된 객체로 재 정의할 수 있습니다.
+         |   +-- parameters ()
+         +-- valueOf : The valueOf function is returns the primitive value of the specified object.
+             +-- parameters ()
+             
+             
+        지금까지 자바스크립트의 기본 객체에 관해서 알아 보았다.
+        다음에는 기본 객체에 추가적으로 동작을 관여하는 bind, apply, call의 기능을 사용하여 실행 가능한 객체인 
+        Function 함수객체에 관해서 알아 보겠다.
+        **/
+        
+        // assign
+        // assign 함수은 순환 가능한 프로퍼티의 값을 복사 하는데 사용 된다.
+        var targetObject = {};
+        var mainSource = {id:'mainId',name:'jhLee',password:'pig0705'};
+        var subSource = {id:'subId' ,address : '여의대방로 55길 4 304호'};
+        Object.assign(targetObject, mainSource, subSource);
+        console.log('assign :',targetObject);
+        
+        // create
+        // create 함수는 지정된 프로토타입으로 새로운 객체를 만드는데 사용 된다.
+        var specifiedPrototype = {fn_prototype:function(){console.log('i\'m Prototype Function')}};
+        var specifiedProperties = { name : { value:'_init' } };
+        var createObject = Object.create(specifiedPrototype, specifiedProperties);
+        console.log('create :',createObject);
+        
+        // defineProperties
+        // defineProperties 함수는 객체가 가지고 있는 프로퍼티 속성의 유무의 따라서 수정 또는 등록 하는데 사용 된다.
+        var undefinedObject = {name : '_init'};
+        var definedObject = Object.defineProperties(undefinedObject, {name : {value : 'updated', writable : false, configurable : false, enumerable : false}, addAttr : { value : 'add' }});
+        undefinedObject = null;
+        definedObject['name'] = 'unImmutable';
+        console.log('defineProperties :',definedObject);
+        
+        // entries
+        // entries 함수는 지정된 객체의 순차접근 가능한 [k,v]로 이루어진 속성 을 배열로 리턴하는데 사용 된다.
+        var unEnumObject = {name : 'jhLee', age : 30, favour : {food:'apple',drink:'cock'}};
+        var enumObject = Object.entries(unEnumObject);
+        console.log('entries : ',enumObject);
+        
+        // freeze
+        // freeze 함수는 지정된 객체의 세로운 프로퍼티나 기존의 존재 하는 프로퍼티의 수정이나 삭제를 만을 때 사용 된다.
+        var unFreezeObject = {name : 'jhLee'};
+        unFreezeObject['name'] = 'freezedName';
+        Object.freeze(unFreezeObject);
+        unFreezeObject['name'] = 'unFreezed';
+        console.log('freeze :',unFreezeObject);
+        
+        // getOwnPropertyDescriptor
+        // getOwnPropertyDescriptor 함수는 객체가 가지고 있는 프로퍼티 명세를 리턴 받을 때 사용 된다. 
+        var getOwnObject = {set name(k){console.log('setter')}, get name(){console.log('getter')}};
+        var PropertyDescriptor = Object.getOwnPropertyDescriptor(getOwnObject, 'name');
+        console.log('PropertyDescriptor :',PropertyDescriptor);
+        
+        // getOwnPropertyDescriptors
+        // getOwnPropertyDescriptors 함수는 객체가 가지고 있는 모든 프로퍼티 명세를 리턴 받을 때 사용 된다.
+        var getOwnPropertis = {};
+        Object.defineProperties(getOwnPropertis, {name : {value : '_init(name)'}, age : {get(){},set(k){}}});
+        var PropertyDescriptors = Object.getOwnPropertyDescriptors(getOwnPropertis);
+        console.log('getOwnPropertyDescriptors :',PropertyDescriptors);
+        
+        // getOwnPropertyNames
+        // getOwnPropertyNames 함수는 객체가 가지고 있는 모든 프로퍼티명을 리턴 받을 때 사용 된다.
+        var getOwnPropertyNames = {name : 'jhLee', age : 30, favour : {food:'apple',drink:'cock'}};
+        getOwnPropertyNames = Object.getOwnPropertyNames(getOwnPropertyNames);
+        console.log('getOwnPropertyNames :',getOwnPropertyNames);
+        
+        // getOwnPropertySymbols
+        // getOwnPropertySymbols 함수는 객체가 직접 가지고 있는 모든 심볼을 리턴 받을 때 사용 된다.
+        var getOwnPropertySymbols = {};
+        getOwnPropertySymbols[Symbol('네이버')] = 'http://www.naver.com';
+        getOwnPropertySymbols[Symbol('다음')] = 'http://www.daum.com';
+        getOwnPropertySymbols = Object.getOwnPropertySymbols(getOwnPropertySymbols);
+        console.log(getOwnPropertySymbols);
+        
+        // setPrototypeOf
+        // setPrototypeOf 함수는 지정된 객체의 프로토타입을 다른 객체나 null값으로 설정할 때 사용 된다.
+        var setPrototypeOf = {name:'a'};
+        var set__Prototype = {};
+        Object.setPrototypeOf(setPrototypeOf,set__Prototype);
+        console.log('change prototype O :',setPrototypeOf.__proto__ === set__Prototype)
+        Object.setPrototypeOf(setPrototypeOf,null);
+        // __proto__ 속성을 암시적으로 삭제 하였기 때문에 null이 아닌 변수를 찾을 수 없는 undefined타입으로 값을 비교 
+        console.log('change prototype Null :',setPrototypeOf.__proto__ === undefined); 
+        
+        
+        // getPrototypeOf
+        // getPrototypeOf 함수는 지정된 객체가 가지고 있는 프로토타입을 리턴 받을 때 사용 된다.
+        var getPrototypeOf = {};
+        var getPrototypeOf__proto__ = {};
+        getPrototypeOf.__proto__ = getPrototypeOf__proto__;
+        console.log('getPrototypeOf : ',Object.getPrototypeOf(getPrototypeOf));
+        
+        // is
+        // is 함수는 두 객체의 일치성을 비교 할 때 사용 된다.
+        var is = {};
+        console.log('(Normal) o is o :',Object.is(is,is));
+        console.log('(Special) NaN is NaN :',Object.is(NaN, NaN));
+        
+        // keys
+        // keys 함수는 for in루프가 제공하는 것과 동일하게 순서대로 주어진 객체의 속성명을 순차적으로 나열 된 배열로 받을 때 사용 된다.
+        var keysObject = {0 :'zero', zeroAttr : 0, __proto__ : {protoAttr : 'protoAttrVal'}};
+        var keys = Object.keys(keysObject);
+        var keysforin = [];
+        for(fi in keysObject) keysforin.push(fi);
+        console.log('keys : ',keys);
+        console.log('forin : ',keysforin);
+        
+        // values
+        // values 함수는 for in루프가 제공하는 것과 동일하게 순서대로 주어진 객체의 값을 순차적으로 나열 된 배열로 받을 때 사용 된다.
+        var valuesObject = {0 :'zero', zeroAttr : 0, __proto__ : {protoAttr : 'protoAttrVal'}};
+        var values = Object.values(keysObject);
+        var valuesforin = [];
+        for(fi in valuesObject) valuesforin.push(valuesObject[fi]);
+        console.log('values : ',values);
+        console.log('forin : ',valuesforin);
+        
+        // preventExtensions
+        // preventExtensions 함수는 새로운 속성이 지정 된 객체에 추가 되는 것을 방지 할 때 사용 된다.
+        var preventExtensions = {removable : true};
+        Object.preventExtensions(preventExtensions);
+        delete preventExtensions.removable;
+        preventExtensions['appendable'] = false;
+        console.log('preventExtensions :',preventExtensions);
+        
+        // seal
+        // seal 함수는 기존 속성의 특성 수정을 방지하고 새 속성의 추가를 방지 할 때 사용 된다.
+        var seal = {removable : false};
+        Object.seal(seal);
+        delete seal.removable;
+        seal['appendable'] = true;
+        console.log('seal :',seal);
+        
+        // isExtensible
+        // isExtensible 함수는 지정 객체의 확장 여부를 리턴 받을 때 사용 된다.
+        var isExtensible_freeze = {};
+        var isExtensible_preventExtensions = {};
+        var isExtensible_seal = {};
+        console.log('------ isExtensible -----' )
+        console.log('freeze off :',Object.isExtensible(isExtensible_freeze));
+        console.log('preventExtensionson off :',Object.isExtensible(isExtensible_preventExtensions));
+        console.log('seal off :',Object.isExtensible(isExtensible_seal));
+        Object.freeze(isExtensible_freeze);
+        Object.preventExtensions(isExtensible_preventExtensions);
+        Object.seal(isExtensible_seal);
+        console.log('freeze on :',Object.isExtensible(isExtensible_freeze));
+        console.log('preventExtensionson on :',Object.isExtensible(isExtensible_preventExtensions));
+        console.log('seal on :',Object.isExtensible(isExtensible_seal));
+        console.log('--------------------------' )     
+        
+        // isFrozen
+        // isFrozen 함수는 지정 객체의 확장 여부를 리턴 받을 때 사용 된다.
+        var isFrozen_freeze = {};
+        var isFrozen_preventExtensions = {};
+        var isFrozen_seal = {};
+        console.log('-------- isFrozen --------' )
+        console.log('freeze off :',Object.isExtensible(isFrozen_freeze));
+        console.log('preventExtensionson off :',Object.isExtensible(isFrozen_preventExtensions));
+        console.log('seal off :',Object.isExtensible(isFrozen_seal));
+        Object.freeze(isFrozen_freeze);
+        Object.preventExtensions(isFrozen_preventExtensions);
+        Object.seal(isFrozen_seal);
+        console.log('freeze on :',Object.isExtensible(isFrozen_freeze));
+        console.log('preventExtensionson on :',Object.isExtensible(isFrozen_preventExtensions));
+        console.log('seal on :',Object.isExtensible(isFrozen_seal));
+        console.log('--------------------------' )        
+        
+        // isFrozen
+        // isFrozen 함수는 지정 객체의 확장 여부를 리턴 받을 때 사용 된다.
+        var isSealed_freeze = {};
+        var isSealed_preventExtensions = {};
+        var isSealed_seal = {};
+        console.log('-------- isSealed --------' )
+        console.log('freeze off :',Object.isExtensible(isSealed_freeze));
+        console.log('preventExtensionson off :',Object.isExtensible(isSealed_preventExtensions));
+        console.log('seal off :',Object.isExtensible(isSealed_seal));
+        Object.freeze(isSealed_freeze);
+        Object.preventExtensions(isSealed_preventExtensions);
+        Object.seal(isSealed_seal);
+        console.log('freeze on :',Object.isExtensible(isSealed_freeze));
+        console.log('preventExtensionson on :',Object.isExtensible(isSealed_preventExtensions));
+        console.log('seal on :',Object.isExtensible(isSealed_seal));
+        console.log('--------------------------' )
+        
+        // hasOwnProperty
+        // hasOwnProperty 함수는 지정된 객체의 상속받지 않은 특정 속성의 여부를 확인 할때 사용 된다.
+        var hasOwnProperty__Symbol = Symbol('SymbolAttr');
+        var hasOwnProperty = {ownAttr:'ownValue',[hasOwnProperty__Symbol] : 'SymbolValue'};
+        var hasOwnProperty__proto__ = {protoAttr : 'protoValue'};
+        Object.setPrototypeOf(hasOwnProperty, hasOwnProperty__proto__);
+        console.log('ownAttr ? :',hasOwnProperty.hasOwnProperty('ownAttr'));
+        console.log('protoAttr ? :',hasOwnProperty.hasOwnProperty('protoAttr'));
+        console.log('symbolAttr ? :',hasOwnProperty.hasOwnProperty(hasOwnProperty__Symbol));
+        
+        // propertyIsEnumerable
+        // propertyIsEnumerable 함수는 지정된 객체가 나열 가능 명세를 리턴 받을 때 사용 된다.
+        var propertyIsEnumerable = {0:'_0',1:'_1',2:'_2',3:'_3'};
+        Object.defineProperty(propertyIsEnumerable, 2, {enumerable :false});
+        var propertyIsEnumerable = propertyIsEnumerable.propertyIsEnumerable(2);
+        console.log('(2) propertyIsEnumerable:',propertyIsEnumerable);
+        
+        // toString
+        // toString 함수는 객체를 나타내는 문자열을 반환합니다.
+        var toString = {};
+        console.log('toString :',toString.toString());
+        toString.toString = function(){
+            return 'Custom toString Function';
+        }
+        console.log('CustomToString :',toString.toString());
+        
+        // toLocaleString
+        // toLocaleString 함수는 지역별 단위로 나타내는 문자열을 반환합니다.
+        var toLocaleString = new Date();
+        console.log('toLocaleString :',toLocaleString.toLocaleString());
+        
+        // valueOf
+        // valueOf 함수는 지정된 객체의 primitive value를 리턴합니다.
+        var valueOf = {};
+        console.log('(valueOf + 1) default valueOf :',valueOf + 1);
+        valueOf.valueOf = function(){return 1;}
+        console.log('(valueOf + 1) return 1 custom valueOf :',valueOf + 1);
+        
+    </script>
+</body>
+</html>

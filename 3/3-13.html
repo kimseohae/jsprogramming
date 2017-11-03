@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-13
+    </title>
+</head>
+<body>
+    <script>
+        /**
+        
+            객체 배열의 생성 방법은 []을 사용 하거나 
+            new Array()를 사용 하여 생성 할 수 있다.
+            두 방법은 동일한 계층을 나타내며
+            아래 계층으로 구분 될 수 있다.
+            
+            Array
+            +- length (배열의 속성과 syncronize)
+            +- __proto__ (Array.prototype)
+               +- __proto__ (Object.prototype)
+            
+            
+            먼저 배열 역시 객체라는 사실을 인지 하고 넘어 가자.
+        **/
+        
+<<<<<<< HEAD
+
+=======
+        
+<<<<<<< HEAD
+        // 배열 역시 객체이다.
+        var obj = {}
+        var arr = [];
+        
+        console.dir(obj); // Object
+        console.dir(arr); // Array(0)
+        
+        obj.__proto__ = Array.prototype;
+        obj.length = 0;
+
+        
+        Object.defineProperty(obj,'length',{
+            enumerable : false
+        })
+        
+        obj.push('Push Method');
+        arr.push('Push Method');
+=======
+        
+>>>>>>> d120bbd56f1249973abf65797cb716a441774b3e
+        
+        console.dir(obj); // Array(0)
+        console.dir(arr); // Array(0)
+        
+        for(v in obj)
+            console.log(v);
+        
+        for(v in arr)
+            console.log(v);
+>>>>>>> a9f6d350c145d77d3ee146c714df5cf162a380b2
+        
+        var o  = { };
+        o[0] = 'a';
+        o[1] = 'b';
+        o[2] = 'c';
+        o[3] = 'd';
+        console.log(o)
+        var colorArr = ['orange', 'yellow', 'blue', 'green', 'red'];
+        console.log(colorArr[0]) // (출력값) orange
+        console.log(colorArr[1]) // (출력값) yellow
+        console.log(colorArr[4]) // (출력값) red
+    
+    </script>
+</body>
+</html>

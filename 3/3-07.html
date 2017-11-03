@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-7
+    </title>
+</head>
+<body>
+    <script>
+    /**
+    객체의 프로퍼티를 읽고/쓰고/지우기
+    읽기 : { 객체.프로퍼티 , 객체['프로퍼티']}
+    쓰기 : { 객체.프로퍼티 = 값,
+             객체['프로퍼티'] = 값}
+    지우기 : DELETE 객체.프로퍼티
+    **/
+        
+        var obj = {
+            name : 'jhLee',
+            age : 30,
+            addrs : '여의대방로 55길 4'
+        };
+        
+        
+        // . 으로 접근시 주의할 점은 문자열이 아닌 컬럼 명으로 
+        // 스테틱하게 직접 접근 한다는 것이다.
+        // obj.'name'으로 접근 불가능하다.
+        // 문자열을 통한 다이나믹한 접근 방법은 [] 으로 접근 하여야 한다.
+        // 컬럼을 알고 있는 접근은 . 으로 컬럽을 알 수 없는 접근은 []으로 접근 하자.
+        obj.name = 'update';
+        obj.age = 20;
+        obj.addrs = '천국';
+        
+        console.log('(S)name : ',obj.name);
+        console.log('(S)age : ',obj.age);
+        console.log('(S)addrs : ',obj.addrs);
+        
+        // [] 표기법과 for in문을 통한 다이나믹 접근
+        // for in 외에도 for of도 있다 smp폴더 FOrInForOf참조
+        for(v in obj)
+            console.log('(D)'+v+" : ", obj[v]);
+        
+        
+        // 객체리터럴 방식을 통한 foo객체 생성
+        var foo = {
+            name : 'foo',
+            major : 'computer science'
+        };
+        
+        // 객체 프로퍼티 읽기
+        // 선언 되지 않은 프로퍼티는 undefined가 출력 된다.
+        console.log(foo.name);          // (출력값) foo
+        console.log(foo['name']);       // (출력값) foo
+        console.log(foo.nickName);      // (출력값) undefined
+        
+        // 객체 프로퍼티 갱신
+        foo.major = 'electronics enginnering';
+        console.log(foo.major);         // (출력값) electronics enginnering
+        console.log(foo['major']);      // (출력값) electronics enginnering
+        
+        // 대괄호 표기법만을 사용해야 할 경우
+        foo['full-name'] = 'foo.bar';
+        console.log(foo['full-name']);  // (출력값) foo bar
+        console.log(foo.full-name);     // (출력값) NaN
+        console.log(foo['full']);       // (출력값) undefined
+        console.log(name);              // (출력값) undefined
+        
+        
+        /**
+        Tip NaN
+        NaN은 자기 자신 또는 다른 NaN값과도 동일 하지 않은 비이상 값이다.
+        타입은 number이지만 이 또한 number의 max값보다 작거나 같지도
+        min값보다 크거나 같지도 않다.
+        즉 number이지만 모든 number와 동일 하지 않은 값이다.
+        NaN은 비 이상적인 값이라고 말하였 듯 정상적이지 않은 값을 연산하였을
+        경우 return 한다. 어찌보면 exception과 같은 처리이다.
+        가령 0/0을 나누는 연산을 했을 경우 연산에 대입되는 값이
+        정상적이지 않은 값이라고 판단되어 NaN을 리턴한다.
+        헷갈렸던건 1/0이 Infinity값이라 것이었다. 
+        하지만 1/0 은 실제 산술식에의해 0.9999와 같은 무한수를 생각 하고 설계된 것같다. 
+        이 오류적인 값은 오직 isNaN이라는 메서드를 통해서 확인 할 수 있다.
+        **/
+        console.log('NaN is NaN ? : ',NaN === NaN);
+        console.log('NaN eqal NaN ? : ',NaN == NaN);
+        console.log('typeOf NaN ? : ',typeof NaN);
+        console.log('devide 0 from 0 ? : ',0/0);
+        console.log('devide 0 from 1 ? : ',1/0);
+        console.log('isNaN : ',isNaN(NaN));
+        
+        
+        
+        
+        
+        /**
+            일단 이번 절에는 객체의 속성값의 삭제
+            즉 delete인데 delet를 알기 전 먼저
+            이전 절에서 어설프게 넘겼던 
+            접근 법과 수정 법을 한번 생각해 봐야 합니다.
+            
+            기본적으로 자바스크립트의 객체는 아래 4가지 속성을
+            설정으로 가지고 있습니다.
+            
+            Table 2 : Attributes of a Data Property
+            Attribute Name   value Domain   Desc
+            ---------------------------------------------------------------------
+            [[Value]]        All            access of the property
+            [[Writable]]     Boolean        if false not change [[Value]],[[Set]]  
+            [[Enumerable]]   Boolean        if true then useable to for in 
+            [[Configurable]] Boolean        if false don't any property change
+            
+            value = 실제 값
+            writable = 수정 가능 여부
+            enumerable = for in문 사용 여부
+            configurable = 프로퍼티 수정 여부
+            
+        
+        **/
+        
+        
+        
+        // 테스트 객체 생성
+        var o = {
+            update : 'u',
+            delete : 'd'
+        }
+        var to = Object.assign({},o,);
+        
+        // 두 객체를 복사 하여 원본을 저장
+        console.log('원본 : ',o);
+        console.log('복사본 : ',to);
+        console.log('======수정============================')
+        
+        // 1. writable ( 수정 여부 )
+        // writable이 false일 때에는 해당 프로퍼티의 value의 수정이 불가능하다.
+        // 즉 setter가 불가
+        
+        console.log('(origin) update : ',o.update);
+        // 해당 프로퍼티에 write 수정 여부를 false로 변경 ( 수정 불 )
+        Object.defineProperty(o,'update',{writable:false});
+        o['update'] = 'updated';
+        console.log('(Update unable)update : ',o.update);
+        
+        // 해당 프로퍼티에 write즉 수정 여부를 true로 변경 ( 수정 가 )
+        Object.defineProperty(o,'update',{writable:true});
+        o['update'] = 'updated';
+        console.log('(Update able)update : ',o.update);  
+        
+        
+        // 2. Configurable ( 등록 된 프로퍼티 수정 여부 )
+        // 삭제 여부 확인 ( 삭제 가 )
+        console.log('(Delete able)delete : ',o.delete);
+        delete o.delete;
+        console.log('(Delete able)delete : ',o.delete);        
+        
+        
+        o['delete'] = 'new';
+        console.log('(Delete unable toB) delete : ',o.delete);    
+
+        // 해당 프로퍼티에 delete 수정 여부를 false로 변경 ( 삭제 불 )
+        Object.defineProperty(o,'delete',{configurable : false});
+        delete o.delete;
+        console.log('(Delete unable Ais) delete : ',o.delete);   
+        
+        console.log('======================================')
+        
+        
+        
+        // 객체 리터럴을 통한 foo 객체 생성
+        var foo = {
+            name : 'foo',
+            nickname : 'babo'
+        };
+        
+        console.log(foo.nickname);  // (출력값) babo
+        console.log(foo.name);      // (출력값) foo
+        
+        delete foo.nickname;        
+        delete foo['name'];
+        
+        console.log(foo.nickname);  // (출력값) undefined
+        console.log(foo.name);      // (출력값) undefined
+        
+        delete foo;
+        
+        console.log(foo);  // (출력값) foo
+        
+    </script>
+</body>
+</html>

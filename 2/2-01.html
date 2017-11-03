@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">admi
+    <title>2-1</title>
+</head>
+<body>
+    <!-- 
+        자바스크립 외부 파일 사용 시에는 src에 경로를 등록 하여 준다
+        이 경로 실행 파일의 기준에서 작성 되며
+        현재 2/2.1.html의 기준으로 작성되었기 때문에 2-1-1.js가 등록 되며
+        만일 jsAndNode에서 실행된다면 2/2-1-1.js로 등록 될 것이다.
+        
+        [ 상대경로와 절대경로 ]
+        경로에 대해서 이해가 필수 적이어야 겠다.
+        경로라는 것은 기준점을 가지고 파일을 찾아 가는 길과 같다.
+        이 길의 시작점을 우리는 root라 부르며 해당 root에서 결과를 찾아 가는 길을
+        path라 부른다. 그러면 프로그래밍 언어에서 path를 작성 하는 방법은
+        크게 두가지가 있다.
+        1. 절대 경로 : 외부의 설정되 default root(os)를 기준으로 해당 파일을 찾는 기술법
+        2. 상대 경로 : 현재 메모리 상의 올라온 파일을 root로 하여 해당 파일을 찾는 기술법
+        
+        ex)
+        folder(c:\Sproject/)
+            css
+             +- index.css
+            js
+             +- main.js
+            public
+             +- logo.png
+             +- clock.png
+            html
+             +- index.html
+        index.html에서 logo.png를 찾아 가는 길은 여러 갈래가 있다.
+        1. folder를 기준으로 root/public/logo.png
+        2. index.html을 기준으로 
+            root(index.html)/.(현재폴더)/..(상위폴더)/public/logo.png
+        3. 기본 설정 root(os root)를 기준으로 c:\Sproject/root/public/logo.png
+            이때 중요한 것은 사용자의 권한에 따라서 파일을 읽거나 사용 하지 못할 수 있다는 것을 명심하길 바란다.
+            윈도우나 특히 리눅스의 경우는 폴더의 권한을 사용자 단위로 구분한다.
+            이 구분은 외부 사용자의 접근을 막아 프로그램의 원활한 실행을 막고 Defensive 프로그래밍 설계에 방해가 될 수 있다.
+        
+     -->
+    <script type="text/javascript" src="2-1-1.js"></script>
+</body>
+</html>

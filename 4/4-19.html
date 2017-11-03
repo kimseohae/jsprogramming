@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-19
+    </title>
+</head>
+<body>
+    <script>
+
+        /**
+            정말 요즘 급식체로 오지다? 지리다?
+            열심히 찾아 봐서 이해 한 것이 예제로 나오다니.
+            다음에는 일단 다 읽어 보고 찾아봐야 겟다.
+            일단 여기에서는 클로저를 사용 해서 함수를 리턴 받았다.
+            즉 parent에 있는 a변수는 클로저로 참조 되고 있어 디스트로이 대기상태에 있다는 것이다.
+            다른 말로는 죽고 싶은데 죽을 수 없는 상태이다.
+
+            나중에 나올꺼라는 클로저를 한번에 설명 하겠다.
+            parent에 있는 변수 a 저게 클로저이다.
+            즉 함수가 실행되었고 함수가 종료 되면서 메모리상에서 사라져야 될 메모리가
+            다른 변수에 참조 되고 있어 사라지지 못하는 상태 보통 이것을 클로저 라고 한다.
+            좀더 찾아본 바에 의하면 outter environment에 소멸 되지 못하고 참조 되고 있는 현상이라고도 할 수 있다.
+            다른 함수형 언어와는 좀 다른 점이 있다고 하는데 다른 함수형 언어를 공부 해 보지 못해서.. 그건 나중에 다시.
+
+        **/
+
+        function parent() {
+            var a = 100;
+            // child() 내부 함수
+            var child = function() {
+                console.log(a);
+            }
+
+            // child() 함수 반환
+            return child;
+        }
+        var inner = parent();
+        console.dir(inner)
+        inner();
+    </script>
+</body>
+</html>

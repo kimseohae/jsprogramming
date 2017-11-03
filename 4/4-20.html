@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-20
+    </title>
+</head>
+<body>
+    <script>
+        /**
+
+            함수가 함수를 낳는다는 것은 어찌 보면 이해가 안되서 또 찾아봤다.
+            맨 처음 생각 되는 것은 객체지향에서의 체이닝 기법인가? 하고 찾아 보았다.
+            하지만 일반적인 체이닝 기법은 아니였다.
+            어찌보면 체이닝 기법인거 같지만 좀더 유연성은 높은거 같다.
+
+            딱히 할말이 없으니 체이닝 기법에 대해서 적어 보겠다.
+            체이닝이란 말 그대로 체인 처럼 이어진 관계를 이야기 한다.
+            a가 실행 되어 결과 값으로 a를 돌려 주는 행위이기도 하며
+            a가 실행되어 b->c->d->c->b->a로 돌아 오는 행위이기도 하다.
+            관점에서는 부메랑처럼 관심을 이동 시키기도 한다.
+            체이닝에 대해서는 아래 작성 된 소스를 보자.
+
+        **/
+
+        // 재귀 리턴하는 체이닝
+        function charge(phone){
+            
+            function sleep(sleepTime){
+                var n = new Date().getTime() + sleepTime;
+                while(1){
+                    if(new Date().getTime() > n){
+                        break;
+                    }
+                }
+            }
+
+            if(phone.battery < 30) {
+                console.log(phone.type,'charging...');
+                sleep(phone.battery*200);
+                phone.battery = 100;
+                console.log(phone.type,'charged battery !!');
+            } else {
+                console.log(phone.type,'battery over 30% ');
+            }
+            return charge;
+        }
+
+        charge({type:'phone',battery : 50}  )
+              ({type:'noteBook',battery:20} )
+              ({type:'radio',battery:60}    )
+              ({type:'mouse',battery:10}    );
+
+
+
+
+        var self = function(){
+            console.log('a');
+            return function(){
+                console.log('b');
+            }
+        }
+
+        self = self();
+        self();
+
+    </script>
+</body>
+</html>

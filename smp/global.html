@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF--8">
+    <title>
+        global
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            The unique global object is created before control enters any execution context.
+            하나뿐인 전역 객체는 컨트롤이 실행 컨텍스트(실행단위)에 들어 가기 전 만들어진다.
+            
+            The global object does not have a [[Construct]] internal method
+            전역 객체는 내부에 생성메서드를 가지지 않는다.
+            
+            it is not possible to use the global object as a constructor with the new operator.
+            전역 객체는 new 연산자와 생성자를 통한 새로운 전역 객체를 생성할 수 없다.
+            
+            
+            1. [[properties]]
+             +-- Infinity : The value of +∞ or -∞ (숫의 연산에서 무한수의 발생시 대응)
+             +-- NaN : The value of NaN (Number의 불가능 연산 시 발생시 대응)
+             +-- Undefined : The value of undefined (모든 변수에 대응)
+             
+            2. [[Methods]]
+             +-- eval : 문자열로 들어온 파라미터를 실행 컨텍스트에 옮겨 실행 대상으로 삼는다. 
+                        eval은 추후에 살펴 보자
+             +-- isFinite : infinity값을 확인 하여 리턴
+             +-- isNaN : NaN값을 확인 하여 리턴
+             +-- parseFloat : 파라미터로 넘어온 값을 toString을 사용 하여 변환 후 
+                              해당 값을 Number로 변환 하여 리턴
+             +-- parseInt : 파라미터로 넘어온 값을 toString을 사용 하여 변환 후 
+                            해당 값을 진수 변환 대상이면 진수 변환 또는 10진수 변환 하여 리턴
+             +-- 그 외 IRL Handling Functions이 있으니 추후에 살펴 보자.
+             
+            3. [[Constructor Properties]] ( 해당 생성자 객체들은 추후에 하나씩 살펴 볼 예정이다. 간단히만 알고 넘어 가자 )
+             +-- Array : 배열 객체
+             +-- ArrayBuffer : 배열 버퍼 객체 (가변 인자)
+             +-- Boolean : 진리값 객체
+             +-- DataView : ArrayBuffer를 다루기 위한 기본 인터페이스 객체
+             +-- Date : 시간과 관련 된 객체
+             +-- Error : 일반 에러와 관련 된 객체
+             +-- EvalError : Evel문 실행 시 발생 시킬 객체
+             +-- Float32Array : 32비트 float배열 객체
+             +-- Float64Array : 64비트 float배열 객체
+             +-- Function : 함수 객체
+             +-- Int8Array : 8비트 int 객체
+             +-- Int16Array : 16비트 int 객체
+             +-- Int32Array : 32비트 int 객체
+             +-- Map : Object에 관하여 중복이 제거 된 collection객체를 반환 
+                     ( 일반 오브젝트와 다른 점은 일반 오브젝트의 경우 키값에 메핑되는 문자열을 인덱싱 하고 Map의 경우 문자열이 아니더라도 키값 지정이 가능)
+             +-- Number : 수를 저장 할 수 있는 객체 ( 64비트 )
+             +-- Object : 모든 값을 저장 할 수 있는 객체 (*)
+             +-- Proxy : Proxy 환경을 저장 할 수 있는 객체
+             +-- Promise : 비동기적 이벤트 결과를 동기적으로 반환하는 객체
+             +-- RangeError : 값이 벗어났을 경우 발생 시킬 에러 객체
+             +-- ReferenceError : 참조 대상이 없을 시 발생 시킬 에러 객체
+             +-- RegExp : 정규표현식 객체 ( 정규 표현식은 자바스크립트 외 따로 다루겠다. )
+             +-- Set : 배열에 관하여 중복이 제거 된 배열 객체
+             +-- SharedArrayBuffer : 병렬 프로그래밍이 대두 됨에 따라서 나온 공유 배역 객체
+             +-- String : 문자열을 가지는 객체
+             +-- Symbol : 유니크 속성의 Symbol 객체를 ( 추후 살펴볼 예정이다. )
+             +-- SyntaxError : 문법 에러 관련 객체
+             +-- TypeError : 타입 에러 관련 객체
+             +-- Uint8Array : 8비트 부호가 없는 배열 객체
+             +-- Uint8ClampedArray : 8비트 부호가 없는 배열 객체 (확인 불가)
+             +-- Uint16Array : 16비트 배열 객체
+             +-- Uint32Array : 32비트 배열 객체
+             +-- URIError : URL과 관련 된 에러 객체
+             +-- WeakMap : 레퍼런스에 따른 가비지 컬렉션의 활용도를 높여 메모리 누수를 잡은 Map ( 추후 설명 예정 )
+             +-- WeakSet : 레퍼런스에 따른 가비지 컬렉션의 활용도를 높여 메모리 누수를 잡은 Set ( 추후 설명 예정 )
+        **/
+        
+        console.log('Infinity :'            ,window.Infinity);
+        console.log('NaN :'                 ,window.NaN);
+        console.log('undefined :'           ,window.undefined);
+        
+        window.eval('console.log("evel : run")');
+        
+        console.log('isFinite :'            ,window.isFinite(window.Infinity));
+        console.log('isNaN :'               ,window.isNaN(window.NaN));
+        console.log('(10.1)parseFloat :'    ,window.parseFloat('10.1'));
+        console.log('(10.1)parseInt :'      ,window.parseInt('10.1'));
+        console.log('Array :'               ,new window.Array());
+        console.log('ArrayBuffer :'         ,new window.ArrayBuffer());
+        console.log('DataView :'            ,new window.DataView(new ArrayBuffer(1000)));
+        console.log('Date :'                ,new window.Date());
+        console.log('Error :'               ,new window.Error());
+        console.log('EvalError :'           ,new window.EvalError());
+        console.log('Float32Array :'        ,new window.Float32Array());
+        console.log('Float64Array :'        ,new window.Float64Array());
+        console.log('Int8Array :'           ,new window.Int8Array());
+        console.log('Int16Array :'          ,new window.Int16Array());
+        console.log('Int32Array :'          ,new window.Int32Array());
+        console.log('Map :'                 ,new window.Map());
+        console.log('Number :'              ,new window.Number());
+        console.log('Object :'              ,new window.Object());
+        console.log('Proxy :'               ,new window.Proxy({},{}));
+        console.log('Promise :'             ,new window.Promise(()=>{},{}));
+        console.log('RangeError :'          ,new window.RangeError());
+        console.log('ReferenceError :'      ,new window.ReferenceError());
+        console.log('RegExp :'              ,new window.RegExp());
+        console.log('Set :'                 ,new window.Set());
+        console.log('SharedArrayBuffer :'   ,new window.SharedArrayBuffer());
+        console.log('RegExp :'              ,new window.RegExp());
+        console.log('String :'              ,new window.String());
+        console.log('Symbol :'              ,window.Symbol('desc'));
+        console.log('SyntaxError :'         ,new window.SyntaxError());
+        console.log('TypeError :'           ,new window.TypeError());
+        console.log('Uint8Array :'          ,new window.Uint8Array());
+        console.log('Uint8ClampedArray :'   ,new window.Uint8ClampedArray());
+        console.log('Uint16Array :'         ,new window.Uint16Array());
+        console.log('Uint32Array :'         ,new window.Uint32Array());
+        console.log('URIError :'            ,new window.URIError());
+        console.log('WeakMap :'             ,new window.WeakMap());
+        console.log('WeakSet :'             ,new window.WeakSet());
+        
+        
+        
+    </script>
+    
+    
+    
+</body>
+</html>

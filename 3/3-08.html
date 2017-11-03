@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-8</title>
+</head>
+<body>
+    <script>
+        /**
+            for in문의 경우 smp ForInForOut을 통해 확인 하자.
+            객체에 프로터피가 다이나믹하게 매핑 된다는 점을 알고 넘어 가자
+            for문을 통한 접근은 [] 객체 접근 방법으로 다이나믹하게 접근 한다.
+        **/
+        
+        // 객체 리터럴을 통한 foo 객체 생성
+        var foo = {
+            name : 'foo',
+            age : 30,
+            major : 'computer science'
+        }
+        
+        // for in 문을 이용한 객체 프로퍼티 출력
+        var prop;
+        for (prop in foo){
+            console.log(prop, foo[prop]);
+        }
+    
+    </script>
+</body>
+</html>

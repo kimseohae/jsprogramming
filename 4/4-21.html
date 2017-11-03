@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-21
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            예제를 보면 즉 자바스크립트에서는 함수에 따른 파라미터를 두 가지 방법으로 받는 다는 것이다.
+            즉 arg1이라는 변수와 arg2라는 변수로 받고
+            또 arguments로 받는 다는 것이다.
+            arguments는 다음장에 나올거 같으니 다음 예제로 넘어 가서 설명을 마저 이어 가야 겠다.
+        **/
+
+        function func(arg1, arg2) {
+            console.log(arg1, arg2);
+        }
+
+        func();         // (출력 값) undefined undefined
+        func(1);        // (출력 값) 1 undefined
+        func(1, 2);     // (출력 값) 1, 2
+        func(1, 2, 3);  // (출력 값) 1 2
+
+    </script>
+</body>
+</html>

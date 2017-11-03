@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-14
+    </title>
+</head>
+<body>
+    <script>
+        /**
+         * prototype에 관해서는
+         * https://www.evernote.com/l/AuOdUMeJ9UdDeq3xPEnuuTsx29QA4No-EcU
+         * 을 참고 하길 바란다.
+         * 
+         * 여기서는 nstanceOf와 prototype을 다루겠다.
+         * 일단 instanceOf로 검사 하는 대상은 무엇일까?
+         * 함수의 prototype이다. 즉 A라는 객체가 만들어졌다는 걸 확인 하려면
+         * 함수 F의 prototype을 부모로 받았다는 말이다.
+         * 다시 말하면 함수의 prototype만 변경하게 되면 A라는 객체의 instanceOf를 무한히 증식 할 수 있거나
+         * 0로 만들 수 있다. 
+         **/
+
+         function fnc1(){}
+         function fnc2(){};
+         function fnc3(){};
+         var o = new fnc1();
+         console.log('o instanceOf fnc1 :',o instanceof fnc1);
+         console.log('o instanceOf fnc2 :',o instanceof fnc2);
+         console.log('o instanceOf fnc3 :',o instanceof fnc3);
+
+         // 여기서 function의 prototype을 수정하겠다.
+         fnc2.prototype = fnc1.prototype;
+         fnc3.prototype = fnc1.prototype;
+         console.log('(c) o instanceOf fnc1 :',o instanceof fnc1);
+         console.log('(c) o instanceOf fnc2 :',o instanceof fnc2);
+         console.log('(c) o instanceOf fnc3 :',o instanceof fnc3);
+
+        // My Function() 함수 정의
+        function myFunction() {
+            return true;
+        }
+        console.log(myFunction.prototype);
+        console.log(myFunction.prototype.constructor);
+    </script>
+</body>
+</html>

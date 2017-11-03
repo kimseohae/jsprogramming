@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-9
+    </title>
+</head>
+<body>
+    <script>
+        /**
+         * 이건 할말이 없다. 그냥 리턴 받은 값을 파라미터로 넘겨 줬다 정도?
+         * 할말이 없으니 추가로 하나 말하겠다.
+         * 보통 call by Reference와 call by value라는게 있다.
+         * 그런데 말이다. call by reference로 던진 값이 정말 주소값으로 받을까??
+         * 한번 확인해 보자.
+         * 먼저 인자를 하나 받아 주소값을 바꾸는 함수를 만들어 보자
+         * 결과는 어떻게 될지 생각해 보고 돌리자
+         * 
+         * 
+         * function update(o){
+         *    o = {name : 'update'}
+         * }
+         * var obj = {name : 'insert'}
+         * update(obj);
+         * console.log(obj.name); // 결과는?
+         * 
+         * 
+         **/
+
+
+        // 변수에 함수 할당
+        var foo = 100;
+        var bar = function(){ return 100; }
+        console.log(bar());
+
+        // 프로퍼티에 함수 할당
+        var obj = {};
+        obj.baz = function(){ return 200; }
+        console.log(obj.baz());
+    </script>
+</body>
+</html>

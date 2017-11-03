@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        3-29
+    </title>
+</head>
+<body>
+    <script>
+        /**
+        
+            동등(==)과 일치(===)연산의 경우는
+            아래는 동등연산에 관하여 소개한 말이다.
+            
+            [[동등(==)연산자의 검사 단계]]
+            
+            1. If Type(x) is the same as Type(y), then
+              a. Return the result of performing Strict Equality Comparison x === y.
+              만일 타입이 둘가 같다면 일치 연산을 연산 결과를 변환합니다.
+            2. If x is null and y is undefined, return true.
+              만일 좌측의 피 연산자가 null일 때 우측 피 연산자가 undefined라면 true를 그 외는 false를 변환합니다.
+            3. If x is undefined and y is null, return true.
+              만일 좌측의 피 연산자가 undefined일 때 우측에 피 연산자가 null이라면 true를 그 외는 false를 변환합니다.
+            4. If Type(x) is Number and Type(y) is String, return the result of the comparison x == ! ToNumber(y).
+              만일 좌측의 피 연산자의 타입이 Number일때 우측 피 연산자의 타입이 String타입이라면
+              좌측 == ! toNumber(우측)으로 변환합니다.
+            5. If Type(x) is String and Type(y) is Number, return the result of the comparison ! ToNumber(x) == y.
+              만일 좌측의 피 연산자의 타입이 String일때 우측 피 연산자의 타입이 Number타입이라면
+              ! toNumber(좌측) == 우측 으로 변환합니다.
+            6. If Type(x) is Boolean, return the result of the comparison ! ToNumber(x) == y.
+              만일 좌측의 피 연산자의 타입이 진리값일 경우 toNumber(좌측) == 우측 으로 변환합니다
+            7. If Type(y) is Boolean, return the result of the comparison x == ! ToNumber(y).
+              만일 우측의 피 연산자의 타입이 진리값일 경우 좌측 == toNumber(우측) 으로 변환합니다.
+            8. If Type(x) is either String, Number, or Symbol and Type(y) is Object, return the result of the comparison x == ToPrimitive(y).
+              만일 좌측의 피 연산자의 타입이 String, Number또는 Symbol이고 좌측 피 연산자가 object타입이라면 
+              좌측 == toPrimitive(우측)으로 변환합니다.
+            9. If Type(x) is Object and Type(y) is either String, Number, or Symbol, return the result of the comparison ToPrimitive(x) == y.
+              만일 좌측의 피 연산자가 object타입이라고 좌측 피 연산자의 타입이 String, Number또는 Symbol라면
+              toPrimitive(좌측) == 우측으로 변환합니다
+            10. Return false. 
+              결과값을 리턴합니다.
+            
+            
+            
+            [[일치(===)연산자의 검사단계]]
+            
+            1. If Type(x) is different from Type(y), return false.
+              두 타입이 다르면 false를 리턴합니다.
+            2. If Type(x) is Number, then
+              a. If x is NaN, return false.
+              b. If y is NaN, return false.
+              c. If x is the same Number value as y, return true.
+              d. If x is +0 and y is -0, return true.
+              e. If x is -0 and y is +0, return true.
+              둘중 어느 하나라도 Number일 때 값이 NaN이라면 false를 리턴합니다
+              +0 이나 -0을 같은 값으로 보고 검사합니다.
+            3. Return false.
+              Return SameValueNonNumber(x, y). 
+            
+        **/
+        
+        console.log(1 == '1'); // (출력 값) true
+        console.log(1 === '1'); // (출력 값) false
+    
+    </script>
+</body>
+</html>

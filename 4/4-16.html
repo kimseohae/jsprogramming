@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-16
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            즉시 실행 함수는 함수를 즉시 실행하여 어느 공간인 메모리 상에
+            캐싱해 둔다는 개념으로 이해 하면 되겠다.
+            즉 함수는 실행되는 사이 문장을 처리 하고 처리에 따른 결과값을 리턴한다.
+            하지만 결과값을 리턴한 함수는 소멸 되어 사라질 것이다.
+            예를 들어 보자
+            function a(p){
+                p += 1;
+                return p;
+            }
+            라는 함수가 있다고 하자
+            a(0);이라고 함수를 실행한다.
+            그렇게 된다면 var b = a(0);으로 결과값을 돌려 받을 것이다.
+            그럼 여기서 질문을 하겠다.
+            a함수를 실행하여 최초 등록 된 0에서 하나 증가된 값을 뽑을 수 있겠는가?
+            결과 부터 말하자면 가능하다.
+            함수가 결과 값을 없애지 않고 계속 가지고 있다가 다시 실행되면 위에 있는 변수 p에 +1을 하여 돌려 주면 되지 않겠는가?
+            그럼 한번 함수를 짜보자.
+
+            var a = (function (p){
+                return function(){
+                    return p+=1;
+                }
+            })(0);
+
+            console.log(a());
+            console.log(a());
+            console.log(a());
+
+            이렇게 초기화 하는 대상을 보통 즉시 실행 함수로 wrapping하여 실행한 다음
+            외부에서 접근 불가능 하게 만들어 모듈의 안정성을 높인다.
+
+        **/
+
+        // 클로저를 이용한 함수 접근
+        var a = (function (p){
+                return function(){
+                    return p+=1;
+                }
+            })(0);
+            console.log(a());
+            console.log(a());
+            console.log(a());
+
+        // 즉시 실행 함수
+        (function(name){
+            console.log('This is the immdiate function -> '+name)
+        })('foo');
+    </script>
+</body>
+</html>

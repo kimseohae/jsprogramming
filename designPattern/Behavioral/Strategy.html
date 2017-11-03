@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Strategy ( 전략 패턴 )
+    </title>
+</head>
+<body>
+    <script>
+        /**
+        
+            * 여타 객체 지향에서의 전략 패턴(객체의 모든 관심을 집중)
+                전략 패턴(Strategy pattern)
+                대체 가능한 클레스를 인터페이스로 분리 하여 클래스를 전략적으로 분산해서 사용하는 패턴
+            
+            * 자바스크립트에서의 전략 패턴(구조화된 객체와 행동을 담당할 함수를 분리 하여 사용)
+                일반적으로 전략 패턴의 정의는 구조화된 객체와 행동에 필요한 객체를 분리하고
+                구조화된 객체를 행동에 필요한 객체에 주입하여 사용하다 다른 구조가 필요할 경우 
+                재 정의된 구조객체를 다시 주입하여 행동과 구조를 분리 한 개념이다.
+                자바스크립트에서는 이러한 개념을 함수지향적 개념이라 부르며 자바나 여타 객체 지향에서는 객체지향적 언어라 부른다.
+                다만 여타 객체 지향과 같이 구조를 강제할 방법이 없기 때문에 유의하여 사용 하여야 한다.
+                
+        **/
+        
+        var calculator = {calculation : function(o1, o2){return 'calculator is empty';}}
+        var addCalculator = Object.create(calculator,{calculation : {value : function(o1, o2){return o1+o2;}}});
+        var subCalculator = Object.create(calculator,{calculation : {value : function(o1, o2){return o1-o2;}}});
+   
+        var cal = function init(f){
+            var fn = f;
+            return {
+                setCalculator : function(f){
+                    this.fn = f;
+                },
+                run : function(o1, o2){
+                    return this.fn.calculation(o1, o2);
+                } 
+            }
+        }();
+        
+
+        cal.setCalculator(addCalculator)
+        console.log('(10 + 5) add :',cal.run(10,5));
+        cal.setCalculator(subCalculator)
+        console.log('(10 - 5) sub :',cal.run(10,5));
+        cal.setCalculator(calculator);
+        console.log('empty :',cal.run(10,5));
+        
+    
+    </script>
+</body>
+</html>

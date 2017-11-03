@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Facade
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            * 여타 객체 지향에서의 퍼사드 패턴
+                퍼사드 패턴(Facade pattern)
+                    퍼사드 패턴은 일반적으로 소프트웨어 공학에서 사용 되는 용어 이며 
+                    복잡한 로직을 간략한 객체로 표현할 때 사용된다.
+                    객체지향에서는 특별하게 객체의 관심을 넘김으로써 
+                    클라이언트는 서버에게 보여지는 인터페이스만을 볼 수 있으므로
+                    단편화된 기능으로 생각 하지만 정작 서버는 복잡한 로직을 수행 하고 있는 것이다.
+            
+            * 자바스크립트에서의 퍼사드 패턴
+                퍼사드 패턴은 모든 모듈에서 사용 하는 패턴이다.
+                또한 자바스크립트도 객체라는 개념이 있기 때문에 일반적인 방법으로 사용 될 수 있다.
+                
+        **/
+        
+        var facadeComputor = (function (){
+
+            var f = function(){};
+
+            var cpu = {init : ()=>{console.log('(Cpu) cpu on ...');},destroy:()=>{console.log('(Cpu) cpu of ...');}}
+            var memory = {init : ()=>{console.log('(Memory) memory on ...');},destroy:()=>{console.log('(Memory) memory of ...');}}
+            var hard = {init : ()=>{console.log('(Hard) hard on ...');},destroy:()=>{console.log('(Hard) hard of ...');}}
+            var run = {run : ()=>{console.log('(Run) running ...')}}
+
+            f.prototype ={
+                power : false,
+                on : ()=>{
+                    cpu.init();
+                    memory.init();
+                    hard.init();
+                    this.power = true;
+                },
+                off : ()=>{
+                    cpu.destroy();
+                    memory.destroy();
+                    hard.destroy(); 
+                    this.power = false;
+                },
+                run : ()=>{
+                    if(this.power)
+                        run.run();
+                    else
+                        console.log('please power on !!');
+                }
+            }
+            return new f();
+        })(this);
+
+        facadeComputor.run();
+        facadeComputor.on();
+        facadeComputor.run();
+        facadeComputor.off();
+
+    </script>
+</body>
+</html>
