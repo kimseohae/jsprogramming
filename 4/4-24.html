@@ -8,6 +8,7 @@
 </head>
 <body>
     <script>
+<<<<<<< HEAD
         /**
             var 로 선언 하면 global에 있는 window전역 객체에 프로퍼티로 할당 된다.
          **/ 
@@ -16,6 +17,28 @@
 
         console.log(foo); // (출력 값) I'm foo
         console.log(window.foo); // (출력 값) I'm foo
+=======
+        var v = [];
+        var i = 0;
+        function a(){
+            v.push(this);
+            if(i++ < 3){
+                new a();
+            }
+            
+        }
+        console.log(v)
+        for(i in v)
+            console.log(i)
+
+        new a();
+
+
+        var foo = 'I\'m foo';
+        
+        console.log(foo);   //  (출력 값) I'm foo
+        console.log(window.foo);    // (출력 값) I'm foo
+>>>>>>> 77149a227de8b36b78d7fd570d9a82f6094a2bc8
 
     </script>
 </body>
