@@ -9,7 +9,6 @@
 <body>
     <script>
 
-<<<<<<< HEAD
         /**
             이번 예제는 참조값의 복사 이다. 
             참조 값의 복사는 해당 참조 주소 값을 다른 프로퍼티 또는 변수에 재 할당 하는 행위이다.
@@ -40,27 +39,6 @@
         // sayName() 메서드 호출
         myObject.sayName();
         otherObject.sayName();
-=======
-         // myObject 객체 생성
-         var myObject = {
-             name : 'foo',
-             sayName : function () {
-                 console.log(this.name);
-             },
-         };
-
-         // otherObject 객체 생성
-         var otherObject = {
-             name : 'bar',
-         };
-
-         //otherObject.sayName() 메서드
-         otherObject.sayName = myObject.sayName;
-
-         // sayName() 메서드 호출
-         myObject.sayName();
-         otherObject.sayName();
->>>>>>> 77149a227de8b36b78d7fd570d9a82f6094a2bc8
         
     </script>
 </body>
