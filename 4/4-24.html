@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-24
+    </title>
+</head>
+<body>
+    <script>
+        var v = [];
+        var i = 0;
+        function a(){
+            v.push(this);
+            if(i++ < 3){
+                new a();
+            }
+            
+        }
+        console.log(v)
+        for(i in v)
+            console.log(i)
+
+        new a();
+
+
+        var foo = 'I\'m foo';
+        
+        console.log(foo);   //  (출력 값) I'm foo
+        console.log(window.foo);    // (출력 값) I'm foo
+
+    </script>
+</body>
+</html>
