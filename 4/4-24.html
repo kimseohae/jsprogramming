@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-24
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            var 로 선언 하면 global에 있는 window전역 객체에 프로퍼티로 할당 된다.
+         **/ 
+
+        var foo = "I'm foo";
+
+        console.log(foo); // (출력 값) I'm foo
+        console.log(window.foo); // (출력 값) I'm foo
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-33
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            slice 함수는 Array.prototype의 프로퍼티이며 시작 지점과 끝점을 사용 하여 가벼운 복사후 새로운 배열로 리턴하는 기능이다.
+            ../smp/array.html 참조
+         **/
+        var arrA = [1, 2, 3];
+        var arrB = arrA.slice(0)    // [1,  2,  3]
+        var arrC = arrA.slice();    // [1,  2,  3]
+        var arrD = arrA.slice(1);   // [2,  3]
+        var arrE = arrA.slice(1,2); // [2]
+    </script>
+</body>
+</html>

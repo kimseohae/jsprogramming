@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-26
+    </title>
+</head>
+<body>
+    <script>
+
+        /**
+            이전에도 말한바 있듯이 어느 환경에서 실행이 되었느냐에 따라서 this가 할당이 된다
+            그 환경이란 간단하게 myObject(1).func1(2) (1)환경에서 실항한 (2)함수라는 뜻이다.
+         **/
+
+        // 전역 변수 value 정의
+        var value = 100;
+        
+        // myObject 객체 생성
+        var myObject = {
+            value : 1,
+            func1 : function() {
+                this.value += 1;
+                console.log('func1() called this.value : '+this.value);
+                
+                func2 = function() {
+                    this.value += 1;
+                    console.log('func2() called this.value : '+this.value);
+
+                    func3 = function() {
+                        this.value += 1;
+                        console.log('func3() called this.value : '+this.value);
+                    }
+                    func3()
+                }
+                func2()
+            },
+        };
+        myObject.func1();
+
+    </script>
+</body>
+</html>
