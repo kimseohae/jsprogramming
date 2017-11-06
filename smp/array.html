@@ -270,7 +270,7 @@
         Array.prototype.copyWithin.call(copycopyWith, 1,2);
         console.log('[copyWithin] copyWith :',copycopyWith)
         Array.prototype.copyWithin.call(copyWith, 1, 2, 6);
-        console.log('[copyWithin] copyWith :',copyWith)
+        console.log('[copyWithin] copyWith :',copyWith);
 
         // entries
         // The entries function returns a new Array Iterator object that contains the key/value pairs for each index in the array.
@@ -292,14 +292,14 @@
         var everyFalse = Array.prototype.every.call(everyFalse, (element, index, arr) => element < 10 );
         console.log('[every] elements < 10 :',everyFalse)
         var evertTrue = Array.prototype.every.call(evertTrue, (element, index, arr )=> element < 11 );
-        console.log('[every] elements < 11 :',evertTrue)
+        console.log('[every] elements < 11 :',evertTrue);
 
         // some 
         // The some function is tests whether at least one element in the array passes the test implemented by the provided function.
         // some 함수는 배열에서 하나이상의 요소가 제공된 테스트 케이스를 통과 하는지를 테스트 하여 결과 값을 반환한다.
         var some = [1,2,3,4,5,6,7,8,9,10];
         var some = Array.prototype.some.call(some, (element, index, arr) => element == 10 );
-        console.log('[some] elements == 10 :',some)
+        console.log('[some] elements == 10 :',some);
 
 
         // fill
@@ -390,7 +390,7 @@
         var keysArray = []
         for(v = keysKey.next() ; !v.done ; v = keysKey.next())
             keysArray.push(keys[v.value]);
-        console.log('[keys]',keysArray)
+        console.log('[keys]',keysArray);
 
         // lastIndexOf
         // The lastIndexOf function is returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
@@ -407,7 +407,7 @@
         // map 함수는 불려진 배열의 매 요소로 부터 제공된 함수를 실행하여 실행 결과값을 가진 새로운 배열 객체를 반환한다.
         var map = [1,2,3,4,5,6];
         map = Array.prototype.map.call(map,(e,i,m)=>e*2);
-        console.log('[map] (map * 2) map :',map)
+        console.log('[map] (map * 2) map :',map);
 
         // push, pop
         // (push) The push function is adds one or more elements to the end of an array and returns the new length of the array.
@@ -420,7 +420,7 @@
         while(v = Array.prototype.pop.call(pop)){
             popArr.push(v);
         }
-        console.log('[push] pop is :',pop,'\t [pop] popArr is :',popArr)
+        console.log('[push] pop is :',pop,'\t [pop] popArr is :',popArr);
 
         // reduce , reduceRight
         // (reduce) The reduce function is applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
@@ -490,8 +490,8 @@
         // 현재 지원하지 않아서 나중에 다시 정리 예정
         var values = [1,2,3,4,5,6,7,8,9,10];
         console.dir(values)
-        console.log('Array.prototype have splice method? :',Array.prototype.hasOwnProperty('splice'))
-        console.log('Array.prototype have values method? :',Array.prototype.hasOwnProperty('values'))
+        console.log('Array.prototype have splice method? :',Array.prototype.hasOwnProperty('splice'));
+        console.log('Array.prototype have values method? :',Array.prototype.hasOwnProperty('values'));
 
     </script>
 </body>
