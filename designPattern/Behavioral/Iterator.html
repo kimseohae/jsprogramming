@@ -41,6 +41,7 @@
             var idx = 0;
             return {
                 hasNext : ()=>{
+                    // return t.length > idx ? t[idx] ? true : false : false;
                     if(t.length > idx){
                         return t[idx] ? true : false ;
                     } else {
@@ -48,6 +49,7 @@
                     }
                 },
                 next : ()=>{
+                    // return t.length > idx ? t[idx++] : null;
                     if(t.length > idx){
                         return t[idx++];
                     } else {

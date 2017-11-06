@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        4-32
+    </title>
+</head>
+<body>
+    <script>
+        /**
+            shift,unshift는 queue와 같은 컨테이너 메모리 관리 형태로서
+            ../smp/array.html 참조
+         **/
+
+        function myFunction() {
+            console.dir(arguments);
+
+            // arguments.shift(); 에러 발생
+            
+
+            // arguments 객체를 배열로 변환
+            var args = Array.prototype.slice.apply(arguments);
+            console.dir(args);
+        }
+
+        myFunction(1,2,3);
+    </script>
+</body>
+</html>

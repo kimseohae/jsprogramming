@@ -14,6 +14,20 @@
             이 global context는 브라우저에서는 보통 window에서 실행 될 때 최초 하나의 흐름을 가진다.
 
         **/
+        var fn = function(){
+            console.log('fn');
+            function fn2(){
+
+            }
+            var a = '';
+            a = 10;
+            return a;
+        }
+
+        // global : {fn}
+        // fn : 
+
+
         // add() 함수 표현식
         var add = function(x, y){
             return x + y;

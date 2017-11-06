@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
+    <html lang="en">
     <meta charset="UTF-8">
     <title>
         4-23
@@ -9,25 +9,36 @@
 <body>
     <script>
 
-         // myObject 객체 생성
-         var myObject = {
-             name : 'foo',
-             sayName : function () {
-                 console.log(this.name);
-             },
-         };
+        /**
+            이번 예제는 참조값의 복사 이다. 
+            참조 값의 복사는 해당 참조 주소 값을 다른 프로퍼티 또는 변수에 재 할당 하는 행위이다.
+            초급 프로그래머가 아니라면 특별히 다룰 말은 없다.
+            또한 otherObject.sayName 이 동적으로 할당되었다는 걸 기억하자
+            또한 이 예제는 this를 나타 내기 위해 작성된 예제이다.
+        **/
 
-         // otherObject 객체 생성
-         var otherObject = {
-             name : 'bar',
-         };
 
-         //otherObject.sayName() 메서드
-         otherObject.sayName = myObject.sayName;
 
-         // sayName() 메서드 호출
-         myObject.sayName();
-         otherObject.sayName();
+        // my Object 객체 생성
+        var myObject = {
+            name : 'foo',
+            sayName : function(){
+                console.log(this.name);
+            },
+
+        };
+        
+        // myObject 객체 생성
+        var otherObject = {
+            name : 'bar'
+        };
+
+        // otherObject.sayName() 메서드
+        otherObject.sayName = myObject.sayName;
+
+        // sayName() 메서드 호출
+        myObject.sayName();
+        otherObject.sayName();
         
     </script>
 </body>

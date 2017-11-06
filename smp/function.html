@@ -64,6 +64,11 @@
         
         // bind
         // bind 함수는 호출 될 때 this 키워드를 새롭게 설정하고 함수가 불려질 때 넘겨질 인자들을 정의하여 새로운 함수를 작성하여 실행 한다.
+        // 커링 가능 
+        // 커링 ( https://www.evernote.com/l/AuMagkLTo_9GnLHzBv9hGO-gsOVA0AGV9gM )
+        // 즉시 실행함수를 사용하여 부분 적용 가능 
+        // 부분 함수 ( https://www.evernote.com/l/AuN18CGPBx9J-ZftGP3oBZ5qWWdO1l-jCLs )
+
         var bind = function(ip, port){
             console.log('bind : { this :',this.name,'\targuments : ',ip,',',port,'}');
         }
