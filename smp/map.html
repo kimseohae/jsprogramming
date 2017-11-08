@@ -7,6 +7,145 @@
     </title>
 </head>
 <body>
-    
+    <script>
+        /**
+
+            Set은 따로 설명 하지 않겠다.
+            Set과 Map의 차이점은 키로서 값을 찾느냐와 값으로서 값을 찾느냐의 차이이다.
+            또한 값의 중복성의 인정 하느냐와 인정 하지 않느냐 정도의 차이이다.
+            혹시 궁금하면 인터넷을 찾아 보거나 그래도 이해가 안되면 직접 물어 보길 바란다.
+
+            Map objects are collections of key/value pairs where both the keys and values may be arbitrary ECMAScript language values. 
+            A distinct key value may only occur in one key/value pair within the Map's collection. 
+            Distinct key values are discriminated using the SameValueZero comparison algorithm.
+
+            Map Object는 키/값 한쌍으로 이루어진 콜렉션 타입이며 임의의 ECMAScript 언어 값인 키와 값을 가집니다. (문자열, 숫자, 진리값,...)
+            Map 컬렉션에는 각각의 키와 벨류는 한쌍씩만 이루어져 있으며 키값을 고유한 알고리즘인 "SameValueZero" 사용 하여 구별합니다.
+
+            맵의 기본 속성값 : This property has the attributes { [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: false }
+
+
+            Map([iterable])
+                +-- Map[[Constructor]]
+                |       +-- size : The size accessor property returns the number of elements in a Map object.
+                |
+                +-- Map[[Prototype]]
+                        +-- clear : The clear method removes all elements from a Map object.
+                        |
+                        +-- delete : The delete method removes the specified element from a Map object.
+                        |       +-- parameters : ( key )
+                        |       +-- key : 삭제할 컬렉션의 키값
+                        |
+                        +-- entries : The entries method returns a new Iterator object that contains the [key, value] pairs for each element in the Map object in insertion order.
+                        |
+                        +-- forEach : The forEach method executes a provided function once per each key/value pair in the Map object, in insertion order.
+                        |       +-- parameters : ( callback[, thisArg] )
+                        |       +-- callback : 매 요소 마다 실행 될 함수
+                        |       |       +-- parameters : ( the element value, the element key, the Map object being )
+                        |       |       +-- value : 매 요소 마다 등록 된 값
+                        |       |       +-- key : 매 요소 마다 등록 된 키
+                        |       |       +-- map : 실행 중인 map 객체
+                        |       |       
+                        |       +-- thisArg : this로 바인딩 될 인자
+                        |
+                        +-- get : The get method returns a specified element from a Map object.
+                        |       +-- parameters : ( key )
+                        |       +-- key : 조회 할 값의 키 값
+                        |       
+                        +-- set : The set method adds or updates an element with a specified key and value to a Map object.
+                        |       +-- parameters : ( key, value )
+                        |       +-- key : 등록 할 값의 키 값
+                        |       +-- value : 등록 할 값
+                        | 
+                        +-- has : The has method returns a boolean indicating whether an element with the specified key exists or not.
+                        |       +-- parameters : ( key )
+                        |       +-- key : 확인 할 키 값
+                        |
+                        +-- keys : The keys method returns a new Iterator object that contains the keys for each element in the Map object in insertion order.
+                        +-- values : The values method returns a new Iterator object that contains the values for each element in the Map object in insertion order.
+
+        **/
+
+
+        // clear
+        // The clear method removes all elements from a Map object.
+        // clear 메서드는 Map Object의 모든 요소를 제거한다.
+        var clear = new Map(Object.entries({name : 'jhLee', age : 30, addrs : '여의대방로 55길 4 304호'}));
+        console.log('(clear) Create Map :',clear);
+        Map.prototype.clear.apply(clear);
+        console.log('(clear) cleared Map :',clear);
+
+        // delete
+        // The delete method removes the specified element from a Map object.
+        // delete 메서드는 Map Object에서 지정한 요소를 제거한다.
+        var deleteM = new Map(Object.entries({name : 'jhLee', age : 30, addrs : '여의대방로 55길 4 304호'}));
+        console.log('(delete) Create Map :',deleteM);
+        Map.prototype.delete.call(deleteM,'name');
+        console.log('(delete) Delete name in Map :',deleteM);
+
+        // entries
+        // The entries method returns a new Iterator object that contains the [key, value] pairs for each element in the Map object in insertion order.
+        // entries 메서드는 맵 오브젝트 안에 들어간 순서대로 [ key, value ] 값을 가진 새로운 순차접근 가능한 객체를 반환한다.
+        var entries =new Map(Object.entries({name : 'jhLee', age : 30, addrs : '여의대방로 55길 4 304호'}));
+        console.log('(entries) Create Map :',entries);
+        entries = Map.prototype.entries.call(entries);
+        while( !( v = entries.next() ).done)
+            console.log('(entries) Entries Map : {key :',v.value[0],',value :', v.value[1],'}');
+
+        // forEach
+        // The forEach method executes a provided function once per each key/value pair in the Map object, in insertion order.
+        // forEach 메서드는 맵 오브젝트 안에 들어간 순서대로 순환하면서 제공된 함수를 실행 한다.
+        var forEach = new Map(Object.entries({korean : 50, english : 30, math : 80}));
+        console.log('(forEach) Create Map :',forEach);
+        Map.prototype.forEach.call(forEach, function(value, key, map){
+            const addValue = 5;
+            map.set(key,value + addValue);
+        })
+        console.log('(forEach) forEach :',forEach)
+
+        // get, set
+        // The get method returns a specified element from a Map object.
+        // get 메서드는 맵 오브젝트안에서 지정한 키 값의 요소를 반환한다.
+        // -----------------------------------------------------------------------
+        // The set method adds or updates an element with a specified key and value to a Map object.
+        // set 메서드는 맵 오브젝트안에서 지정한 key를 가진 value를 없다면 등록 존재 한다면 수정 한다.
+        var get, set;
+        get = set = new Map();
+        console.log('(get, set) Create Map :',get);
+        Map.prototype.set.call(set, 'name','jhLee');
+        Map.prototype.set.call(set, 'score',{korean:80, english : 20, math : 50});
+        console.log('(set) Set Map :',get);
+        console.log('(get) Get score from Map :',Map.prototype.get.call(get, 'score'));
+
+        // has 
+        // The has method returns a boolean indicating whether an element with the specified key exists or not.
+        // has 메서드는 해당 키 값의 요소가 존재하는지 존재하지 않는지 판별하여 true와 false를 반환한다.
+        var has = new Map(Object.entries({korean : 50, english : 30, math : 80}));
+        console.log('(has) Create Map :',has);
+        console.log('(has) has map in math (?) :',Map.prototype.has.call(has, 'math'));
+        console.log('(has) has map in name (?) :',Map.prototype.has.call(has, 'name'));
+        console.dir(Map.prototype);
+
+        // keys, values
+        // The keys method returns a new Iterator object that contains the keys for each element in the Map object in insertion order.
+        // keys 메서드는 맵 오브젝트의 등록 된 순서대로 키값을 순환하는 새로운 순환 배열(Iterator)을 리턴한다.
+        // --------------------------------------------------------------------------------------------------------------------------------
+        // The values method returns a new Iterator object that contains the values for each element in the Map object in insertion order.
+        // values 메서드는 맵 오브젝트의 등록 된 순서대로 값을 순환하는 새로운 순환 배열을(Iterator) 리턴한다.
+        var keys = new Map(Object.entries({korean : 50, english : 30, math : 80}));
+        console.log('(keys) Create Map :',keys);
+        keys = Map.prototype.keys.call(keys);
+        while( ! ( v = keys.next() ).done ) {
+            console.log('(keys) keys : ('+v.value+')');
+        }
+
+        var values = new Map(Object.entries({korean : 50, english : 30, math : 80}));
+        console.log('(values) Create Map :',values);
+        values = Map.prototype.values.call(values);
+        while( ! ( v = values.next() ).done ) {
+            console.log('(values) values : ('+v.value+')');
+        }
+
+    </script>
 </body>
 </html>
