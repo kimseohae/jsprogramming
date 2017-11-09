@@ -8,15 +8,20 @@
 </head>
 <body>
     <script>
-        const bets = { crown : 0, anchor : 0, heart : 0,
-        spade : 0, club : 0, diamond : 0 };
-        let totalBet = rand(1, funds);
-        if(totalBet === 7){
-            totalBet = funds;
-            bet.heart = totalBet;
-        } else {
-            // 그 판에 걸 돈을 분배합니다.
-        }
+
+function callLater(obj, a, b) {
+    return (function(){
+        obj["sum"] = a + b;
+		console.log(obj["sum"]);
+    });
+}
+
+var sumObj = {
+	sum : 0
+}
+
+var func = callLater(sumObj, 1, 2);
+setTimeout(func, 500)
             
 
 
