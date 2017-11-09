@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        5-7
+    </title>
+</head>
+<body>
+    <script>
+        function outerFunc(){
+            var x = 10;
+            var innerFunc = function() { console.log(x); }
+            return innerFunc;
+        }
+        var inner = outerFunc();
+        inner();
+    </script>
+</body>
+</html>

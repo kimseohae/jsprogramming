@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        5-14
+    </title>
+</head>
+<body>
+    <script>
+        function outerFunc(argNum) {
+            var num = argNum;
+            return function(x){
+                num += x;
+                console.log('num: '+num);
+            }
+        }
+        var exam = outerFunc(40);
+        exam(5);
+        exam(-10);
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        5-16
+    </title>
+</head>
+<body>
+    <script>/*
+        function countSeconds(howMany) {
+            for(var i = 1; i <= howMany ; i++ ){
+                setTimeout(function() {
+                    console.log(i);
+                }, i * 1000);
+            }
+        }
+        countSeconds(3);
+        */
+        function countSeconds(howMany) {
+            for(var i = 1; i <= howMany ; i++ ){
+                setTimeout((function(i) {
+                return ()=>{
+                    console.log(i);
+                }
+                })(i), i * 1000);
+            }
+        }
+        countSeconds(3);
+    </script>
+</body>
+</html>

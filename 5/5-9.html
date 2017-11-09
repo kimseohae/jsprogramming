@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        5-9
+    </title>
+</head>
+<body>
+    <script>
+        
+        function HelloFunc(func) {
+            this.greeting = "hello";
+        }
+        HelloFunc.prototype.call = function(func) {
+            func ? func(this.greeting) : this.func(this.greeting);
+        }
+
+        var useFunc = function(greeting) {
+            console.log(greeting);
+        }
+        var objHello = new HelloFunc();
+        objHello.func = useFunc;
+        objHello.call();
+
+    </script>
+</body>
+</html>
